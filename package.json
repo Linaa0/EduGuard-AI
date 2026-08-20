@@ -1,0 +1,37 @@
+{
+  "name": "eduguard-ai",
+  "version": "1.0.0",
+  "description": "An AI-powered academic assessment and feedback platform designed to help lecturers assess faster, provide meaningful feedback, and help students understand how to improve.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Linaa0/EduGuard-AI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Linaa0/EduGuard-AI/issues"
+  },
+  "homepage": "https://github.com/Linaa0/EduGuard-AI#readme",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.33.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.1"
+  }
+}

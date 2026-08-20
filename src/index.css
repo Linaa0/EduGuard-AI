@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --navy-950: #060b17;
+    --navy-900: #0b132b;
+    --navy-850: #111c3a;
+    --navy-800: #1c2541;
+    --navy-700: #2a3b66;
+    --navy-600: #3a508b;
+    
+    --royal-500: #3b82f6;
+    --royal-600: #2563eb;
+    --royal-700: #1d4ed8;
+
+    --emerald-500: #10b981;
+    --emerald-600: #059669;
+
+    --amber-500: #f59e0b;
+    --amber-600: #d97706;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(11, 19, 43, 0.03);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(11, 19, 43, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(11, 19, 43, 0.3);
+}
+
+/* Glassmorphic & UI Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-dark {
+  background: rgba(11, 19, 43, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(11, 19, 43, 0.05), 0 2px 6px -1px rgba(11, 19, 43, 0.02);
+}
+
+/* Subtle Shimmer & Scan Effect for AI Assessment */
+@keyframes scan-line {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 95%;
+    opacity: 0.8;
+  }
+}
+
+.animate-scan {
+  animation: scan-line 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.98);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+/* Custom Gradient Text */
+.gradient-text-navy {
+  background: linear-gradient(135deg, #0b132b 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-royal {
+  background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Active Navigation Indicators */
+.nav-item-active {
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.02) 100%);
+  border-left: 3px solid #2563eb;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+/* Code & Terminal styling */
+.terminal-window {
+  background-color: #0b132b;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
