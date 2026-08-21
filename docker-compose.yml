@@ -1,0 +1,142 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: eduguard-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-eduguard}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eduguard_secure_pass_2026}
+      POSTGRES_DB: ${POSTGRES_DB:-eduguard_ai}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-eduguard} -d ${POSTGRES_DB:-eduguard_ai}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - eduguard-network
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.3
+    container_name: eduguard-qdrant
+    volumes:
+      - qdrant_data:/qdrant/storage
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/healthz"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - eduguard-network
+    restart: unless-stopped
+
+  n8n:
+    image: n8nio/n8n:1.66.1
+    container_name: eduguard-n8n
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${N8N_USER:-admin@eduguard.ai}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD:-admin_eduguard_2026}
+      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://n8n:5678/
+      - GENERIC_TIMEZONE=UTC
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=${POSTGRES_DB:-eduguard_ai}
+      - DB_POSTGRESDB_USER=${POSTGRES_USER:-eduguard}
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD:-eduguard_secure_pass_2026}
+      - DB_POSTGRESDB_SCHEMA=n8n
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - eduguard-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: eduguard-backend
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-eduguard}:${POSTGRES_PASSWORD:-eduguard_secure_pass_2026}@postgres:5432/${POSTGRES_DB:-eduguard_ai}
+      - DATABASE_SYNC_URL=postgresql+psycopg2://${POSTGRES_USER:-eduguard}:${POSTGRES_PASSWORD:-eduguard_secure_pass_2026}@postgres:5432/${POSTGRES_DB:-eduguard_ai}
+      - QDRANT_URL=http://qdrant:6333
+      - QDRANT_COLLECTION=eduguard_rubrics
+      - EJOCHAT_API_KEY=${EJOCHAT_API_KEY:-your_ejochat_api_key_here}
+      - EJOCHAT_BASE_URL=${EJOCHAT_BASE_URL:-https://api.ejochat.ai/v1}
+      - EJOCHAT_MODEL=${EJOCHAT_MODEL:-ejochat-4o}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-BAAI/bge-base-en-v1.5}
+      - JWT_SECRET=${JWT_SECRET:-eduguard_jwt_super_secret_key_change_in_production_2026}
+      - JWT_ALGORITHM=HS256
+      - JWT_EXPIRE_MINUTES=10080
+      - N8N_WEBHOOK_URL=http://n8n:5678/webhook/eduguard-assessment
+      - CORS_ORIGINS=http://localhost:3000,http://frontend:3000,http://localhost:5173
+    volumes:
+      - ./backend:/app
+      - backend_uploads:/app/uploads
+    ports:
+      - "8000:8000"
+    networks:
+      - eduguard-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    restart: unless-stopped
+    command: >
+      sh -c "
+        python -m app.core.init_db &&
+        uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+      "
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: eduguard-frontend
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000/api/v1
+    ports:
+      - "3000:3000"
+    networks:
+      - eduguard-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+  qdrant_data:
+    driver: local
+  n8n_data:
+    driver: local
+  backend_uploads:
+    driver: local
+
+networks:
+  eduguard-network:
+    driver: bridge
+    name: eduguard-network

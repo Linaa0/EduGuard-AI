@@ -1,46 +1,150 @@
-# Dependencies
-node_modules/
-.pnp/
-.pnp.js
-.yarn/install-state.gz
+# ============================================================
+# EduGuard AI — Root Project .gitignore
+# ============================================================
 
-# Build output
-dist/
-dist-ssr/
-build/
+# --- Environment / Secrets ---
+.env
+.env.*
+!.env.example
 *.local
+*.secret
+secrets/
+config/secrets/
+.pem
+.key
+.crt
+.p12
+.pfx
 
-# Logs
-logs/
+# --- Dependencies ---
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+ENV/
+.pip-cache/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.bun/
+
+# --- Package Lock Files (optional - keep package-lock.json for determinism)
+# Uncomment next line if you want to exclude lock files
+# package-lock.json
+# yarn.lock
+
+# --- Build outputs ---
+dist/
+build/
+.next/
+out/
+*.egg-info/
+.eggs/
+htmlcov/
+coverage.xml
+.coverage
+coverage/
+.parcel-cache/
+.cache/
+.svelte-kit/
+.nuxt/
+
+# --- Vite / Bundler caches ---
+.vite/
+node_modules/.vite/
+node_modules/.cache/
+
+# --- Logs ---
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
+logs/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea/
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-Thumbs.db
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Testing
-coverage/
-*.lcov
-
-# Temporary files
+# --- Uploads & temp data ---
+uploads/
+tmp/
+temp/
 *.tmp
 *.temp
-.cache/
+storage/
+media/
+files/
+
+# --- Editor / OS ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# --- Docker volumes (mounted dirs) ---
+.docker-data/
+postgres-data/
+qdrant-data/
+n8n-data/
+redis-data/
+esdata/
+
+# --- n8n mounted dirs ---
+n8n/node_modules/
+n8n/.n8n/
+
+# --- Jupyter / Notebook ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- Python Virtual Environments ---
+.python-version
+
+# --- TypeScript ---
+*.tsbuildinfo
+
+# --- Storybook ---
+storybook-static/
+
+# --- Sentry ---
+.sentryclirc
+
+# --- Lint & Formatting caches ---
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# --- Terraform / IaC ---
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+crash.log
+
+# --- API Keys / Credentials dumps ---
+credentials.json
+token.json
+tokens.json
+client_secret.json
+service_account.json
+
+# --- Backup Files ---
+*.bak
+*.backup
+*.old
+*.orig
