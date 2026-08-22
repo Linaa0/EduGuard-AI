@@ -217,7 +217,7 @@ export default function SignupPage() {
                     key={role.id}
                     type="button"
                     onClick={() => setSelectedRole(role.id)}
-                    className={`group relative text-left rounded-2xl border border-divider bg-white p-6 lg:p-7 transition-all duration-200 hover:-translate-y-1 hover:shadow-cardLg animate-slideUp ${isSelected ? colors.selected : ''}`}
+                    className={`group relative text-left rounded-2xl border border-divider bg-white dark:bg-slate-800 p-6 lg:p-7 transition-all duration-200 hover:-translate-y-1 hover:shadow-cardLg animate-slideUp ${isSelected ? colors.selected : ''}`}
                     style={{ animationDelay: `${idx * 60}ms` }}
                   >
                     {isSelected && (
@@ -347,7 +347,7 @@ export default function SignupPage() {
             </button>
           </div>
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8 animate-fadeIn">
-            <div className={`flex items-center gap-3.5 rounded-2xl border p-4 bg-white shadow-card ${colors.iconBg.replace('bg-', 'border-').split(' ')[1]}`}>
+            <div className={`flex items-center gap-3.5 rounded-2xl border p-4 bg-white dark:bg-slate-800 shadow-card ${colors.iconBg.replace('bg-', 'border-').split(' ')[1]}`}>
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${colors.iconBg}`}>
                 <Icon className="w-6 h-6" strokeWidth={2} />
               </div>
@@ -368,7 +368,7 @@ export default function SignupPage() {
                 <Check className="w-3.5 h-3.5" />
               </div>
               <div className="h-0.5 w-8 bg-divider"></div>
-              <div className="w-7 h-7 rounded-full flex items-center justify-center bg-white text-charcoal border-2 border-charcoal shadow-sm">
+              <div className="w-7 h-7 rounded-full flex items-center justify-center bg-white dark:bg-slate-800 text-charcoal border-2 border-charcoal shadow-sm">
                 2
               </div>
             </div>
@@ -418,7 +418,7 @@ export default function SignupPage() {
                         value={formData.fullName}
                         onChange={e => updateField('fullName', e.target.value)}
                         placeholder="e.g. Jeanne Mukamana"
-                        className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                     </div>
                   </div>
@@ -431,7 +431,7 @@ export default function SignupPage() {
                         value={formData.email}
                         onChange={e => updateField('email', e.target.value)}
                         placeholder="you@ur.ac.rw"
-                        className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                     </div>
                   </div>
@@ -444,7 +444,7 @@ export default function SignupPage() {
                         value={formData.phone}
                         onChange={e => updateField('phone', e.target.value)}
                         placeholder="+250 7xx xxx xxx"
-                        className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                     </div>
                   </div>
@@ -457,7 +457,7 @@ export default function SignupPage() {
                         value={formData.password}
                         onChange={e => updateField('password', e.target.value)}
                         placeholder="At least 6 characters"
-                        className="w-full h-12 pl-11 pr-12 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 pl-11 pr-12 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                       <button
                         type="button"
@@ -478,7 +478,7 @@ export default function SignupPage() {
                         value={formData.confirmPassword}
                         onChange={e => updateField('confirmPassword', e.target.value)}
                         placeholder="Retype your password"
-                        className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                     </div>
                   </div>
@@ -499,7 +499,7 @@ export default function SignupPage() {
                         value={formData.studentId}
                         onChange={e => updateField('studentId', e.target.value)}
                         placeholder="e.g. 2024-ICT-001"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
                       />
                     </div>
                     <div>
@@ -509,7 +509,7 @@ export default function SignupPage() {
                         value={formData.university}
                         onChange={e => updateField('university', e.target.value)}
                         placeholder="University of Rwanda"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
                       />
                     </div>
                     <div>
@@ -519,7 +519,7 @@ export default function SignupPage() {
                         value={formData.faculty}
                         onChange={e => updateField('faculty', e.target.value)}
                         placeholder="School of ICT"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
                       />
                     </div>
                     <div>
@@ -529,7 +529,7 @@ export default function SignupPage() {
                         value={formData.programme}
                         onChange={e => updateField('programme', e.target.value)}
                         placeholder="BSc. Computer Science"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -537,7 +537,7 @@ export default function SignupPage() {
                       <select
                         value={formData.yearOfStudy}
                         onChange={e => updateField('yearOfStudy', e.target.value)}
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal focus:outline-none focus:ring-4 focus:ring-teal/20 focus:border-teal transition-all text-[15px]"
                       >
                         <option value="">Select year</option>
                         <option value="Year 1">Year 1 — Freshman</option>
@@ -566,7 +566,7 @@ export default function SignupPage() {
                         value={formData.staffId}
                         onChange={e => updateField('staffId', e.target.value)}
                         placeholder="e.g. STAFF-ICT-224"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                     </div>
                     <div>
@@ -576,7 +576,7 @@ export default function SignupPage() {
                         value={formData.university}
                         onChange={e => updateField('university', e.target.value)}
                         placeholder="University of Rwanda"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                     </div>
                     <div>
@@ -586,7 +586,7 @@ export default function SignupPage() {
                         value={formData.department}
                         onChange={e => updateField('department', e.target.value)}
                         placeholder="Dept. of Computer Science"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                     </div>
                     <div>
@@ -596,7 +596,7 @@ export default function SignupPage() {
                         value={formData.faculty}
                         onChange={e => updateField('faculty', e.target.value)}
                         placeholder="College of Science and Technology"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -606,7 +606,7 @@ export default function SignupPage() {
                         value={formData.courses}
                         onChange={e => updateField('courses', e.target.value)}
                         placeholder="e.g. Software Engineering, Data Structures, AI Systems"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-[15px]"
                       />
                     </div>
                   </div>
@@ -627,7 +627,7 @@ export default function SignupPage() {
                         value={formData.adminInstitution}
                         onChange={e => updateField('adminInstitution', e.target.value)}
                         placeholder="University of Rwanda"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-amber/20 focus:border-amber-400 transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-amber/20 focus:border-amber-400 transition-all text-[15px]"
                       />
                     </div>
                     <div>
@@ -637,7 +637,7 @@ export default function SignupPage() {
                         value={formData.adminDepartment}
                         onChange={e => updateField('adminDepartment', e.target.value)}
                         placeholder="Academic Affairs / Registrar"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-amber/20 focus:border-amber-400 transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-amber/20 focus:border-amber-400 transition-all text-[15px]"
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -647,7 +647,7 @@ export default function SignupPage() {
                         value={formData.administratorId}
                         onChange={e => updateField('administratorId', e.target.value)}
                         placeholder="e.g. ADMIN-REG-007"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-amber/20 focus:border-amber-400 transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-amber/20 focus:border-amber-400 transition-all text-[15px]"
                       />
                     </div>
                   </div>
@@ -668,7 +668,7 @@ export default function SignupPage() {
                         value={formData.connectStudentId}
                         onChange={e => updateField('connectStudentId', e.target.value)}
                         placeholder="e.g. 2024-ICT-001"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-success/20 focus:border-success transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-success/20 focus:border-success transition-all text-[15px]"
                       />
                     </div>
                     <div>
@@ -678,7 +678,7 @@ export default function SignupPage() {
                         value={formData.connectStudentEmail}
                         onChange={e => updateField('connectStudentEmail', e.target.value)}
                         placeholder="student@ur.ac.rw"
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-success/20 focus:border-success transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/60 focus:outline-none focus:ring-4 focus:ring-success/20 focus:border-success transition-all text-[15px]"
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -686,7 +686,7 @@ export default function SignupPage() {
                       <select
                         value={formData.relationship}
                         onChange={e => updateField('relationship', e.target.value)}
-                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white text-charcoal focus:outline-none focus:ring-4 focus:ring-success/20 focus:border-success transition-all text-[15px]"
+                        className="w-full h-12 px-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal focus:outline-none focus:ring-4 focus:ring-success/20 focus:border-success transition-all text-[15px]"
                       >
                         <option value="">Select relationship</option>
                         <option value="Mother">Mother</option>

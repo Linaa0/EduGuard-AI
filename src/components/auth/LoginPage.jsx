@@ -241,7 +241,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder="you@ur.ac.rw"
-                    className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/70 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-[15px]"
+                    className="w-full h-12 pl-11 pr-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/70 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-[15px]"
                     autoComplete="email"
                   />
                 </div>
@@ -265,7 +265,7 @@ export default function LoginPage() {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     placeholder="Enter your password"
-                    className="w-full h-12 pl-11 pr-12 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/70 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-[15px]"
+                    className="w-full h-12 pl-11 pr-12 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/70 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-[15px]"
                     autoComplete="current-password"
                   />
                   <button
@@ -314,7 +314,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => showToast('Google SSO', 'Institutional Google SSO will be connected in production. Using demo login instead.', 'info')}
-              className="w-full h-12 rounded-xl border border-divider bg-white text-charcoal font-semibold flex items-center justify-center gap-2.5 hover:bg-cream-100 transition-colors mb-8"
+              className="w-full h-12 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal font-semibold flex items-center justify-center gap-2.5 hover:bg-cream-100 transition-colors mb-8"
             >
               <svg className="w-4.5 h-4.5" viewBox="0 0 48 48">
                 <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.4 29.3 35.5 24 35.5c-6.4 0-11.5-5.1-11.5-11.5S17.6 12.5 24 12.5c2.9 0 5.6 1.1 7.6 2.9l5.7-5.7C33.8 6.4 29.2 4.5 24 4.5 13.2 4.5 4.5 13.2 4.5 24S13.2 43.5 24 43.5 43.5 34.8 43.5 24c0-1.2-.1-2.4-.4-3.5z"/>
@@ -341,7 +341,7 @@ export default function LoginPage() {
                       key={role.id}
                       type="button"
                       onClick={() => handleQuickRoleLogin(role.id)}
-                      className={`group p-3.5 rounded-xl border border-divider bg-white text-left transition-all hover:-translate-y-0.5 hover:shadow-card ${roleSelectedClass(role.id, role.color)}`}
+                      className={`group p-3.5 rounded-xl border border-divider bg-white dark:bg-slate-800 text-left transition-all hover:-translate-y-0.5 hover:shadow-card ${roleSelectedClass(role.id, role.color)}`}
                     >
                       <div className={`w-9 h-9 rounded-lg flex items-center justify-center mb-2.5 ${roleBadgeClass(role.id, role.color)}`}>
                         <Icon className="w-4.5 h-4.5" />

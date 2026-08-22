@@ -269,7 +269,7 @@ export function AdminDashboardView() {
           />
           <div className="space-y-4">
             {departments.map(d => (
-              <div key={d.name} className="p-3 rounded-xl border border-divider bg-cream-50/50 hover:bg-white hover:shadow-card transition-all">
+              <div key={d.name} className="p-3 rounded-xl border border-divider bg-cream-50/50 hover:bg-white dark:bg-slate-800 hover:shadow-card transition-all">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2.5">
                     <div className="w-9 h-9 rounded-lg bg-primary-50 text-primary flex items-center justify-center">
@@ -383,7 +383,7 @@ function SimpleListView({ icon, title, subtitle, items, itemFields, badgeKey, st
             <input
               type="text"
               placeholder={`Search ${title.toLowerCase()}...`}
-              className="w-full h-11 pl-11 pr-4 rounded-xl border border-divider bg-white text-charcoal placeholder:text-slategray/70 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary text-[14px]"
+              className="w-full h-11 pl-11 pr-4 rounded-xl border border-divider bg-white dark:bg-slate-800 text-charcoal placeholder:text-slategray/70 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary text-[14px]"
             />
           </div>
           <div className="flex items-center gap-2">
