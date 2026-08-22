@@ -7,23 +7,24 @@ import {
   UserPlus,
   ArrowRight,
   Play,
+  Globe,
 } from 'lucide-react';
 import { useNavigate } from '../../hooks/useNavigate';
 import ThemeToggle from '../common/ThemeToggle';
 import { useAppState } from '../../context/AppStateContext';
 
 const NavLinks = [
-  { label: 'Problem', href: '#problem' },
-  { label: 'Solution', href: '#solution' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: "Who It's For", href: '#who-its-for' },
-  { label: 'Responsible AI', href: '#responsible-ai' },
-  { label: 'Impact', href: '#impact' },
+  { label: 'Problem', href: '#problem', tKey: 'nav.problem' },
+  { label: 'Solution', href: '#solution', tKey: 'nav.solution' },
+  { label: 'How It Works', href: '#how-it-works', tKey: 'nav.howItWorks' },
+  { label: "Who It's For", href: '#who-its-for', tKey: 'nav.whoItsFor' },
+  { label: 'Responsible AI', href: '#responsible-ai', tKey: 'nav.responsibleAI' },
+  { label: 'Impact', href: '#impact', tKey: 'nav.impact' },
 ];
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { setAuthView, setCurrentPortal, currentPortal, currentUser, logoutUser, showToast } = useAppState();
+  const { setAuthView, setCurrentPortal, currentPortal, currentUser, logoutUser, showToast, language, setLanguage, t } = useAppState();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const goHome = () => {
@@ -93,7 +94,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-divider shadow-[0_1px_2px_rgba(16,35,59,0.04)]">
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-divider dark:border-slate-700 shadow-[0_1px_2px_rgba(16,35,59,0.04)]">
       <div className="site-container flex items-center justify-between h-16 gap-6">
         {/* Logo — flex-shrink-0 */}
         <a
@@ -105,25 +106,25 @@ export default function Navbar() {
             <Shield className="w-5 h-5" strokeWidth={2.25} />
           </div>
           <div className="leading-tight">
-            <div className="font-heading font-extrabold text-[17px] text-midnight tracking-tight">
+            <div className="font-heading font-extrabold text-[17px] text-midnight dark:text-white tracking-tight">
               EduGuard<span className="text-teal">AI</span>
             </div>
             <div className="text-[11px] font-medium text-slategray tracking-wide -mt-0.5 hidden sm:block">
-              AI Assesses · Teachers Decide · Students Understand
+              {t('app.tagline')}
             </div>
           </div>
         </a>
 
         {/* Nav links — hidden below xl, flexbox row with gap */}
         <nav className="hidden xl:flex items-center gap-1 flex-shrink-0">
-          {NavLinks.map(({ label, href }) => (
+          {NavLinks.map(({ label, href, tKey }) => (
             <a
               key={label}
               href={href}
               onClick={(e) => { e.preventDefault(); go(href); }}
-              className="nav-link whitespace-nowrap"
+              className="nav-link whitespace-nowrap dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/10"
             >
-              {label}
+              {tKey ? t(tKey) : label}
             </a>
           ))}
         </nav>
@@ -133,6 +134,15 @@ export default function Navbar() {
 
         {/* Right-side controls — fixed gap, no overlap */}
         <div className="flex items-center gap-3 flex-shrink-0">
+          {/* Language Switcher */}
+          <button
+            onClick={() => setLanguage(language === 'en' ? 'rw' : 'en')}
+            className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-divider dark:border-slate-700 bg-white dark:bg-slate-800 text-slategray dark:text-slate-300 hover:bg-cream-100 dark:hover:bg-slate-700 hover:text-midnight dark:hover:text-white transition-colors text-xs font-bold"
+            title={language === 'en' ? 'Switch to Kinyarwanda' : 'Switch to English'}
+          >
+            {language === 'en' ? 'RW' : 'EN'}
+          </button>
+
           <ThemeToggle />
 
           {currentUser ? (
@@ -146,29 +156,29 @@ export default function Navbar() {
                 </div>
                 <span className="text-sm font-semibold text-charcoal">{roleLabel(currentUser.role)} Portal</span>
               </button>
-              <button onClick={handleLogout} className="btn btn-secondary !py-2 !px-3.5">
+              <button onClick={handleLogout} className="btn btn-secondary dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 !py-2 !px-3.5">
                 <LogIn className="w-4 h-4 rotate-180" />
-                <span className="hidden sm:inline">Log Out</span>
+                <span className="hidden sm:inline">{t('nav.logout')}</span>
               </button>
             </>
           ) : (
             <>
               {/* Log In — secondary/ghost */}
-              <button onClick={onLogin} className="btn btn-secondary hidden sm:inline-flex !py-2 !px-4">
+              <button onClick={onLogin} className="btn btn-secondary dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 hidden sm:inline-flex !py-2 !px-4">
                 <LogIn className="w-4 h-4" />
-                <span>Log In</span>
+                <span>{t('nav.login')}</span>
               </button>
 
               {/* Sign Up — outline/secondary, NOT solid primary */}
-              <button onClick={onSignup} className="btn btn-secondary hidden sm:inline-flex !py-2 !px-4">
+              <button onClick={onSignup} className="btn btn-secondary dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 hidden sm:inline-flex !py-2 !px-4">
                 <UserPlus className="w-4 h-4" />
-                <span>Sign Up</span>
+                <span>{t('nav.signup')}</span>
               </button>
 
               {/* See How It Works — the ONE solid CTA */}
               <button onClick={onDemo} className="btn btn-teal hidden md:inline-flex !py-2 !px-4">
                 <Play className="w-4 h-4" />
-                <span className="hidden lg:inline">See How It Works</span>
+                <span className="hidden lg:inline">{t('nav.demo')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </>
@@ -177,7 +187,7 @@ export default function Navbar() {
           {/* Mobile hamburger — visible below xl */}
           <button
             onClick={() => setMobileOpen(v => !v)}
-            className="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-midnight hover:bg-cream-100 border border-divider"
+            className="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-midnight dark:text-slate-200 hover:bg-cream-100 dark:hover:bg-slate-700 border border-divider dark:border-slate-600"
             aria-label="Toggle navigation"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -187,39 +197,39 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="xl:hidden border-t border-divider bg-white animate-fadeIn">
+        <div className="xl:hidden border-t border-divider dark:border-slate-700 bg-white dark:bg-slate-900 animate-fadeIn">
           <div className="site-container py-4 flex flex-col gap-1">
-            {NavLinks.map(({ label, href }) => (
+            {NavLinks.map(({ label, href, tKey }) => (
               <a
                 key={label}
                 href={href}
                 onClick={(e) => { e.preventDefault(); go(href); }}
-                className="nav-link !text-[15px] !py-2.5"
+                className="nav-link !text-[15px] !py-2.5 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/10"
               >
-                {label}
+                {tKey ? t(tKey) : label}
               </a>
             ))}
 
-            <div className="mt-3 pt-4 border-t border-divider space-y-2">
+            <div className="mt-3 pt-4 border-t border-divider dark:border-slate-700 space-y-2">
               {currentUser ? (
                 <>
                   <button onClick={goToDashboard} className="btn btn-primary w-full justify-center">
-                    Open {roleLabel(currentUser.role)} Portal
+                    {t('nav.openPortal')} {roleLabel(currentUser.role)}
                   </button>
-                  <button onClick={handleLogout} className="btn btn-secondary w-full justify-center">
-                    Log Out
+                  <button onClick={handleLogout} className="btn btn-secondary dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 w-full justify-center">
+                    {t('nav.logout')}
                   </button>
                 </>
               ) : (
                 <>
-                  <button onClick={onLogin} className="btn btn-secondary w-full justify-center">
-                    Log In
+                  <button onClick={onLogin} className="btn btn-secondary dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 w-full justify-center">
+                    {t('nav.login')}
                   </button>
-                  <button onClick={onSignup} className="btn btn-secondary w-full justify-center">
-                    Sign Up
+                  <button onClick={onSignup} className="btn btn-secondary dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 w-full justify-center">
+                    {t('nav.signup')}
                   </button>
                   <button onClick={onDemo} className="btn btn-teal w-full justify-center">
-                    See How It Works
+                    {t('nav.demo')}
                   </button>
                 </>
               )}

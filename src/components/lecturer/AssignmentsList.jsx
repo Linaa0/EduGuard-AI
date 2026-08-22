@@ -42,13 +42,13 @@ export default function AssignmentsList() {
   ];
 
   return (
-    <div className="p-6 sm:p-8 space-y-8 bg-slate-50 min-h-full">
+    <div className="p-6 sm:p-8 space-y-8 bg-cream dark:bg-slate-900 min-h-full">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-divider dark:border-slate-700">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Assignments Management</h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-charcoal dark:text-white tracking-tight">Assignments Management</h1>
+          <p className="text-xs sm:text-sm text-slategray dark:text-slate-400 mt-1">
             Course syllabus assessments and linked AI marking rubrics
           </p>
         </div>
@@ -65,19 +65,19 @@ export default function AssignmentsList() {
       {/* Assignments Cards List */}
       <div className="space-y-4">
         {assignments.map((asg) => (
-          <div key={asg.id} className="p-6 rounded-2xl bg-white border border-slate-200 shadow-subtle flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-blue-500/40 transition-colors">
+          <div key={asg.id} className="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-subtle flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-blue-500/40 transition-colors">
             
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
-                  asg.status === 'Active' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-slate-100 text-slate-600'
+                  asg.status === 'Active' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-cream-100 dark:bg-slate-700 text-slategray dark:text-slate-400'
                 }`}>
                   {asg.status}
                 </span>
                 <span className="text-xs text-slate-400 font-mono">{asg.course}</span>
               </div>
-              <h3 className="text-base font-bold text-slate-900">{asg.title}</h3>
-              <p className="text-xs text-slate-500 flex items-center gap-4">
+              <h3 className="text-base font-bold text-charcoal dark:text-white">{asg.title}</h3>
+              <p className="text-xs text-slategray dark:text-slate-400 flex items-center gap-4">
                 <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-slate-400" /> Due: {asg.dueDate}</span>
                 <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-slate-400" /> {asg.totalSubmissions} Submissions</span>
               </p>
@@ -85,7 +85,7 @@ export default function AssignmentsList() {
 
             <div className="flex items-center gap-4 shrink-0">
               <div className="text-right">
-                <div className="text-sm font-bold text-slate-900 font-mono">{asg.maxScore} Marks</div>
+                <div className="text-sm font-bold text-charcoal dark:text-white font-mono">{asg.maxScore} Marks</div>
                 <div className="text-[11px] text-amber-700 font-semibold">{asg.pendingReview} Pending Reviews</div>
               </div>
 

@@ -57,24 +57,24 @@ export default function StudentFeedbackView() {
   const totalScore = Object.values(criterionScores).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="p-6 sm:p-8 space-y-8 bg-slate-50 min-h-full">
+    <div className="p-6 sm:p-8 space-y-8 bg-cream dark:bg-slate-900 min-h-full">
       
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-divider dark:border-slate-700">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Academic Feedback Report</h1>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-charcoal dark:text-white tracking-tight">Academic Feedback Report</h1>
             <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
               Grade Finalized
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <p className="text-xs sm:text-sm text-slategray dark:text-slate-400 mt-1">
             Assignment: <strong>Climate Change and Sustainable Development (ENV-101)</strong>
           </p>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium text-slate-500 flex items-center gap-1">
+          <span className="text-xs font-medium text-slategray dark:text-slate-400 flex items-center gap-1">
             <UserCheck className="w-4 h-4 text-emerald-600" />
             Approved by Dr. Alice Mukamana
           </span>
@@ -108,32 +108,32 @@ export default function StudentFeedbackView() {
       </div>
 
       {/* Criterion-Level Performance Table */}
-      <div className="rounded-2xl bg-white border border-slate-200 shadow-subtle p-6 space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-          <h3 className="text-base font-bold text-slate-900">Criterion-by-Criterion Evaluation</h3>
-          <span className="text-xs text-slate-500 font-mono">Rubric Alignment</span>
+      <div className="rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-subtle p-6 space-y-4">
+        <div className="flex items-center justify-between pb-3 border-b border-divider dark:border-slate-700">
+          <h3 className="text-base font-bold text-charcoal dark:text-white">Criterion-by-Criterion Evaluation</h3>
+          <span className="text-xs text-slategray dark:text-slate-400 font-mono">Rubric Alignment</span>
         </div>
 
         <div className="space-y-4 pt-1">
           {criteriaResults.map((crit) => (
-            <div key={crit.name} className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <div key={crit.name} className="p-4 rounded-xl bg-cream-50 dark:bg-slate-700 border border-divider dark:border-slate-700 space-y-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-slate-900">{crit.name}</span>
+                  <span className="text-xs font-bold text-charcoal dark:text-white">{crit.name}</span>
                   {crit.override && (
                     <span className="text-[10px] font-bold px-2 py-0.2 rounded bg-emerald-100 text-emerald-800 border border-emerald-200">
                       Lecturer Enhanced (+1)
                     </span>
                   )}
                 </div>
-                <span className="font-mono text-xs font-bold text-slate-900">{crit.score} / {crit.max} Marks</span>
+                <span className="font-mono text-xs font-bold text-charcoal dark:text-white">{crit.score} / {crit.max} Marks</span>
               </div>
 
               <div className="w-full h-2 rounded-full bg-slate-200 overflow-hidden">
                 <div className={`h-full rounded-full ${crit.color}`} style={{ width: crit.pct }}></div>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed pt-0.5">
+              <p className="text-xs text-slategray dark:text-slate-400 leading-relaxed pt-0.5">
                 "{crit.note}"
               </p>
             </div>
@@ -145,13 +145,13 @@ export default function StudentFeedbackView() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Your Strengths */}
-        <div className="p-6 rounded-2xl bg-white border border-emerald-200 shadow-subtle space-y-4">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-emerald-200 shadow-subtle space-y-4">
           <div className="flex items-center gap-2 text-emerald-700 text-xs font-bold uppercase tracking-wider">
             <CheckCircle2 className="w-4 h-4" />
             <span>YOUR DEMONSTRATED STRENGTHS</span>
           </div>
 
-          <ul className="space-y-2.5 text-xs text-slate-700">
+          <ul className="space-y-2.5 text-xs text-charcoal dark:text-slate-200">
             <li className="flex items-start gap-2.5 p-2 rounded-lg bg-emerald-50/50">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-1.5 shrink-0"></span>
               <span><strong>Strong understanding of the topic:</strong> Excellent exposition of planetary greenhouse dynamics and IPCC vulnerability parameters.</span>
@@ -172,13 +172,13 @@ export default function StudentFeedbackView() {
         </div>
 
         {/* Areas to Improve */}
-        <div className="p-6 rounded-2xl bg-white border border-amber-200 shadow-subtle space-y-4">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-amber-200 shadow-subtle space-y-4">
           <div className="flex items-center gap-2 text-amber-800 text-xs font-bold uppercase tracking-wider">
             <TrendingUp className="w-4 h-4" />
             <span>ACTIONABLE AREAS TO IMPROVE</span>
           </div>
 
-          <ul className="space-y-2.5 text-xs text-slate-700">
+          <ul className="space-y-2.5 text-xs text-charcoal dark:text-slate-200">
             <li className="flex items-start gap-2.5 p-2 rounded-lg bg-amber-50/50">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 shrink-0"></span>
               <span><strong>Develop evidence further:</strong> Include quantitative carbon sequestration metrics and peer-reviewed emission datasets.</span>
@@ -211,8 +211,8 @@ export default function StudentFeedbackView() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-base font-bold text-slate-900">Recommended Learning Resources</h3>
-            <p className="text-xs text-slate-500">Handpicked materials to help you strengthen your weak criteria</p>
+            <h3 className="text-base font-bold text-charcoal dark:text-white">Recommended Learning Resources</h3>
+            <p className="text-xs text-slategray dark:text-slate-400">Handpicked materials to help you strengthen your weak criteria</p>
           </div>
           <span className="text-xs font-mono text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-200">
             Targeted for Next Assignment
@@ -223,17 +223,17 @@ export default function StudentFeedbackView() {
           {studentPortalData.learningResources.map((res) => (
             <div 
               key={res.id}
-              className="p-5 rounded-2xl bg-white border border-slate-200 shadow-subtle flex flex-col justify-between space-y-4 hover:border-blue-500/50 transition-all group"
+              className="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-subtle flex flex-col justify-between space-y-4 hover:border-blue-500/50 transition-all group"
             >
               <div className="space-y-2">
                 <span className="text-[10px] font-mono text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-semibold">
                   {res.type}
                 </span>
-                <h4 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{res.title}</h4>
-                <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{res.description}</p>
+                <h4 className="text-sm font-bold text-charcoal dark:text-white group-hover:text-blue-600 transition-colors">{res.title}</h4>
+                <p className="text-xs text-slategray dark:text-slate-400 leading-relaxed line-clamp-2">{res.description}</p>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <div className="pt-3 border-t border-divider dark:border-slate-700 flex items-center justify-between">
                 <span className="text-[11px] text-slate-400">{res.readTime}</span>
                 <button
                   onClick={() => setSelectedResourceModal(res)}

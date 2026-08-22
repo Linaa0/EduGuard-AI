@@ -18,12 +18,12 @@ export default function StudentsDirectory() {
   const filtered = students.filter(s => s.name.toLowerCase().includes(search.toLowerCase()) || s.id.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <div className="p-6 sm:p-8 space-y-8 bg-slate-50 min-h-full">
+    <div className="p-6 sm:p-8 space-y-8 bg-cream dark:bg-slate-900 min-h-full">
       
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-divider dark:border-slate-700">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Student Cohort Roster</h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">130 enrolled undergraduate students in ENV-101 (Section A)</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-charcoal dark:text-white tracking-tight">Student Cohort Roster</h1>
+          <p className="text-xs sm:text-sm text-slategray dark:text-slate-400 mt-1">130 enrolled undergraduate students in ENV-101 (Section A)</p>
         </div>
 
         <div className="relative">
@@ -33,14 +33,14 @@ export default function StudentsDirectory() {
             placeholder="Search student..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-9 pr-3 py-2 rounded-xl border border-slate-300 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="pl-9 pr-3 py-2 rounded-xl border border-slate-300 text-xs bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
       </div>
 
-      <div className="rounded-2xl bg-white border border-slate-200 shadow-subtle overflow-hidden">
+      <div className="rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-subtle overflow-hidden">
         <table className="w-full text-left text-xs">
-          <thead className="bg-slate-50 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-200">
+          <thead className="bg-cream-50 dark:bg-slate-700 text-slategray dark:text-slate-400 uppercase tracking-wider font-semibold border-b border-divider dark:border-slate-700">
             <tr>
               <th className="px-6 py-3.5">Student</th>
               <th className="px-6 py-3.5">ID & Email</th>
@@ -49,22 +49,22 @@ export default function StudentsDirectory() {
               <th className="px-6 py-3.5">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-cream-100 dark:divide-slate-700">
             {filtered.map((s) => (
-              <tr key={s.id} className={`hover:bg-slate-50 transition-colors ${s.highlight ? 'bg-blue-50/40' : ''}`}>
+              <tr key={s.id} className={`hover:bg-cream-50 dark:bg-slate-700 transition-colors ${s.highlight ? 'bg-blue-50/40' : ''}`}>
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-slate-900 text-white font-bold flex items-center justify-center text-xs">
                       {s.name.slice(0, 2).toUpperCase()}
                     </div>
-                    <span className="font-bold text-slate-900">{s.name}</span>
+                    <span className="font-bold text-charcoal dark:text-white">{s.name}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-slate-500">
-                  <div className="font-mono text-slate-700">{s.id}</div>
+                <td className="px-6 py-4 text-slategray dark:text-slate-400">
+                  <div className="font-mono text-charcoal dark:text-slate-200">{s.id}</div>
                   <div className="text-[11px] text-slate-400">{s.email}</div>
                 </td>
-                <td className="px-6 py-4 font-mono font-bold text-slate-800">
+                <td className="px-6 py-4 font-mono font-bold text-charcoal dark:text-slate-200">
                   {s.gpa} / 4.0
                 </td>
                 <td className="px-6 py-4">

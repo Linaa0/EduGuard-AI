@@ -205,14 +205,21 @@ function MainContent() {
 export default function App() {
   return (
     <AppStateProvider>
-      <div className="min-h-screen bg-cream font-sans text-charcoal selection:bg-teal selection:text-midnight antialiased">
-        <MainContent />
-        <CreateAssignmentModal />
-        <LearningResourcesModal />
-        <SearchModal />
-        <DemoTourBar />
-        <ToastContainer />
-      </div>
+      <AppInner />
     </AppStateProvider>
+  );
+}
+
+function AppInner() {
+  const { isDemoTourActive } = useAppState();
+  return (
+    <div className={`min-h-screen bg-cream dark:bg-slate-900 font-sans text-charcoal dark:text-slate-200 selection:bg-teal selection:text-midnight antialiased transition-colors ${isDemoTourActive ? 'pb-24' : ''}`}>
+      <MainContent />
+      <CreateAssignmentModal />
+      <LearningResourcesModal />
+      <SearchModal />
+      <DemoTourBar />
+      <ToastContainer />
+    </div>
   );
 }

@@ -24,13 +24,13 @@ export default function SubmissionsList() {
   );
 
   return (
-    <div className="p-6 sm:p-8 space-y-8 bg-slate-50 min-h-full">
+    <div className="p-6 sm:p-8 space-y-8 bg-cream dark:bg-slate-900 min-h-full">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-divider dark:border-slate-700">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Student Submissions Intake</h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-charcoal dark:text-white tracking-tight">Student Submissions Intake</h1>
+          <p className="text-xs sm:text-sm text-slategray dark:text-slate-400 mt-1">
             28 total submissions received for <strong>Climate Change and Sustainable Development (ENV-101)</strong>
           </p>
         </div>
@@ -43,17 +43,17 @@ export default function SubmissionsList() {
               placeholder="Search student or ID..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-3 py-2 rounded-xl border border-slate-300 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="pl-9 pr-3 py-2 rounded-xl border border-slate-300 text-xs bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
       </div>
 
       {/* Submissions Table */}
-      <div className="rounded-2xl bg-white border border-slate-200 shadow-subtle overflow-hidden">
+      <div className="rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-subtle overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-200">
+            <thead className="bg-cream-50 dark:bg-slate-700 text-slategray dark:text-slate-400 uppercase tracking-wider font-semibold border-b border-divider dark:border-slate-700">
               <tr>
                 <th className="px-6 py-3.5">Student</th>
                 <th className="px-6 py-3.5">Submission Document</th>
@@ -64,22 +64,22 @@ export default function SubmissionsList() {
                 <th className="px-6 py-3.5">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-cream-100 dark:divide-slate-700">
               {filtered.map((item) => (
-                <tr key={item.id} className="hover:bg-slate-50 transition-colors">
+                <tr key={item.id} className="hover:bg-cream-50 dark:bg-slate-700 transition-colors">
                   <td className="px-6 py-4">
                     <div>
-                      <p className="font-bold text-slate-900">{item.studentName}</p>
+                      <p className="font-bold text-charcoal dark:text-white">{item.studentName}</p>
                       <p className="text-[11px] text-slate-400 font-mono">{item.studentId}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4 font-mono text-slate-700">
+                  <td className="px-6 py-4 font-mono text-charcoal dark:text-slate-200">
                     {item.studentName.split(' ')[0]}_Climate_Change_Essay.pdf
                   </td>
-                  <td className="px-6 py-4 text-slate-500">
+                  <td className="px-6 py-4 text-slategray dark:text-slate-400">
                     {item.date} 16:42
                   </td>
-                  <td className="px-6 py-4 font-mono font-bold text-slate-800">
+                  <td className="px-6 py-4 font-mono font-bold text-charcoal dark:text-slate-200">
                     {item.score}
                   </td>
                   <td className="px-6 py-4 font-mono font-bold text-emerald-600">

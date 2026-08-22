@@ -19,22 +19,22 @@ export default function StudentDashboard() {
   const { student, stats, myAssignments, courses } = studentData;
 
   return (
-    <div className="p-6 sm:p-8 space-y-8 bg-slate-50 min-h-full">
+    <div className="p-6 sm:p-8 space-y-8 bg-cream dark:bg-slate-900 min-h-full">
       
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 pb-6 border-b border-slate-200">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 pb-6 border-b border-divider dark:border-slate-700">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-600 to-brand-700 flex items-center justify-center font-extrabold text-lg text-white shadow-glow">
             JC
           </div>
           <div>
             <div className="flex items-center gap-2.5 flex-wrap">
-              <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Welcome, {student.name}</h1>
+              <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-charcoal dark:text-white tracking-tight">Welcome, {student.name}</h1>
               <span className="text-xs font-mono font-bold px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
                 {student.year}
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-500 mt-2">
-              {student.program} • Student ID: <strong className="font-mono text-slate-700">{student.id}</strong>
+            <p className="text-xs sm:text-sm text-slategray dark:text-slate-400 mt-2">
+              {student.program} • Student ID: <strong className="font-mono text-charcoal dark:text-slate-200">{student.id}</strong>
             </p>
           </div>
         </div>
@@ -52,22 +52,22 @@ export default function StudentDashboard() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
-        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-card flex flex-col justify-between card-hover">
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-card flex flex-col justify-between card-hover">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Assignments</span>
+            <span className="text-xs font-semibold text-slategray dark:text-slate-400 uppercase tracking-wider">Assignments</span>
             <div className="p-2.5 rounded-xl bg-brand-50 text-brand-600">
               <FileText className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-5">
-            <div className="text-3xl font-extrabold text-slate-900 font-mono">{stats.assignments}</div>
-            <p className="text-[11px] text-slate-500 mt-1.5">Total active this term</p>
+            <div className="text-3xl font-extrabold text-charcoal dark:text-white font-mono">{stats.assignments}</div>
+            <p className="text-[11px] text-slategray dark:text-slate-400 mt-1.5">Total active this term</p>
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-card flex flex-col justify-between card-hover">
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-card flex flex-col justify-between card-hover">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Submitted</span>
+            <span className="text-xs font-semibold text-slategray dark:text-slate-400 uppercase tracking-wider">Submitted</span>
             <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600">
               <CheckCircle2 className="w-4 h-4" />
             </div>
@@ -78,9 +78,9 @@ export default function StudentDashboard() {
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-card flex flex-col justify-between card-hover">
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-card flex flex-col justify-between card-hover">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Pending</span>
+            <span className="text-xs font-semibold text-slategray dark:text-slate-400 uppercase tracking-wider">Pending</span>
             <div className="p-2.5 rounded-xl bg-amber-50 text-amber-600">
               <Clock className="w-4 h-4" />
             </div>
@@ -91,9 +91,9 @@ export default function StudentDashboard() {
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-card flex flex-col justify-between card-hover">
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-card flex flex-col justify-between card-hover">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Average Grade</span>
+            <span className="text-xs font-semibold text-slategray dark:text-slate-400 uppercase tracking-wider">Average Grade</span>
             <div className="p-2.5 rounded-xl bg-navy-50 text-navy-600">
               <TrendingUp className="w-4 h-4" />
             </div>
@@ -145,15 +145,15 @@ export default function StudentDashboard() {
 
       </div>
 
-      <div className="rounded-2xl bg-white border border-slate-200 shadow-card p-6 space-y-5">
-        <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-          <h3 className="font-display text-base font-bold text-slate-900">Enrolled Course Assignments</h3>
-          <span className="text-xs text-slate-500 font-medium">Term 2 — 2026 Academic Year</span>
+      <div className="rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-card p-6 space-y-5">
+        <div className="flex items-center justify-between pb-4 border-b border-divider dark:border-slate-700">
+          <h3 className="font-display text-base font-bold text-charcoal dark:text-white">Enrolled Course Assignments</h3>
+          <span className="text-xs text-slategray dark:text-slate-400 font-medium">Term 2 — 2026 Academic Year</span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-200">
+            <thead className="bg-cream-50 dark:bg-slate-700 text-slategray dark:text-slate-400 uppercase tracking-wider font-semibold border-b border-divider dark:border-slate-700">
               <tr>
                 <th className="px-4 py-3.5">Assignment</th>
                 <th className="px-4 py-3.5">Course</th>
@@ -163,16 +163,16 @@ export default function StudentDashboard() {
                 <th className="px-4 py-3.5">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-cream-100 dark:divide-slate-700">
               {myAssignments.map((a) => (
-                <tr key={a.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-4 py-4 font-bold text-slate-900">
+                <tr key={a.id} className="hover:bg-cream-50 dark:bg-slate-700 transition-colors">
+                  <td className="px-4 py-4 font-bold text-charcoal dark:text-white">
                     {a.title}
                   </td>
-                  <td className="px-4 py-4 text-slate-500">
+                  <td className="px-4 py-4 text-slategray dark:text-slate-400">
                     {a.course}
                   </td>
-                  <td className="px-4 py-4 text-slate-500">
+                  <td className="px-4 py-4 text-slategray dark:text-slate-400">
                     {a.dueDate}
                   </td>
                   <td className="px-4 py-4">
@@ -184,7 +184,7 @@ export default function StudentDashboard() {
                       {a.status}
                     </span>
                   </td>
-                  <td className="px-4 py-4 font-mono font-bold text-slate-800">
+                  <td className="px-4 py-4 font-mono font-bold text-charcoal dark:text-slate-200">
                     {a.id === 'asg-01' ? '17 / 20 (85%)' : `${a.score} (${a.percentage})`}
                   </td>
                   <td className="px-4 py-4">
@@ -194,7 +194,7 @@ export default function StudentDashboard() {
                           setStudentTab('feedback');
                         }
                       }}
-                      className="px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 font-semibold text-xs transition-colors flex items-center gap-1"
+                      className="px-3.5 py-2 rounded-lg bg-cream-100 dark:bg-slate-700 hover:bg-brand-600 hover:text-white text-charcoal dark:text-slate-200 font-semibold text-xs transition-colors flex items-center gap-1"
                     >
                       <span>{a.hasFeedback ? 'View Feedback' : 'Details'}</span>
                       <ArrowRight className="w-3 h-3" />

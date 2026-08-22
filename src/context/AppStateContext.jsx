@@ -1,9 +1,34 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { initialAssignment, sampleSubmission, allRecentAssessments, lecturerStats, studentPortalData, agentToolSteps } from '../data/mockData';
+import { translations } from '../data/translations';
 
 const AppStateContext = createContext();
 
+function usePersisted(key, initial) {
+  const [val, setVal] = useState(() => {
+    try { return localStorage.getItem(key) || initial; } catch { return initial; }
+  });
+  useEffect(() => { try { localStorage.setItem(key, val); } catch {} }, [key, val]);
+  return [val, setVal];
+}
+
 export function AppStateProvider({ children }) {
+  // ============== THEME STATE ==============
+  const [theme, setTheme] = usePersisted('eduguard-theme', 'light');
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') root.classList.add('dark');
+    else root.classList.remove('dark');
+  }, [theme]);
+  const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
+
+  // ============== LANGUAGE STATE ==============
+  const [language, setLanguage] = usePersisted('eduguard-lang', 'en');
+  const t = useCallback((key) => {
+    if (language === 'en') return translations.en[key] || key;
+    return translations.rw?.[key] || translations.en[key] || key;
+  }, [language]);
+
   // ============== AUTH STATE ==============
   const [currentUser, setCurrentUser] = useState(null); // null | { id, name, email, role, avatar, institution, department, phone? }
   // 'login' | 'role-select' | 'register'
@@ -254,6 +279,9 @@ export function AppStateProvider({ children }) {
       reviewStatus, approveGrade, modifyAndFinalizeGrade, rejectToHumanReview,
       // Demo Tour
       isDemoTourActive, demoTourStep, startDemoTour, nextDemoStep, prevDemoStep, goToDemoStep, endDemoTour,
+      // Theme & Language
+      theme, toggleTheme,
+      language, setLanguage, t,
       // Modals & UI
       isCreateAssignmentOpen, setIsCreateAssignmentOpen,
       selectedResourceModal, setSelectedResourceModal,
