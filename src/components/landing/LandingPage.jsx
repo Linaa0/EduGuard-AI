@@ -7,6 +7,8 @@ import HumanInTheLoopSection from './HumanInTheLoopSection';
 import StudentFeedbackSection from './StudentFeedbackSection';
 import TechArchitectureSection from './TechArchitectureSection';
 import ResponsibleAISection from './ResponsibleAISection';
+import WhoItsForSection from './WhoItsForSection';
+import ImpactSection from './ImpactSection';
 import TeamSection from './TeamSection';
 import LandingFooter from './LandingFooter';
 import { useAppState } from '../../context/AppStateContext';
@@ -29,8 +31,10 @@ export default function LandingPage() {
       <AIAgentSection />
       <HumanInTheLoopSection />
       <StudentFeedbackSection />
-      <TechArchitectureSection />
+      <WhoItsForSection />
       <ResponsibleAISection />
+      <ImpactSection />
+      <TechArchitectureSection />
       <TeamSection />
       <LandingFooter />
     </div>

@@ -3,7 +3,6 @@ import {
   Cpu, 
   Terminal, 
   CheckCircle2, 
-  Sparkles, 
   RotateCw, 
   Play, 
   Layers, 
@@ -35,8 +34,8 @@ export default function AIAgentSection() {
   };
 
   return (
-    <section className="py-20 bg-slate-900 border-t border-slate-800 text-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="solution" className="section-wrap section-dark border-t border-white/10">
+      <div className="site-container">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -45,11 +44,11 @@ export default function AIAgentSection() {
             <span>Autonomous Tool Execution Pipeline</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold tracking-tight text-on-dark">
             The AI Assessment Agent
           </h2>
 
-          <p className="text-base text-slate-400 leading-relaxed">
+          <p className="text-base text-on-dark-muted leading-relaxed mb-0">
             EduGuard AI does not use a black-box prompt. It employs a multi-step deterministic agent equipped with 7 specialized tools to parse, cross-reference, and evaluate submissions against the lecturer's rubric.
           </p>
         </div>
@@ -75,7 +74,7 @@ export default function AIAgentSection() {
               <button
                 onClick={runLandingSimulation}
                 disabled={isRunning}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all disabled:opacity-50"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-700 text-white text-xs font-bold transition-all disabled:opacity-50"
               >
                 <RotateCw className={`w-3.5 h-3.5 ${isRunning ? 'animate-spin' : ''}`} />
                 <span>{isRunning ? 'Executing Tools...' : 'Re-Run Pipeline'}</span>
@@ -151,8 +150,8 @@ export default function AIAgentSection() {
                 
                 <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-amber-400" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-300">AI Assessment Result</span>
+                    <Cpu className="w-4 h-4 text-teal" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-on-dark">AI Assessment Result</span>
                   </div>
                   <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30">
                     CALIBRATED

@@ -16,8 +16,8 @@ export default function HumanInTheLoopSection() {
   const { setCurrentPortal, setLecturerTab } = useAppState();
 
   return (
-    <section className="py-20 bg-slate-950 text-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-wrap section-dark border-t border-white/10">
+      <div className="site-container">
         
         {/* Banner Pillar Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -26,7 +26,7 @@ export default function HumanInTheLoopSection() {
             <span>Ethical Governance & Human Oversight</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold tracking-tight text-on-dark">
             Human-in-the-Loop: <br />
             <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
               AI RECOMMENDS → TEACHER DECIDES

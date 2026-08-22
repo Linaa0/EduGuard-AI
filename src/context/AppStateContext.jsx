@@ -4,12 +4,48 @@ import { initialAssignment, sampleSubmission, allRecentAssessments, lecturerStat
 const AppStateContext = createContext();
 
 export function AppStateProvider({ children }) {
-  // Navigation & View State
-  const [currentPortal, setCurrentPortal] = useState('landing'); // 'landing' | 'lecturer' | 'student'
-  const [lecturerTab, setLecturerTab] = useState('dashboard'); // 'dashboard' | 'assignments' | 'submissions' | 'ai-assessment' | 'human-review' | 'rubrics' | 'students' | 'analytics' | 'resources' | 'settings'
-  const [studentTab, setStudentTab] = useState('dashboard'); // 'dashboard' | 'my-assignments' | 'submission-detail' | 'feedback' | 'resources' | 'profile'
-  
-  // Data State
+  // ============== AUTH STATE ==============
+  const [currentUser, setCurrentUser] = useState(null); // null | { id, name, email, role, avatar, institution, department, phone? }
+  // 'login' | 'role-select' | 'register'
+  const [authView, setAuthView] = useState('login');
+
+  const loginUser = (userData) => {
+    setCurrentUser(userData);
+    // Auto-navigate to the correct portal based on role
+    const role = userData.role;
+    if (role === 'student') {
+      setCurrentPortal('student');
+      setStudentTab('dashboard');
+    } else if (role === 'lecturer') {
+      setCurrentPortal('lecturer');
+      setLecturerTab('dashboard');
+    } else if (role === 'admin') {
+      setCurrentPortal('admin');
+      setAdminTab('dashboard');
+    } else if (role === 'parent') {
+      setCurrentPortal('parent');
+      setParentTab('dashboard');
+    }
+  };
+
+  const signupUser = (userData) => {
+    loginUser(userData);
+  };
+
+  const logoutUser = () => {
+    setCurrentUser(null);
+    setCurrentPortal('landing');
+  };
+
+  // ============== NAV / PORTAL STATE ==============
+  // 'landing' | 'lecturer' | 'student' | 'admin' | 'parent' | 'auth'
+  const [currentPortal, setCurrentPortal] = useState('landing');
+  const [lecturerTab, setLecturerTab] = useState('dashboard');
+  const [studentTab, setStudentTab] = useState('dashboard');
+  const [adminTab, setAdminTab] = useState('dashboard');
+  const [parentTab, setParentTab] = useState('dashboard');
+
+  // ============== DATA STATE ==============
   const [assignment, setAssignment] = useState(initialAssignment);
   const [submission, setSubmission] = useState(sampleSubmission);
   const [recentAssessments, setRecentAssessments] = useState(allRecentAssessments);
@@ -25,23 +61,23 @@ export function AppStateProvider({ children }) {
   const [criterionScores, setCriterionScores] = useState({
     "crit-1": 4,
     "crit-2": 4,
-    "crit-3": 4, // Teacher modified from 3 to 4
+    "crit-3": 4,
     "crit-4": 5
   });
   const [lecturerFeedbackComment, setLecturerFeedbackComment] = useState(sampleSubmission.lecturerComment);
-  const [reviewStatus, setReviewStatus] = useState('Approved'); // 'Pending Review' | 'Approved' | 'Modified' | 'Human Review'
+  const [reviewStatus, setReviewStatus] = useState('Approved');
 
-  // Hackathon Demo Tour State (10 Steps)
+  // ============== HACKATHON DEMO TOUR ==============
   const [isDemoTourActive, setIsDemoTourActive] = useState(false);
   const [demoTourStep, setDemoTourStep] = useState(1);
 
-  // Modals & UI Controls
+  // ============== MODALS / UI ==============
   const [isCreateAssignmentOpen, setIsCreateAssignmentOpen] = useState(false);
   const [selectedResourceModal, setSelectedResourceModal] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
 
-  // Toast Helper
+  // ============== HELPERS ==============
   const showToast = (title, message, type = 'info') => {
     const id = Date.now() + Math.random();
     setToasts(prev => [...prev, { id, title, message, type }]);
@@ -54,7 +90,7 @@ export function AppStateProvider({ children }) {
     setToasts(prev => prev.filter(t => t.id !== id));
   };
 
-  // Run AI Simulation
+  // ============== AI SIMULATION ==============
   const runAiAssessmentSimulation = () => {
     setIsAiRunning(true);
     setCurrentToolIndex(0);
@@ -74,12 +110,8 @@ export function AppStateProvider({ children }) {
     }, 600);
   };
 
-  // Human-in-the-Loop Actions
   const updateCriterionScore = (critId, newScore) => {
-    setCriterionScores(prev => {
-      const updated = { ...prev, [critId]: Number(newScore) };
-      return updated;
-    });
+    setCriterionScores(prev => ({ ...prev, [critId]: Number(newScore) }));
   };
 
   const calculateTotalScore = () => {
@@ -136,13 +168,22 @@ export function AppStateProvider({ children }) {
     showToast("Escalated for Manual Moderation", "Submission flagged for independent 2nd marker review.", "warning");
   };
 
-  // Demo Tour Navigation
+  // ============== DEMO TOUR ==============
   const startDemoTour = () => {
     setIsDemoTourActive(true);
     setDemoTourStep(1);
+    loginUser({
+      id: 'lecturer-demo',
+      name: 'Dr. Jeanne Mukamana',
+      email: 'teacher@eduguard.ai',
+      role: 'lecturer',
+      avatar: 'JM',
+      institution: 'University of Rwanda — College of Science and Technology',
+      department: 'Dept. of Computer Science',
+    });
     setCurrentPortal('lecturer');
     setLecturerTab('dashboard');
-    showToast("⚡ Hackathon Guided Tour Started", "Step 1: Lecturer Dashboard & Assessment Queue", "info");
+    showToast("Demo Tour Started", "Step 1: Lecturer Dashboard & Assessment Queue", "info");
   };
 
   const nextDemoStep = () => {
@@ -154,64 +195,34 @@ export function AppStateProvider({ children }) {
   };
 
   const prevDemoStep = () => {
-    if (demoTourStep > 1) {
-      goToDemoStep(demoTourStep - 1);
-    }
+    if (demoTourStep > 1) goToDemoStep(demoTourStep - 1);
   };
 
   const goToDemoStep = (stepNumber) => {
     setDemoTourStep(stepNumber);
     switch(stepNumber) {
-      case 1: // Lecturer Dashboard
-        setCurrentPortal('lecturer');
-        setLecturerTab('dashboard');
-        setIsCreateAssignmentOpen(false);
-        break;
-      case 2: // Create Assignment & Rubric
-        setCurrentPortal('lecturer');
-        setLecturerTab('assignments');
-        setIsCreateAssignmentOpen(true);
-        break;
-      case 3: // Student Submission
-        setIsCreateAssignmentOpen(false);
-        setCurrentPortal('student');
-        setStudentTab('submission-detail');
-        break;
-      case 4: // AI Assessment Agent Execution
-        setCurrentPortal('lecturer');
-        setLecturerTab('ai-assessment');
-        runAiAssessmentSimulation();
-        break;
-      case 5: // AI Result & Confidence
-        setCurrentPortal('lecturer');
-        setLecturerTab('ai-assessment');
-        setCurrentToolIndex(7);
-        setAiCompleted(true);
-        break;
-      case 6: // Lecturer Review
-        setCurrentPortal('lecturer');
-        setLecturerTab('human-review');
-        break;
-      case 7: // Modify Evidence score 3->4 (17/20)
-        setCurrentPortal('lecturer');
-        setLecturerTab('human-review');
-        setCriterionScores({ "crit-1": 4, "crit-2": 4, "crit-3": 4, "crit-4": 5 });
-        break;
-      case 8: // Finalize Grade
-        setCurrentPortal('lecturer');
-        setLecturerTab('human-review');
-        modifyAndFinalizeGrade();
-        break;
-      case 9: // Student Receives Feedback & Resources
-        setCurrentPortal('student');
-        setStudentTab('feedback');
-        break;
-      case 10: // Analytics & Tech Architecture
-        setCurrentPortal('lecturer');
-        setLecturerTab('analytics');
-        break;
-      default:
-        break;
+      case 1:
+        setCurrentPortal('lecturer'); setLecturerTab('dashboard'); setIsCreateAssignmentOpen(false); break;
+      case 2:
+        setCurrentPortal('lecturer'); setLecturerTab('assignments'); setIsCreateAssignmentOpen(true); break;
+      case 3:
+        setIsCreateAssignmentOpen(false); setCurrentPortal('student'); setStudentTab('submission-detail'); break;
+      case 4:
+        setCurrentPortal('lecturer'); setLecturerTab('ai-assessment'); runAiAssessmentSimulation(); break;
+      case 5:
+        setCurrentPortal('lecturer'); setLecturerTab('ai-assessment'); setCurrentToolIndex(7); setAiCompleted(true); break;
+      case 6:
+        setCurrentPortal('lecturer'); setLecturerTab('human-review'); break;
+      case 7:
+        setCurrentPortal('lecturer'); setLecturerTab('human-review');
+        setCriterionScores({ "crit-1": 4, "crit-2": 4, "crit-3": 4, "crit-4": 5 }); break;
+      case 8:
+        setCurrentPortal('lecturer'); setLecturerTab('human-review'); modifyAndFinalizeGrade(); break;
+      case 9:
+        setCurrentPortal('student'); setStudentTab('feedback'); break;
+      case 10:
+        setCurrentPortal('lecturer'); setLecturerTab('analytics'); break;
+      default: break;
     }
   };
 
@@ -222,49 +233,32 @@ export function AppStateProvider({ children }) {
 
   return (
     <AppStateContext.Provider value={{
-      currentPortal,
-      setCurrentPortal,
-      lecturerTab,
-      setLecturerTab,
-      studentTab,
-      setStudentTab,
-      assignment,
-      setAssignment,
-      submission,
-      setSubmission,
-      recentAssessments,
-      setRecentAssessments,
-      stats,
-      studentData,
-      isAiRunning,
-      currentToolIndex,
-      aiCompleted,
-      runAiAssessmentSimulation,
-      criterionScores,
-      updateCriterionScore,
-      calculateTotalScore,
-      lecturerFeedbackComment,
-      setLecturerFeedbackComment,
-      reviewStatus,
-      approveGrade,
-      modifyAndFinalizeGrade,
-      rejectToHumanReview,
-      isDemoTourActive,
-      demoTourStep,
-      startDemoTour,
-      nextDemoStep,
-      prevDemoStep,
-      goToDemoStep,
-      endDemoTour,
-      isCreateAssignmentOpen,
-      setIsCreateAssignmentOpen,
-      selectedResourceModal,
-      setSelectedResourceModal,
-      isSearchOpen,
-      setIsSearchOpen,
-      toasts,
-      showToast,
-      removeToast
+      // Auth
+      currentUser, loginUser, signupUser, logoutUser,
+      authView, setAuthView,
+      // Portal / Nav
+      currentPortal, setCurrentPortal,
+      lecturerTab, setLecturerTab,
+      studentTab, setStudentTab,
+      adminTab, setAdminTab,
+      parentTab, setParentTab,
+      // Data
+      assignment, setAssignment,
+      submission, setSubmission,
+      recentAssessments, setRecentAssessments,
+      stats, studentData,
+      // AI
+      isAiRunning, currentToolIndex, aiCompleted, runAiAssessmentSimulation,
+      criterionScores, updateCriterionScore, calculateTotalScore,
+      lecturerFeedbackComment, setLecturerFeedbackComment,
+      reviewStatus, approveGrade, modifyAndFinalizeGrade, rejectToHumanReview,
+      // Demo Tour
+      isDemoTourActive, demoTourStep, startDemoTour, nextDemoStep, prevDemoStep, goToDemoStep, endDemoTour,
+      // Modals & UI
+      isCreateAssignmentOpen, setIsCreateAssignmentOpen,
+      selectedResourceModal, setSelectedResourceModal,
+      isSearchOpen, setIsSearchOpen,
+      toasts, showToast, removeToast
     }}>
       {children}
     </AppStateContext.Provider>

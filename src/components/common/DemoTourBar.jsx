@@ -2,13 +2,13 @@ import React from 'react';
 import { useAppState } from '../../context/AppStateContext';
 import { 
   Sparkles, 
-  ChevronLeft, 
-  ChevronRight, 
-  X, 
-  Play, 
+  ChevronLeft,  ChevronRight,
+  X,
+  Play,
   CheckCircle2,
   Compass,
-  ArrowRight
+  ArrowRight,
+  Circle
 } from 'lucide-react';
 
 const tourStepsInfo = [
@@ -53,7 +53,7 @@ export default function DemoTourBar() {
                 <Sparkles className="w-3 h-3" />
                 Hackathon Golden Path
               </span>
-              <span className="text-slate-500">•</span>
+              <Circle className="w-1.5 h-1.5 text-slate-500 fill-current" />
               <span className="text-xs text-slate-300 font-medium">Step {demoTourStep} of 10</span>
             </div>
             <h4 className="text-sm font-bold text-white mt-0.5">{currentInfo.title}</h4>

@@ -1,122 +1,88 @@
 import React from 'react';
-import { 
-  AlertOctagon, 
-  Clock, 
-  Repeat, 
-  MessageSquareOff, 
-  ArrowRight, 
-  Sparkles, 
-  CheckCircle2,
-  FileSpreadsheet,
-  HelpCircle,
-  TrendingDown
-} from 'lucide-react';
+import { AlertOctagon, Clock, Repeat, MessageSquareOff } from 'lucide-react';
+
+const workflowSteps = [
+  { num: 1, title: 'Submissions Pile Up', desc: '100+ PDF essays arrive simultaneously' },
+  { num: 2, title: 'Manual Marking', desc: 'Reading line-by-line under fatigue' },
+  { num: 3, title: 'Score Calculation', desc: 'Manual arithmetic across criteria' },
+  { num: 4, title: 'Generic Feedback', desc: '"Good work" or "Needs improvement"' },
+  { num: 5, title: 'Spreadsheet Entry', desc: 'Tedious data entry into portal' },
+];
+
+const painPoints = [
+  {
+    icon: Clock,
+    iconClass: 'bg-rose-500/10 text-rose-400',
+    title: 'Extremely Time-Consuming',
+    desc: 'Lecturers spend 40+ hours per assessment cycle manually cross-referencing criteria and drafting redundant notes.',
+  },
+  {
+    icon: Repeat,
+    iconClass: 'bg-accent-amber/10 text-accent-amber',
+    title: 'Repetitive & Inconsistent',
+    desc: 'Grading fatigue sets in after paper 30, resulting in unintended grading discrepancies across student cohorts.',
+  },
+  {
+    icon: MessageSquareOff,
+    iconClass: 'bg-teal/10 text-teal',
+    title: 'Opaque Student Feedback',
+    desc: 'Students receive a raw mark like "14/20" without knowing which rubric criteria they failed or how to study better.',
+  },
+];
 
 export default function ProblemSection() {
   return (
-    <section className="section-padding bg-navy-900 border-t border-navy-800 text-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="text-center max-w-3xl mx-auto space-y-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold">
+    <section id="problem" className="section-wrap section-dark border-t border-white/10">
+      <div className="site-container">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold mb-5">
             <AlertOctagon className="w-3.5 h-3.5" />
             <span>The Academic Assessment Dilemma</span>
           </div>
 
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
-            Lecturers Are Overwhelmed. <br className="hidden sm:block" />
-            Students Are Left in the Dark.
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-dark text-balance">
+            Lecturers Are Overwhelmed. Students Are Left in the Dark.
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
+          <p className="text-base sm:text-lg text-on-dark-muted leading-relaxed mt-4 mb-0 prose-width mx-auto">
             University professors juggle hundreds of essay submissions while lecturing, preparing curricula, and calculating grades. In the rush, students receive a standalone numerical score with zero actionable guidance.
           </p>
         </div>
 
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-navy-950 border border-rose-500/20 shadow-xl">
-          <div className="flex items-center justify-between pb-4 border-b border-navy-800">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-rose-400 font-mono">Traditional Manual Grading Workflow</span>
-            </div>
-            <span className="text-xs text-slate-500">Average: 20-30 mins per paper</span>
+        <div className="rounded-2xl bg-midnight/70 border border-white/10 shadow-cardLg p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-4 border-b border-white/10">
+            <span className="text-xs font-bold uppercase tracking-wider text-rose-400 font-mono">
+              Traditional Manual Grading Workflow
+            </span>
+            <span className="text-xs text-on-dark-muted">Average: 20 to 30 mins per paper</span>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-5 gap-4 relative">
-            
-            <div className="p-4 rounded-xl bg-navy-900/80 border border-navy-800 text-center space-y-2 card-hover">
-              <div className="w-8 h-8 rounded-lg bg-navy-800 text-slate-300 mx-auto flex items-center justify-center font-bold text-xs">1</div>
-              <h4 className="text-xs font-bold text-slate-200">Submissions Pile Up</h4>
-              <p className="text-[11px] text-slate-400">100+ PDF essays arrive simultaneously</p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-navy-900/80 border border-navy-800 text-center space-y-2 card-hover">
-              <div className="w-8 h-8 rounded-lg bg-rose-950/60 text-rose-400 border border-rose-500/30 mx-auto flex items-center justify-center font-bold text-xs">2</div>
-              <h4 className="text-xs font-bold text-slate-200">Manual Marking</h4>
-              <p className="text-[11px] text-slate-400">Reading line-by-line under fatigue</p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-navy-900/80 border border-navy-800 text-center space-y-2 card-hover">
-              <div className="w-8 h-8 rounded-lg bg-navy-800 text-slate-300 mx-auto flex items-center justify-center font-bold text-xs">3</div>
-              <h4 className="text-xs font-bold text-slate-200">Score Calculation</h4>
-              <p className="text-[11px] text-slate-400">Manual arithmetic across criteria</p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-navy-900/80 border border-navy-800 text-center space-y-2 card-hover">
-              <div className="w-8 h-8 rounded-lg bg-rose-950/60 text-rose-400 border border-rose-500/30 mx-auto flex items-center justify-center font-bold text-xs">4</div>
-              <h4 className="text-xs font-bold text-slate-200">Generic Feedback</h4>
-              <p className="text-[11px] text-slate-400">"Good work" or "Needs improvement"</p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-navy-900/80 border border-navy-800 text-center space-y-2 card-hover">
-              <div className="w-8 h-8 rounded-lg bg-navy-800 text-slate-300 mx-auto flex items-center justify-center font-bold text-xs">5</div>
-              <h4 className="text-xs font-bold text-slate-200">Spreadsheet Entry</h4>
-              <p className="text-[11px] text-slate-400">Tedious data entry into portal</p>
-            </div>
-
+          <div className="workflow-steps workflow-steps--connected mt-8">
+            {workflowSteps.map(({ num, title, desc }) => (
+              <div key={num} className="stepper-step--dark card-hover text-center">
+                <div className="stepper-step-num stepper-step-num--dark mx-auto mb-4">
+                  {num}
+                </div>
+                <h4 className="stepper-step-title--dark">{title}</h4>
+                <p className="stepper-step-desc--dark">{desc}</p>
+              </div>
+            ))}
           </div>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-navy-800/80">
-            
-            <div className="flex items-start gap-3.5 p-5 rounded-xl bg-navy-900/60 border border-navy-800 card-hover">
-              <div className="p-2.5 rounded-lg bg-rose-500/10 text-rose-400 shrink-0">
-                <Clock className="w-5 h-5" />
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-white/10">
+            {painPoints.map(({ icon: Icon, iconClass, title, desc }) => (
+              <div key={title} className="flex items-start gap-3.5 p-5 rounded-xl bg-midnight/60 border border-white/10 card-hover h-full">
+                <div className={`p-2.5 rounded-lg shrink-0 ${iconClass}`}>
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-on-dark mb-1">{title}</h4>
+                  <p className="text-xs text-on-dark-muted leading-relaxed mb-0">{desc}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Extremely Time-Consuming</h4>
-                <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
-                  Lecturers spend 40+ hours per assessment cycle manually cross-referencing criteria and drafting redundant notes.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3.5 p-5 rounded-xl bg-navy-900/60 border border-navy-800 card-hover">
-              <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 shrink-0">
-                <Repeat className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Repetitive & Inconsistent</h4>
-                <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
-                  Grading fatigue sets in after paper 30, resulting in unintended grading discrepancies across student cohorts.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3.5 p-5 rounded-xl bg-navy-900/60 border border-navy-800 card-hover">
-              <div className="p-2.5 rounded-lg bg-brand-500/10 text-brand-400 shrink-0">
-                <MessageSquareOff className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Opaque Student Feedback</h4>
-                <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
-                  Students receive a raw mark like "14/20" without knowing which rubric criteria they failed or how to study better.
-                </p>
-              </div>
-            </div>
-
+            ))}
           </div>
-
         </div>
-
       </div>
     </section>
   );

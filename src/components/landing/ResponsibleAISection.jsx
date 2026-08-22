@@ -51,8 +51,8 @@ export default function ResponsibleAISection() {
   ];
 
   return (
-    <section className="py-20 bg-slate-900 border-t border-slate-800 text-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="responsible-ai" className="section-wrap section-dark border-t border-white/10">
+      <div className="site-container">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -61,11 +61,11 @@ export default function ResponsibleAISection() {
             <span>Academic Ethics by Design</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold tracking-tight text-on-dark">
             Responsible AI & Academic Integrity
           </h2>
 
-          <p className="text-base text-slate-400 leading-relaxed">
+          <p className="text-base text-on-dark-muted leading-relaxed mb-0">
             Built to meet higher-education compliance standards, ensuring ethical AI deployment that augments professors rather than replacing them.
           </p>
         </div>

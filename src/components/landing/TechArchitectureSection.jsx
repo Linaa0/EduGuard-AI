@@ -7,7 +7,6 @@ import {
   Workflow, 
   Cloud, 
   Code, 
-  Sparkles,
   ArrowDown,
   Terminal,
   ShieldCheck
@@ -77,8 +76,8 @@ export default function TechArchitectureSection() {
   ];
 
   return (
-    <section className="py-20 bg-slate-950 text-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-wrap section-light bg-white border-t border-divider">
+      <div className="site-container">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -87,11 +86,11 @@ export default function TechArchitectureSection() {
             <span>Robust Enterprise Foundation</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="section-title text-3xl sm:text-4xl text-balance">
             Technology Architecture
           </h2>
 
-          <p className="text-base text-slate-400 leading-relaxed">
+          <p className="section-lede mb-0">
             Engineered with modern microservices, vector search, and sovereign AI capabilities for university-scale deployment.
           </p>
         </div>

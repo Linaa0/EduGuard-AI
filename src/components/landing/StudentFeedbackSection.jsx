@@ -5,7 +5,6 @@ import {
   TrendingUp, 
   BookOpen, 
   ExternalLink, 
-  Sparkles,
   ArrowRight,
   Award
 } from 'lucide-react';
@@ -16,8 +15,8 @@ export default function StudentFeedbackSection() {
   const { setCurrentPortal, setStudentTab, setSelectedResourceModal } = useAppState();
 
   return (
-    <section className="py-20 bg-slate-900 border-t border-slate-800 text-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-wrap section-dark border-t border-white/10">
+      <div className="site-container">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -26,7 +25,7 @@ export default function StudentFeedbackSection() {
             <span>Student-Centered Growth</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold tracking-tight text-on-dark">
             Transforming Grades Into Understanding
           </h2>
 
@@ -155,7 +154,7 @@ export default function StudentFeedbackSection() {
                 setCurrentPortal('student');
                 setStudentTab('dashboard');
               }}
-              className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-2 shadow-md transition-all hover:scale-105"
+              className="btn btn-primary shrink-0"
             >
               <span>Explore Full Student Experience</span>
               <ArrowRight className="w-4 h-4" />
