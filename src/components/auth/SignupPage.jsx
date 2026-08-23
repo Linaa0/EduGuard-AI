@@ -95,7 +95,7 @@ const colorMap = {
 };
 
 export default function SignupPage() {
-  const { setAuthView, setCurrentPortal, signupUser, showToast } = useAppState();
+  const { setAuthView, setCurrentPortal, signupUser, showToast, t } = useAppState();
   const [step, setStep] = useState('role-select'); // 'role-select' | 'register' | 'success'
   const [selectedRole, setSelectedRole] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -196,13 +196,13 @@ export default function SignupPage() {
             <div className="text-center mb-12 animate-slideUp">
               <div className="eyebrow !mb-5 inline-flex mx-auto">
                 <UserCheck className="w-3.5 h-3.5" />
-                Account Creation
+                {t('signup.eyebrow')}
               </div>
               <h1 className="font-heading font-extrabold text-4xl lg:text-5xl text-charcoal mb-4 tracking-tight text-balance">
-                Who are you?
+                {t('signup.whoAreYou')}
               </h1>
               <p className="section-lede text-base lg:text-lg">
-                Select your role to create the right account for your needs. Each role has a customized experience and appropriate permissions.
+                {t('signup.whoAreYouDesc')}
               </p>
             </div>
 
@@ -236,7 +236,7 @@ export default function SignupPage() {
                       <div className="flex-1 pt-1">
                         <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-heading font-bold tracking-wider mb-1.5 ${colors.badgeBg}`}>
                           <Icon className="w-3 h-3" />
-                          ROLE
+                          {t('signup.role')}
                         </div>
                         <h3 className="font-heading font-extrabold text-xl text-charcoal tracking-tight leading-tight">
                           {role.name}
@@ -271,7 +271,7 @@ export default function SignupPage() {
                 className="btn btn-secondary sm:order-1 w-full sm:w-auto"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Back to Home
+                {t('signup.backToHome')}
               </button>
               <button
                 onClick={handleContinueToRegister}
@@ -300,7 +300,7 @@ export default function SignupPage() {
               <Check className="w-10 h-10" strokeWidth={2.5} />
             </div>
             <h2 className="font-heading font-extrabold text-3xl text-charcoal mb-3 tracking-tight">
-              Welcome aboard!
+              {t('signup.successTitle')}
             </h2>
             <p className="text-slategray text-base mb-8">
               Your {role.name.toLowerCase()} account has been created.
@@ -320,7 +320,7 @@ export default function SignupPage() {
             </div>
             <div className="flex flex-col gap-2">
               <div className="text-xs text-slategray">
-                Demo prototype. Not connected to a real database.
+                {t('signup.demoNote')}
               </div>
             </div>
           </div>
@@ -343,7 +343,7 @@ export default function SignupPage() {
               className="inline-flex items-center gap-2 text-sm font-medium text-slategray hover:text-primary transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              Choose a different role
+              {t('signup.chooseDifferentRole')}
             </button>
           </div>
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8 animate-fadeIn">
@@ -406,11 +406,11 @@ export default function SignupPage() {
               {/* Common fields */}
               <div>
                 <h4 className="font-heading font-bold text-charcoal text-sm uppercase tracking-wider mb-4 pb-2 border-b border-divider">
-                  Personal Information
+                  {t('signup.personalInfo')}
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block mb-2 text-sm font-semibold text-charcoal">Full Name *</label>
+                    <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.fullName')}</label>
                     <div className="relative">
                       <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slategray" />
                       <input
@@ -423,7 +423,7 @@ export default function SignupPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="block mb-2 text-sm font-semibold text-charcoal">Email Address *</label>
+                    <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.emailAddress')}</label>
                     <div className="relative">
                       <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slategray" />
                       <input
@@ -436,7 +436,7 @@ export default function SignupPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="block mb-2 text-sm font-semibold text-charcoal">Phone Number *</label>
+                    <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.phoneNumber')}</label>
                     <div className="relative">
                       <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slategray" />
                       <input
@@ -449,7 +449,7 @@ export default function SignupPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="block mb-2 text-sm font-semibold text-charcoal">Password *</label>
+                    <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.password')}</label>
                     <div className="relative">
                       <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slategray" />
                       <input
@@ -470,7 +470,7 @@ export default function SignupPage() {
                     </div>
                   </div>
                   <div className="md:col-span-2">
-                    <label className="block mb-2 text-sm font-semibold text-charcoal">Confirm Password *</label>
+                    <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.confirmPassword')}</label>
                     <div className="relative">
                       <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slategray" />
                       <input
@@ -489,11 +489,11 @@ export default function SignupPage() {
               {selectedRole === 'student' && (
                 <div>
                   <h4 className="font-heading font-bold text-charcoal text-sm uppercase tracking-wider mb-4 pb-2 border-b border-divider">
-                    Student Details
+                    {t('signup.studentDetails')}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Student ID *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.studentId')}</label>
                       <input
                         type="text"
                         value={formData.studentId}
@@ -503,7 +503,7 @@ export default function SignupPage() {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">University / Institution *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.university')}</label>
                       <input
                         type="text"
                         value={formData.university}
@@ -513,7 +513,7 @@ export default function SignupPage() {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Faculty / School *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.faculty')}</label>
                       <input
                         type="text"
                         value={formData.faculty}
@@ -523,7 +523,7 @@ export default function SignupPage() {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Programme *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.programme')}</label>
                       <input
                         type="text"
                         value={formData.programme}
@@ -533,7 +533,7 @@ export default function SignupPage() {
                       />
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Year of Study *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.yearOfStudy')}</label>
                       <select
                         value={formData.yearOfStudy}
                         onChange={e => updateField('yearOfStudy', e.target.value)}
@@ -556,11 +556,11 @@ export default function SignupPage() {
               {selectedRole === 'lecturer' && (
                 <div>
                   <h4 className="font-heading font-bold text-charcoal text-sm uppercase tracking-wider mb-4 pb-2 border-b border-divider">
-                    Lecturer Details
+                    {t('signup.lecturerDetails')}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Staff ID *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.staffId')}</label>
                       <input
                         type="text"
                         value={formData.staffId}
@@ -580,7 +580,7 @@ export default function SignupPage() {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Department *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.department')}</label>
                       <input
                         type="text"
                         value={formData.department}
@@ -617,11 +617,11 @@ export default function SignupPage() {
               {selectedRole === 'admin' && (
                 <div>
                   <h4 className="font-heading font-bold text-charcoal text-sm uppercase tracking-wider mb-4 pb-2 border-b border-divider">
-                    Administrator Details
+                    {t('signup.adminDetails')}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Institution *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.university')}</label>
                       <input
                         type="text"
                         value={formData.adminInstitution}
@@ -641,7 +641,7 @@ export default function SignupPage() {
                       />
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Administrator ID *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.adminId')}</label>
                       <input
                         type="text"
                         value={formData.administratorId}
@@ -658,7 +658,7 @@ export default function SignupPage() {
               {selectedRole === 'parent' && (
                 <div>
                   <h4 className="font-heading font-bold text-charcoal text-sm uppercase tracking-wider mb-4 pb-2 border-b border-divider">
-                    Connect to Student
+                    {t('signup.parentDetails')}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
@@ -672,7 +672,7 @@ export default function SignupPage() {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Student Email *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.connectStudentEmail')}</label>
                       <input
                         type="email"
                         value={formData.connectStudentEmail}
@@ -682,7 +682,7 @@ export default function SignupPage() {
                       />
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block mb-2 text-sm font-semibold text-charcoal">Relationship to Student *</label>
+                      <label className="block mb-2 text-sm font-semibold text-charcoal">{t('signup.relationship')}</label>
                       <select
                         value={formData.relationship}
                         onChange={e => updateField('relationship', e.target.value)}
@@ -736,9 +736,9 @@ export default function SignupPage() {
                   className={`btn btn-lg sm:order-2 justify-center ${colors.btn}`}
                 >
                   {loading ? (
-                    <><Loader2 className="w-4 h-4 animate-spin" /> Creating Account...</>
+                    <><Loader2 className="w-4 h-4 animate-spin" /> {t('signup.creating')}</>
                   ) : (
-                    <>Create Account <ArrowRight className="w-4 h-4" /></>
+                    <>{t('signup.createAccountBtn')} <ArrowRight className="w-4 h-4" /></>
                   )}
                 </button>
               </div>

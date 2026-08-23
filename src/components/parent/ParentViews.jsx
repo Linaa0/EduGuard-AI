@@ -26,12 +26,12 @@ import { useAppState } from '../../context/AppStateContext';
 
 // ======================= PARENT DASHBOARD VIEW =======================
 export function ParentDashboardView() {
-  const { currentUser, showToast } = useAppState();
+  const { currentUser, showToast, t } = useAppState();
   const stats = [
-    { label: 'Overall GPA', value: '3.68', change: '+0.24', trend: 'up', icon: Award, color: 'success', note: 'Previous: 3.44' },
-    { label: 'Assignments Due', value: '3', change: 'This week', trend: 'up', icon: FileText, color: 'teal', note: 'Submit by Oct 28' },
-    { label: 'Attendance Rate', value: '94%', change: '-1%', trend: 'down', icon: CalendarCheck, color: 'primary', note: 'Class avg: 89%' },
-    { label: 'New Feedback', value: '5', change: 'This week', trend: 'up', icon: MessageSquareQuote, color: 'amber', note: 'Read & discussed' },
+    { label: t('parView.overallGPA'), value: '3.68', change: '+0.24', trend: 'up', icon: Award, color: 'success', note: 'Previous: 3.44' },
+    { label: t('parView.assignmentsDue'), value: '3', change: 'This week', trend: 'up', icon: FileText, color: 'teal', note: 'Submit by Oct 28' },
+    { label: t('parView.attendanceRate'), value: '94%', change: '-1%', trend: 'down', icon: CalendarCheck, color: 'primary', note: 'Class avg: 89%' },
+    { label: t('parView.newFeedback'), value: '5', change: 'This week', trend: 'up', icon: MessageSquareQuote, color: 'amber', note: 'Read & discussed' },
   ];
 
   const grades = [
@@ -526,7 +526,7 @@ export function ParentNotificationsView() {
 }
 
 export function ParentProfileView() {
-  const { currentUser, showToast } = useAppState();
+  const { currentUser, showToast, t } = useAppState();
   return (
     <div className="p-5 lg:p-8 max-w-[1000px] mx-auto space-y-6">
       <div>

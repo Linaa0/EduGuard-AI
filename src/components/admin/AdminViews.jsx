@@ -130,14 +130,14 @@ function RoleBadge({ role }) {
 
 // ============ ADMIN DASHBOARD ============
 export function AdminDashboardView() {
-  const { showToast } = useAppState();
+  const { showToast, t } = useAppState();
   return (
     <div className="p-5 lg:p-8 space-y-8 max-w-[1400px] mx-auto">
       <SectionHeader
-        eyebrow="Admin Console"
-        title="Institutional Overview"
+        eyebrow={t('adm.title')}
+        title={t('admin.overview')}
         subtitle="University-wide performance, user activity, and AI assessment metrics across all colleges and departments."
-        actionLabel="Run Report"
+        actionLabel={t('admin.runReport')}
         ActionIcon={BarChart3}
         onAction={() => showToast('Report', 'Generating institutional analytics report...', 'info')}
       />
@@ -156,7 +156,7 @@ export function AdminDashboardView() {
               <h4 className="font-heading font-bold text-lg text-charcoal leading-tight">
                 AI Assessment Adoption — This Semester
               </h4>
-              <p className="text-sm text-slategray mt-1">Rubrics evaluated by AI, then approved by lecturers</p>
+              <p className="text-sm text-slategray mt-1">{t('admin.aiAdoptionDesc')}</p>
             </div>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 text-xs font-bold border border-teal-200">
               <TrendingUp className="w-3.5 h-3.5" />
@@ -187,7 +187,7 @@ export function AdminDashboardView() {
                 <FileCheck className="w-4 h-4" />
               </div>
               <div>
-                <div className="text-[11px] text-slategray">AI Evaluations</div>
+                <div className="text-[11px] text-slategray">{t('admin.aiEvaluations')}</div>
                 <div className="font-bold text-sm text-charcoal">528 done</div>
               </div>
             </div>
@@ -196,7 +196,7 @@ export function AdminDashboardView() {
                 <ShieldCheck className="w-4 h-4" />
               </div>
               <div>
-                <div className="text-[11px] text-slategray">Lecturer Approved</div>
+                <div className="text-[11px] text-slategray">{t('admin.lecturerApproved')}</div>
                 <div className="font-bold text-sm text-charcoal">92.4%</div>
               </div>
             </div>
@@ -205,22 +205,22 @@ export function AdminDashboardView() {
                 <Clock className="w-4 h-4" />
               </div>
               <div>
-                <div className="text-[11px] text-slategray">Avg. Turnaround</div>
+                <div className="text-[11px] text-slategray">{t('admin.avgTurnaround')}</div>
                 <div className="font-bold text-sm text-charcoal">6.2 hrs → 48 min</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Responsible AI compliance */}
+        {/* {t('admin.responsibleAI')} compliance */}
         <div className="card p-5 flex flex-col">
           <div className="flex items-center gap-2.5 mb-5">
             <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-heading font-bold text-base text-charcoal leading-tight">Responsible AI</h4>
-              <p className="text-xs text-slategray mt-0.5">HEC Compliance Score</p>
+              <h4 className="font-heading font-bold text-base text-charcoal leading-tight">{t('admin.responsibleAI')}</h4>
+              <p className="text-xs text-slategray mt-0.5">{t('admin.hecCompliance')}</p>
             </div>
           </div>
 
@@ -234,7 +234,7 @@ export function AdminDashboardView() {
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <div className="font-heading font-extrabold text-3xl text-charcoal">94<span className="text-xl">%</span></div>
-              <div className="text-[11px] text-slategray font-semibold">Overall Score</div>
+              <div className="text-[11px] text-slategray font-semibold">{t('admin.overallScore')}</div>
             </div>
           </div>
 
@@ -264,8 +264,8 @@ export function AdminDashboardView() {
         {/* Departments */}
         <div className="card p-5 lg:col-span-2">
           <SectionHeader
-            title="Department Utilization"
-            subtitle="AI assessment adoption by school/faculty"
+            title={t('admin.deptUtilization')}
+            subtitle={t('admin.deptAdoption')}
           />
           <div className="space-y-4">
             {departments.map(d => (
@@ -298,15 +298,15 @@ export function AdminDashboardView() {
           <div className="flex items-center justify-between mb-5">
             <div>
               <h4 className="font-heading font-bold text-lg text-charcoal leading-tight">
-                Recently Registered Users
+                {t('admin.recentUsers')}
               </h4>
-              <p className="text-sm text-slategray mt-1">Review, approve, and manage platform access</p>
+              <p className="text-sm text-slategray mt-1">{t('admin.recentUsersDesc')}</p>
             </div>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slategray" />
               <input
                 type="text"
-                placeholder="Search users..."
+                placeholder={t('admin.searchUsers')}
                 className="h-9 pl-9 pr-3 rounded-lg border border-divider bg-cream-50 text-[13px] text-charcoal placeholder:text-slategray/70 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 w-48"
               />
             </div>
@@ -316,11 +316,11 @@ export function AdminDashboardView() {
             <table className="w-full text-left border-collapse min-w-full">
               <thead>
                 <tr className="text-[11px] font-heading font-bold uppercase tracking-wider text-slategray bg-cream-50 border-y border-divider">
-                  <th className="py-2.5 px-5">User</th>
-                  <th className="py-2.5 px-3">Role</th>
-                  <th className="py-2.5 px-3">Department</th>
-                  <th className="py-2.5 px-3">Status</th>
-                  <th className="py-2.5 px-3">Joined</th>
+                  <th className="py-2.5 px-5"> {t('admin.colUser')} </th>
+                  <th className="py-2.5 px-3"> {t('admin.colRole')} </th>
+                  <th className="py-2.5 px-3"> {t('admin.colDept')} </th>
+                  <th className="py-2.5 px-3"> {t('admin.colStatus')} </th>
+                  <th className="py-2.5 px-3"> {t('admin.colJoined')} </th>
                   <th className="py-2.5 px-5 w-10"></th>
                 </tr>
               </thead>
@@ -356,7 +356,7 @@ export function AdminDashboardView() {
           <div className="mt-5 flex items-center justify-between pt-3 border-t border-divider">
             <div className="text-xs text-slategray">Showing {recentUsers.length} of 1,284 users</div>
             <button onClick={() => showToast('Users', 'Opening full user directory...', 'info')} className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-              View all users <ArrowUpRight className="w-3.5 h-3.5" />
+              {t('admin.viewAllUsers')} <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>

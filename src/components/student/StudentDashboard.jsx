@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 export default function StudentDashboard() {
-  const { studentData, setStudentTab, submission } = useAppState();
+  const { studentData, setStudentTab, submission, t } = useAppState();
   const { student, stats, myAssignments, courses } = studentData;
 
   return (
@@ -45,7 +45,7 @@ export default function StudentDashboard() {
             className="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold shadow-md shadow-brand-600/20 flex items-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <Sparkles className="w-4 h-4 text-amber-300" />
-            <span>View Latest Grade & Feedback</span>
+            <span>{t('stuView.latestGrade')} & {t('stuPortal.feedback')}</span>
           </button>
         </div>
       </div>
