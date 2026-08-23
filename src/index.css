@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -266,6 +268,85 @@
 
   html.dark .placeholder\:text-slategray\/70::placeholder {
     color: rgba(100, 116, 139, 0.7);
+  }
+
+  /* ===== DARK MODE: SECTION & CARD OVERRIDES ===== */
+  html.dark .section-light { background-color: #0f172a; color: #e2e8f0; }
+  html.dark .section-light h1,
+  html.dark .section-light h2,
+  html.dark .section-light h3,
+  html.dark .section-light h4 { color: #F7F9FC; }
+  html.dark .section-light .text-muted,
+  html.dark .section-light p.lead { color: #94a3b8; }
+  html.dark .section-light p { color: #cbd5e1; }
+  html.dark .section-light a { color: #2DD4BF; }
+  html.dark .section-light a:hover { color: #5eead4; }
+
+  html.dark .card { background: #1e293b; border-color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+  html.dark .card:hover { box-shadow: 0 10px 24px rgba(0,0,0,0.4); border-color: #475569; }
+
+  html.dark .stat-card { background: #1e293b; border-color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+  html.dark .stat-number { color: #F7F9FC; }
+  html.dark .stat-label { color: #94a3b8; }
+
+  html.dark .stepper-step { background: #1e293b; border-color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+  html.dark .stepper-step-title { color: #F7F9FC; }
+  html.dark .stepper-step-desc { color: #94a3b8; }
+
+  html.dark .who-card { background: #1e293b; border-color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+  html.dark .who-card__title { color: #F7F9FC; }
+  html.dark .who-card__benefit li { color: #94a3b8; }
+
+  html.dark .team-card { background: #1e293b; border-color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+  html.dark .team-name { color: #F7F9FC; }
+  html.dark .team-role { color: #94a3b8; }
+
+  html.dark .trust-card { background: #1e293b; border-color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+  html.dark .trust-card__title { color: #F7F9FC; }
+  html.dark .trust-card__desc { color: #94a3b8; }
+
+  html.dark .impact-badge { background: #1e293b; border-color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+
+  html.dark .flow-pill { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+
+  html.dark .section-title { color: #F7F9FC; }
+  html.dark .section-lede { color: #94a3b8; }
+  html.dark .stepper-step-num--primary { background: rgba(45,212,191,0.15); color: #2DD4BF; border-color: rgba(45,212,191,0.3); }
+  html.dark .stepper-step-num--teal { background: rgba(45,212,191,0.15); color: #2DD4BF; border-color: rgba(45,212,191,0.3); }
+  html.dark .stepper-step-num--amber { background: rgba(245,166,35,0.15); color: #F5A623; border-color: rgba(245,166,35,0.3); }
+
+  html.dark .badge-teal { background: rgba(45,212,191,0.15); color: #2DD4BF; border-color: rgba(45,212,191,0.3); }
+  html.dark .badge-amber { background: rgba(245,166,35,0.15); color: #F5A623; border-color: rgba(245,166,35,0.3); }
+  html.dark .badge-success { background: rgba(63,174,123,0.15); color: #3FAE7B; border-color: rgba(63,174,123,0.3); }
+  html.dark .badge-primary { background: rgba(45,212,191,0.12); color: #2DD4BF; border-color: rgba(45,212,191,0.25); }
+
+  html.dark .btn-secondary { background: #334155; color: #e2e8f0; border-color: #475569; }
+  html.dark .btn-secondary:hover { background: #475569; border-color: #64748b; color: #F7F9FC; }
+  html.dark .btn-ghost { color: #94a3b8; }
+  html.dark .btn-ghost:hover { background: rgba(148,163,184,0.1); color: #e2e8f0; }
+
+  html.dark .eyebrow-primary { color: #2DD4BF; background: rgba(45,212,191,0.12); border-color: rgba(45,212,191,0.25); }
+
+  html.dark .divider-line { background: linear-gradient(90deg, transparent, #334155 15%, #334155 85%, transparent); }
+
+  html.dark .nav-link { color: #cbd5e1; }
+  html.dark .nav-link:hover { background: rgba(148,163,184,0.1); color: #e2e8f0; }
+
+  html.dark p { color: #cbd5e1; }
+  html.dark strong, html.dark b { color: #e2e8f0; }
+  html.dark li { color: #94a3b8; }
+  html.dark label { color: #cbd5e1; }
+  html.dark .tag-list li { color: #94a3b8; }
+
+  html.dark .flow-arrow { color: #475569; }
+
+  html.dark .bg-cream-dot {
+    background-image: radial-gradient(rgba(148,163,184,0.08) 1px, transparent 1px);
+  }
+
+  html.dark .hero-mockup {
+    background: rgba(30,41,59,0.6);
+    border-color: rgba(255,255,255,0.08);
   }
 
   .text-on-dark {
