@@ -14,6 +14,7 @@ import {
   Users
 } from 'lucide-react';
 import { useAppState } from '../../context/AppStateContext';
+import { ArrowLeft } from 'lucide-react';
 
 const roleMeta = {
   student:  { label: 'Student',            icon: GraduationCap, color: 'text-teal-600 dark:text-teal-400',   bg: 'bg-teal-50 dark:bg-teal-900/30',    border: 'border-teal-200 dark:border-teal-800' },
@@ -58,8 +59,24 @@ export default function DashboardTopBar({ title, subtitle }) {
   return (
     <header className="sticky top-0 z-40 w-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-divider dark:border-slate-700">
       <div className="h-16 px-4 lg:px-6 flex items-center justify-between gap-3">
-        {/* Left: Title */}
+        {/* Left: Logo + Title */}
         <div className="flex items-center gap-3 min-w-0 flex-1">
+          {/* Back to Home Logo */}
+          <button
+            onClick={() => setCurrentPortal('landing')}
+            className="flex items-center gap-2 group flex-shrink-0 mr-2"
+            title={t('common.backToHome')}
+          >
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white shadow-sm transition-transform group-hover:scale-105">
+              <Shield className="w-4 h-4" strokeWidth={2.25} />
+            </div>
+            <div className="hidden lg:block leading-tight">
+              <div className="font-heading font-extrabold text-[14px] text-charcoal dark:text-white tracking-tight">
+                EduGuard<span className="text-teal">AI</span>
+              </div>
+            </div>
+          </button>
+
           <div className="flex items-center gap-2 min-w-0">
             <div>
               <h2 className="font-heading font-bold text-[17px] text-charcoal dark:text-white tracking-tight leading-tight truncate">
@@ -98,8 +115,8 @@ export default function DashboardTopBar({ title, subtitle }) {
             {notifOpen && (
               <div className="absolute right-0 mt-2 w-80 rounded-xl border border-divider dark:border-slate-600 bg-white dark:bg-slate-800 shadow-cardXl overflow-hidden animate-fadeIn z-50">
                 <div className="px-4 py-3 border-b border-divider dark:border-slate-700 flex items-center justify-between bg-cream-50 dark:bg-slate-700">
-                  <div className="font-heading font-bold text-sm text-charcoal dark:text-white">Notifications</div>
-                  <button className="text-xs font-semibold text-primary hover:underline">Mark all read</button>
+                  <div className="font-heading font-bold text-sm text-charcoal dark:text-white">{t('notif.notifications')}</div>
+                  <button className="text-xs font-semibold text-primary hover:underline">{t('notif.markAllRead')}</button>
                 </div>
                 <ul className="max-h-80 overflow-y-auto">
                   {notifications.map(n => (
@@ -123,7 +140,7 @@ export default function DashboardTopBar({ title, subtitle }) {
                 </ul>
                 <div className="px-4 py-2.5 border-t border-divider dark:border-slate-700 bg-cream-50 dark:bg-slate-700">
                   <button className="text-xs font-semibold text-primary hover:underline w-full text-center">
-                    View all notifications
+                    {t('notif.viewAll')}
                   </button>
                 </div>
               </div>
@@ -186,8 +203,8 @@ export default function DashboardTopBar({ title, subtitle }) {
                       <User className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-semibold text-sm text-charcoal dark:text-white leading-tight">My Profile</div>
-                      <div className="text-[11px] text-slategray">View & edit personal details</div>
+                      <div className="font-semibold text-sm text-charcoal dark:text-white leading-tight">{t('profile.myProfile')}</div>
+                      <div className="text-[11px] text-slategray">{t('profile.viewEdit')}</div>
                     </div>
                   </button>
 
@@ -199,8 +216,8 @@ export default function DashboardTopBar({ title, subtitle }) {
                       <Settings className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-semibold text-sm text-charcoal dark:text-white leading-tight">Account Settings</div>
-                      <div className="text-[11px] text-slategray">Security, notifications, preferences</div>
+                      <div className="font-semibold text-sm text-charcoal dark:text-white leading-tight">{t('profile.accountSettings')}</div>
+                      <div className="text-[11px] text-slategray">{t('profile.securityNotif')}</div>
                     </div>
                   </button>
 
@@ -212,8 +229,8 @@ export default function DashboardTopBar({ title, subtitle }) {
                       <HelpCircle className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-semibold text-sm text-charcoal dark:text-white leading-tight">Help & Support</div>
-                      <div className="text-[11px] text-slategray">Docs, FAQs, contact support</div>
+                      <div className="font-semibold text-sm text-charcoal dark:text-white leading-tight">{t('profile.helpSupport')}</div>
+                      <div className="text-[11px] text-slategray">{t('profile.docsFaq')}</div>
                     </div>
                   </button>
                 </div>

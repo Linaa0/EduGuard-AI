@@ -55,11 +55,12 @@ import {
 } from './components/parent/ParentViews';
 
 function RoleMeta({ role }) {
-  if (role === 'admin') return { title: 'Admin Console', subtitle: 'Institutional management & analytics' };
-  if (role === 'parent') return { title: 'Parent Portal', subtitle: 'Student progress monitoring & insights' };
-  if (role === 'lecturer') return { title: 'Lecturer Workspace', subtitle: 'Teaching, grading & student feedback' };
-  if (role === 'student') return { title: 'Student Portal', subtitle: 'Assignments, grades & learning resources' };
-  return { title: 'Dashboard', subtitle: '' };
+  const { t } = useAppState();
+  if (role === 'admin') return { title: t('adm.title'), subtitle: t('admin.subtitle') };
+  if (role === 'parent') return { title: t('par.title'), subtitle: t('parent.subtitle') };
+  if (role === 'lecturer') return { title: t('dash.title'), subtitle: 'Teaching, grading & student feedback' };
+  if (role === 'student') return { title: t('stuPortal.title'), subtitle: 'Assignments, grades & learning resources' };
+  return { title: t('sidebar.nav.dashboard'), subtitle: '' };
 }
 
 function LecturerContent() {

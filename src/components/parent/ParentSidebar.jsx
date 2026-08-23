@@ -12,28 +12,32 @@ import {
   User,
   LogOut,
   ChevronRight,
-  HeartHandshake
+  HeartHandshake,
+  ArrowLeft
 } from 'lucide-react';
 
-const navItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { id: 'my-student', label: 'My Student', icon: GraduationCap },
-  { id: 'progress', label: 'Academic Progress', icon: TrendingUp, highlight: true },
-  { id: 'grades', label: 'Grades', icon: Award, badge: 'Updated' },
-  { id: 'feedback', label: 'Feedback Summary', icon: MessageSquareQuote },
-  { id: 'attendance', label: 'Attendance / Progress', icon: CalendarCheck },
-  { id: 'notifications', label: 'Notifications', icon: Bell, alertBadge: '3 New' },
-  { id: 'profile', label: 'Profile', icon: User },
-];
-
 export default function ParentSidebar() {
-  const { parentTab, setParentTab, currentUser, logoutUser, setCurrentPortal, showToast } = useAppState();
+  const { parentTab, setParentTab, currentUser, logoutUser, setCurrentPortal, showToast, t } = useAppState();
+
+  const navItems = [
+    { id: 'dashboard', label: t('sidebar.nav.dashboard'), icon: LayoutDashboard },
+    { id: 'my-student', label: t('parent.nav.myStudent'), icon: GraduationCap },
+    { id: 'progress', label: t('parent.nav.progress'), icon: TrendingUp, highlight: true },
+    { id: 'grades', label: t('parent.nav.grades'), icon: Award, badge: 'Updated' },
+    { id: 'feedback', label: t('parent.nav.feedback'), icon: MessageSquareQuote },
+    { id: 'attendance', label: t('parent.nav.attendance'), icon: CalendarCheck },
+    { id: 'notifications', label: t('parent.nav.notifications'), icon: Bell, alertBadge: '3 New' },
+    { id: 'profile', label: t('parent.nav.profile'), icon: User },
+  ];
 
   return (
     <aside className="w-64 shrink-0 min-h-screen bg-midnight flex flex-col text-slate-300">
       {/* Logo */}
       <div className="p-5 border-b border-white/10">
-        <div className="flex items-center gap-2.5 group">
+        <button
+          onClick={() => setCurrentPortal('landing')}
+          className="flex items-center gap-2.5 group w-full text-left"
+        >
           <div className="w-9 h-9 rounded-xl bg-success flex items-center justify-center text-white shadow-[0_0_0_1px_rgba(63,174,123,0.25),0_6px_16px_-4px_rgba(63,174,123,0.3)]">
             <Shield className="w-5 h-5" strokeWidth={2.25} />
           </div>
@@ -42,10 +46,10 @@ export default function ParentSidebar() {
               EduGuard<span className="text-success">AI</span>
             </div>
             <div className="text-[10px] font-medium text-white/50 tracking-wide">
-              Parent Portal
+              {t('parent.subtitle')}
             </div>
           </div>
-        </div>
+        </button>
       </div>
 
       {/* Student mini card */}
@@ -53,7 +57,7 @@ export default function ParentSidebar() {
         <div className="flex items-center gap-1 mb-2">
           <HeartHandshake className="w-3.5 h-3.5 text-success" />
           <span className="text-[10px] font-heading font-bold tracking-wider text-success/90 uppercase">
-            Connected Student
+            {t('parent.connectedStudent')}
           </span>
         </div>
         <div className="flex items-center gap-3">
@@ -82,7 +86,7 @@ export default function ParentSidebar() {
               <div className="font-heading font-bold text-[12px] text-white truncate leading-tight">
                 {currentUser.name?.split(' ').slice(0,2).join(' ') || 'Guardian'}
               </div>
-              <div className="text-[10px] text-white/50">Parent / Guardian</div>
+              <div className="text-[10px] text-white/50">{t('parent.subtitle')}</div>
             </div>
           </div>
         </div>
@@ -91,7 +95,7 @@ export default function ParentSidebar() {
       {/* Nav */}
       <div className="p-3 flex-1 overflow-y-auto">
         <div className="text-[10px] font-heading font-bold uppercase tracking-widest text-white/30 px-2 py-2">
-          Monitor
+          {t('sidebar.monitor')}
         </div>
         <nav className="space-y-0.5">
           {navItems.map(item => {
@@ -134,11 +138,11 @@ export default function ParentSidebar() {
           <div className="flex items-center gap-2 mb-2">
             <Bell className="w-3.5 h-3.5 text-amber-300" />
             <span className="text-[11px] font-heading font-bold tracking-wider text-amber-300 uppercase">
-              Insight
+              {t('parent.insight')}
             </span>
           </div>
           <div className="text-xs text-slate-300 leading-snug">
-            Jean-Paul's midterm grades are ready — overall performance is <span className="text-success font-semibold">above class average</span>.
+            {t('parViews.studentProgress')}
           </div>
         </div>
       </div>
@@ -146,18 +150,18 @@ export default function ParentSidebar() {
       {/* Bottom actions */}
       <div className="p-3 border-t border-white/10 space-y-2">
         <button
-          onClick={() => { setCurrentPortal('landing'); showToast('Home', 'Returning to public landing page', 'info'); }}
+          onClick={() => setCurrentPortal('landing')}
           className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[12px] font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
         >
-          <Shield className="w-4 h-4" />
-          <span>Public Landing Page</span>
+          <ArrowLeft className="w-4 h-4" />
+          <span>{t('parent.landingPage')}</span>
         </button>
         <button
           onClick={() => { logoutUser(); setCurrentPortal('landing'); showToast('Signed Out', 'Logged out of parent portal', 'info'); }}
           className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[12px] font-semibold text-red-300 hover:text-red-200 hover:bg-red-500/10 transition-colors"
         >
           <LogOut className="w-4 h-4" />
-          <span>Log Out</span>
+          <span>{t('nav.logout')}</span>
         </button>
       </div>
     </aside>

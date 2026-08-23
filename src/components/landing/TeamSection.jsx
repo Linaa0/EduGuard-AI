@@ -1,8 +1,11 @@
 import React from 'react';
 import { Users } from 'lucide-react';
 import { teamMembers } from '../../data/teamData';
+import { useAppState } from '../../context/AppStateContext';
 
 export default function TeamSection() {
+  const { t } = useAppState();
+
   return (
     <section id="team" className="section-wrap section-light bg-cream border-t border-divider">
       <div className="site-container">
@@ -11,15 +14,15 @@ export default function TeamSection() {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-50 border border-primary-200 text-primary text-xs font-semibold">
             <Users className="w-3.5 h-3.5" />
-            <span>The Minds Behind EduGuard AI</span>
+            <span>{t('team.badge')}</span>
           </div>
 
           <h2 className="section-title text-3xl sm:text-4xl text-balance">
-            Meet the EduGuard AI Team
+            {t('team.title')}
           </h2>
 
           <p className="section-lede mb-0">
-            A multidisciplinary team passionate about AI ethics, educational excellence, and scalable software engineering.
+            {t('team.desc')}
           </p>
         </div>
 
@@ -53,7 +56,7 @@ export default function TeamSection() {
         </div>
 
         <div className="mt-12 text-center text-xs text-slategray">
-          <span>Engineered for the <strong className="text-charcoal">STP &apos;26 Hackathon Demonstration</strong></span>
+          <span>{t('team.hackathon')}</span>
         </div>
 
       </div>

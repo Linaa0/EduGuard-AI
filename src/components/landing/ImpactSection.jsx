@@ -1,67 +1,70 @@
 import React from 'react';
 import { Clock, TrendingUp, MessageSquare, Globe2 } from 'lucide-react';
-
-const stats = [
-  {
-    value: '70%',
-    label: 'Reduction in lecturer grading time per assessment cycle',
-    accent: 'stat-card--teal-accent',
-  },
-  {
-    value: '4×',
-    label: 'Faster turnaround from submission to published feedback',
-    accent: 'stat-card--primary-accent',
-  },
-  {
-    value: '100%',
-    label: 'Human approval required before any grade reaches a student',
-    accent: 'stat-card--amber-accent',
-  },
-  {
-    value: 'SDG 4',
-    label: 'Aligned with Quality Education goals for Rwanda and beyond',
-    accent: 'stat-card--teal-accent',
-  },
-];
-
-const impacts = [
-  {
-    icon: Clock,
-    iconBg: 'bg-teal text-midnight',
-    title: 'Time Returned to Teaching',
-    desc: 'Lecturers spend less time on repetitive marking and more on mentorship, research, and curriculum design.',
-  },
-  {
-    icon: TrendingUp,
-    iconBg: 'bg-primary text-white',
-    title: 'Consistent, Rubric-Anchored Scoring',
-    desc: 'Criterion-level evaluation reduces grading drift and gives every student the same transparent standard.',
-  },
-  {
-    icon: MessageSquare,
-    iconBg: 'bg-accent-amber text-midnight',
-    title: 'Feedback Students Can Act On',
-    desc: 'Students receive specific strengths, gaps, and resources instead of a standalone numerical score.',
-  },
-  {
-    icon: Globe2,
-    iconBg: 'bg-success text-white',
-    title: 'Institutional Scale',
-    desc: 'Designed for university deployment with audit trails, role-based access, and responsible AI governance.',
-  },
-];
+import { useAppState } from '../../context/AppStateContext';
 
 export default function ImpactSection() {
+  const { t } = useAppState();
+
+  const stats = [
+    {
+      value: t('impact.stat1.value'),
+      label: t('impact.stat1.label'),
+      accent: 'stat-card--teal-accent',
+    },
+    {
+      value: t('impact.stat2.value'),
+      label: t('impact.stat2.label'),
+      accent: 'stat-card--primary-accent',
+    },
+    {
+      value: t('impact.stat3.value'),
+      label: t('impact.stat3.label'),
+      accent: 'stat-card--amber-accent',
+    },
+    {
+      value: t('impact.stat4.value'),
+      label: t('impact.stat4.label'),
+      accent: 'stat-card--teal-accent',
+    },
+  ];
+
+  const impacts = [
+    {
+      icon: Clock,
+      iconBg: 'bg-teal text-midnight',
+      title: t('impact.i1.title'),
+      desc: t('impact.i1.desc'),
+    },
+    {
+      icon: TrendingUp,
+      iconBg: 'bg-primary text-white',
+      title: t('impact.i2.title'),
+      desc: t('impact.i2.desc'),
+    },
+    {
+      icon: MessageSquare,
+      iconBg: 'bg-accent-amber text-midnight',
+      title: t('impact.i3.title'),
+      desc: t('impact.i3.desc'),
+    },
+    {
+      icon: Globe2,
+      iconBg: 'bg-success text-white',
+      title: t('impact.i4.title'),
+      desc: t('impact.i4.desc'),
+    },
+  ];
+
   return (
     <section id="impact" className="section-wrap section-light bg-white border-t border-divider">
       <div className="site-container">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="eyebrow">Measurable Outcomes</span>
+          <span className="eyebrow">{t('impact.eyebrow')}</span>
           <h2 className="section-title text-3xl sm:text-4xl text-balance">
-            Impact on Academic Assessment
+            {t('impact.title')}
           </h2>
           <p className="section-lede">
-            EduGuard AI targets the bottlenecks that slow down lecturers and leave students without meaningful guidance.
+            {t('impact.desc')}
           </p>
         </div>
 

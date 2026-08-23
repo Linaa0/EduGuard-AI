@@ -27,7 +27,7 @@ const roleOptions = [
 const DEMO_PASSWORD = 'demo1234';
 
 export default function LoginPage() {
-  const { loginUser, showToast, setAuthView } = useAppState();
+  const { loginUser, showToast, setAuthView, t } = useAppState();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -146,18 +146,16 @@ export default function LoginPage() {
             <div className="max-w-md">
               <div className="eyebrow !text-teal-300 !bg-teal-500/15 !border-teal-500/30 mb-6">
                 <Shield className="w-3.5 h-3.5" />
-                Academic Platform Access
-              </div>
-              <h1 className="text-white text-4xl font-extrabold leading-tight mb-5 text-balance">
-                AI Assesses.
+                {t('login.platformAccess')}
+              </div>                <h1 className="text-white text-4xl font-extrabold leading-tight mb-5 text-balance">
+                {t('hero.title1')}
                 <br />
-                <span className="text-teal">Teachers Decide.</span>
+                <span className="text-teal">{t('hero.title2')}</span>
                 <br />
-                Students Understand.
+                {t('hero.title3')}
               </h1>
               <p className="text-white/70 text-base leading-relaxed mb-10">
-                Secure, role-based access to Rwanda's responsible AI assessment platform.
-                Built for lecturers, students, administrators, and guardians.
+                {t('login.platformDesc')}
               </p>
 
               <div className="space-y-4">
@@ -166,8 +164,8 @@ export default function LoginPage() {
                     <Check className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-semibold text-sm text-white">Human-in-the-Loop Oversight</div>
-                    <div className="text-xs text-white/60">AI suggests, lecturers make the final call</div>
+                    <div className="font-semibold text-sm text-white">{t('login.humanOversight')}</div>
+                    <div className="text-xs text-white/60">{t('login.humanOversightDesc')}</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -175,8 +173,8 @@ export default function LoginPage() {
                     <Check className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-semibold text-sm text-white">Rwanda HEC Aligned</div>
-                    <div className="text-xs text-white/60">Responsible AI for higher education</div>
+                    <div className="font-semibold text-sm text-white">{t('login.rwandaHec')}</div>
+                    <div className="text-xs text-white/60">{t('login.rwandaHecDesc')}</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -184,8 +182,8 @@ export default function LoginPage() {
                     <Check className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-semibold text-sm text-white">SDG 4: Quality Education</div>
-                    <div className="text-xs text-white/60">Faster feedback, clearer learning</div>
+                    <div className="font-semibold text-sm text-white">{t('login.sdg4')}</div>
+                    <div className="text-xs text-white/60">{t('login.sdg4Desc')}</div>
                   </div>
                 </div>
               </div>
@@ -194,7 +192,7 @@ export default function LoginPage() {
 
           <div className="relative z-10 pt-8 border-t border-white/10">
             <p className="text-xs text-white/40">
-              © 2026 EduGuard AI · Built for Ejo Labs STP'26 · Prototype Demo
+              {t('login.copyright')}
             </p>
           </div>
         </div>
@@ -216,10 +214,10 @@ export default function LoginPage() {
 
             <div className="mb-8">
               <h2 className="font-heading font-extrabold text-3xl text-charcoal mb-2 tracking-tight">
-                Welcome Back
+                {t('login.welcomeBack')}
               </h2>
               <p className="text-slategray text-base">
-                Sign in to your EduGuard AI account
+                {t('login.signInDesc')}
               </p>
             </div>
 
@@ -233,7 +231,7 @@ export default function LoginPage() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="block mb-2 text-sm font-semibold text-charcoal">
-                  Email Address</label>
+                  {t('login.email')}</label>
                 <div className="relative">
                   <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slategray" />
                   <input
@@ -249,13 +247,13 @@ export default function LoginPage() {
 
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="block text-sm font-semibold text-charcoal">Password</label>
+                  <label className="block text-sm font-semibold text-charcoal">{t('login.password')}</label>
                   <button
                     type="button"
                     onClick={() => showToast('Password Reset', 'Contact your institution administrator or use demo password: demo1234', 'info')}
                     className="text-xs font-semibold text-primary hover:text-primary-800 transition-colors"
                   >
-                    Forgot Password?
+                    {t('login.forgotPassword')}
                   </button>
                 </div>
                 <div className="relative">
@@ -287,7 +285,7 @@ export default function LoginPage() {
                     onChange={e => setRememberMe(e.target.checked)}
                     className="w-4 h-4 rounded border-divider text-primary focus:ring-primary focus:ring-offset-0"
                   />
-                  <span className="text-sm text-slategray">Remember me</span>
+                  <span className="text-sm text-slategray">{t('login.rememberMe')}</span>
                 </label>
               </div>
 
@@ -297,9 +295,9 @@ export default function LoginPage() {
                 className="btn btn-primary btn-lg w-full h-12"
               >
                 {loading ? (
-                  <><Loader2 className="w-4 h-4 animate-spin" /> Signing In...</>
+                  <><Loader2 className="w-4 h-4 animate-spin" /> Signing In...</                >
                 ) : (
-                  <><LogIn className="w-4 h-4" /> Log In</>
+                  <><LogIn className="w-4 h-4" /> {t('login.signIn')}</>
                 )}
               </button>
             </form>
@@ -307,7 +305,7 @@ export default function LoginPage() {
             {/* Continue with Google */}
             <div className="my-6 flex items-center gap-4">
               <div className="flex-1 h-px bg-divider"></div>
-              <span className="text-xs text-slategray font-medium">OR CONTINUE WITH</span>
+              <span className="text-xs text-slategray font-medium">{t('login.orContinueWith')}</span>
               <div className="flex-1 h-px bg-divider"></div>
             </div>
 
@@ -322,7 +320,7 @@ export default function LoginPage() {
                 <path fill="#4CAF50" d="M24 43.5c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.5 2.4-7.2 2.4-5.3 0-9.7-3.5-11.3-8.3l-6.5 5C9.5 38.8 16.2 43.5 24 43.5z"/>
                 <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.6l6.2 5.2c-.4.4 6.6-4.8 6.6-14.8 0-1.2-.1-2.4-.4-3.5z"/>
               </svg>
-              Continue with Google
+              {t('login.continueGoogle')}
             </button>
 
             {/* Role quick-login */}
@@ -330,7 +328,7 @@ export default function LoginPage() {
               <div className="flex items-center gap-2 mb-4">
                 <span className="eyebrow !mb-0 !py-1 !px-3 !text-[11px]">
                   <LogIn className="w-3 h-3" />
-                  Demo Quick Login: Click a role
+                  {t('login.demoQuickLogin')}
                 </span>
               </div>
               <div className="grid grid-cols-2 gap-3 mb-6">
@@ -356,13 +354,13 @@ export default function LoginPage() {
 
             <div className="text-center pt-4 border-t border-divider">
               <p className="text-sm text-slategray">
-                Don't have an account?{' '}
+                {t('login.noAccount')}{' '}
                 <button
                   type="button"
                   onClick={() => setAuthView('role-select')}
                   className="font-semibold text-primary hover:text-primary-800 transition-colors inline-flex items-center gap-1"
                 >
-                  Create an account <ArrowRight className="w-3.5 h-3.5" />
+                  {t('login.createAccount')} <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </p>
             </div>

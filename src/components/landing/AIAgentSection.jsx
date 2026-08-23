@@ -15,7 +15,7 @@ import { agentToolSteps } from '../../data/mockData';
 import { useAppState } from '../../context/AppStateContext';
 
 export default function AIAgentSection() {
-  const { setCurrentPortal, setLecturerTab } = useAppState();
+  const { setCurrentPortal, setLecturerTab, t } = useAppState();
   const [activeStep, setActiveStep] = useState(7);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -41,15 +41,15 @@ export default function AIAgentSection() {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">
             <Cpu className="w-3.5 h-3.5" />
-            <span>Autonomous Tool Execution Pipeline</span>
+            <span>{t('aiAgent.badge')}</span>
           </div>
 
           <h2 className="font-heading text-3xl sm:text-4xl font-extrabold tracking-tight text-on-dark">
-            The AI Assessment Agent
+            {t('aiAgent.title')}
           </h2>
 
           <p className="text-base text-on-dark-muted leading-relaxed mb-0">
-            EduGuard AI does not use a black-box prompt. It employs a multi-step deterministic agent equipped with 7 specialized tools to parse, cross-reference, and evaluate submissions against the lecturer's rubric.
+            {t('aiAgent.desc')} It employs a multi-step deterministic agent equipped with 7 specialized tools to parse, cross-reference, and evaluate submissions against the lecturer's rubric.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export default function AIAgentSection() {
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-700 text-white text-xs font-bold transition-all disabled:opacity-50"
               >
                 <RotateCw className={`w-3.5 h-3.5 ${isRunning ? 'animate-spin' : ''}`} />
-                <span>{isRunning ? 'Executing Tools...' : 'Re-Run Pipeline'}</span>
+                <span>{isRunning ? t('aiAgent.executing') : t('aiAgent.reRun')}</span>
               </button>
             </div>
           </div>
@@ -88,10 +88,10 @@ export default function AIAgentSection() {
             {/* Left: 7 Tool Step Cards */}
             <div className="lg:col-span-7 space-y-3">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">Agent Tool Chain</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">{t('aiAgent.toolChain')}</span>
                 <span className="text-xs text-emerald-400 font-semibold flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  {activeStep} of 7 Tools Completed
+                  {activeStep} {t('aiAgent.toolsCompleted')}
                 </span>
               </div>
 
@@ -151,7 +151,7 @@ export default function AIAgentSection() {
                 <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                   <div className="flex items-center gap-2">
                     <Cpu className="w-4 h-4 text-teal" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-on-dark">AI Assessment Result</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-on-dark">{t('aiAgent.result')}</span>
                   </div>
                   <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30">
                     CALIBRATED
@@ -160,24 +160,24 @@ export default function AIAgentSection() {
 
                 {/* Score Big Display */}
                 <div className="text-center py-2 space-y-1">
-                  <span className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Suggested Score</span>
+                  <span className="text-xs text-slate-400 uppercase tracking-wider font-semibold">{t('aiAgent.suggestedScore')}</span>
                   <div className="text-5xl font-extrabold text-white font-mono tracking-tight">
                     16 <span className="text-xl font-normal text-slate-400">/ 20</span>
                   </div>
-                  <p className="text-xs text-blue-400 font-medium">80% Baseline Assessment</p>
+                  <p className="text-xs text-blue-400 font-medium">{t('aiAgent.baseline')}</p>
                 </div>
 
                 {/* Confidence Bar */}
                 <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-300 font-semibold">Agent Confidence Level</span>
+                    <span className="text-slate-300 font-semibold">{t('aiAgent.confidenceLevel')}</span>
                     <span className="font-mono font-bold text-emerald-400">91% (High)</span>
                   </div>
                   <div className="w-full h-2.5 rounded-full bg-slate-800 overflow-hidden">
                     <div className="h-full rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 transition-all duration-700" style={{ width: '91%' }}></div>
                   </div>
                   <p className="text-[10px] text-slate-400 leading-tight pt-1">
-                    ✓ High semantic match with rubrics • Low hallucination uncertainty • Ready for Lecturer Approval.
+                    ✓ {t('aiAgent.highConfidence')}
                   </p>
                 </div>
 
@@ -211,7 +211,7 @@ export default function AIAgentSection() {
                 }}
                 className="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-semibold border border-slate-700 flex items-center justify-center gap-2 transition-colors"
               >
-                <span>Proceed to Human-in-the-Loop Review</span>
+                <span>{t('aiAgent.proceedReview')}</span>
                 <ChevronRight className="w-4 h-4 text-blue-400" />
               </button>
 

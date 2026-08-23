@@ -3,7 +3,7 @@ import { ShieldCheck, ArrowRight } from 'lucide-react';
 import { useAppState } from '../../context/AppStateContext';
 
 export default function LandingFooter() {
-  const { startDemoTour, setCurrentPortal, setLecturerTab, setStudentTab } = useAppState();
+  const { startDemoTour, setCurrentPortal, setLecturerTab, setStudentTab, t } = useAppState();
 
   return (
     <footer className="footer-bg text-on-dark border-t border-white/10">
@@ -13,22 +13,22 @@ export default function LandingFooter() {
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal/15 border border-teal/30 text-teal text-xs font-semibold">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Ready for the Next Generation of Academic Assessment?</span>
+            <span>{t('footer.cta.badge')}</span>
           </div>
 
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-dark leading-tight text-balance">
-            AI Assesses.{' '}
-            <span className="text-accent-amber">Teachers Decide.</span>{' '}
-            <span className="text-teal">Students Understand.</span>
+            {t('footer.cta.title1')}{' '}
+            <span className="text-accent-amber">{t('footer.cta.title2')}</span>{' '}
+            <span className="text-teal">{t('footer.cta.title3')}</span>
           </h2>
 
           <p className="text-base sm:text-lg text-on-dark-muted max-w-2xl mx-auto leading-relaxed mb-0">
-            Building a more transparent, efficient, and student-centered academic assessment experience.
+            {t('footer.cta.desc')}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <button onClick={startDemoTour} className="btn btn-teal btn-lg w-full sm:w-auto">
-              <span>Launch EduGuard Demo</span>
+              <span>{t('footer.cta.button')}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -42,7 +42,7 @@ export default function LandingFooter() {
               <ShieldCheck className="w-4 h-4" />
             </div>
             <span className="font-bold text-on-dark">EduGuard AI</span>
-            <span>University Academic Assessment & Feedback System</span>
+            <span>{t('footer.systemDesc')}</span>
           </div>
 
           <div className="flex items-center gap-6">
@@ -50,20 +50,20 @@ export default function LandingFooter() {
               onClick={() => { setCurrentPortal('lecturer'); setLecturerTab('dashboard'); }}
               className="footer-link"
             >
-              Lecturer Portal
+              {t('footer.lecturerPortal')}
             </button>
             <button
               onClick={() => { setCurrentPortal('student'); setStudentTab('dashboard'); }}
               className="footer-link"
             >
-              Student Portal
+              {t('footer.studentPortal')}
             </button>
             <button onClick={startDemoTour} className="footer-link !text-teal font-semibold">
-              Guided Demo
+              {t('footer.guidedDemo')}
             </button>
           </div>
 
-          <p className="mb-0">Built with academic rigor for STP &apos;26 Hackathon</p>
+          <p className="mb-0">{t('footer.builtFor')}</p>
         </div>
       </div>
     </footer>

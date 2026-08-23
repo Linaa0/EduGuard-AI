@@ -9,42 +9,45 @@ import {
   AlertTriangle,
   Award
 } from 'lucide-react';
+import { useAppState } from '../../context/AppStateContext';
 
 export default function ResponsibleAISection() {
+  const { t } = useAppState();
+
   const principles = [
     {
-      title: "Human Oversight",
-      desc: "University lecturers maintain sole legal and academic authority. The AI never independently finalizes or publishes grades.",
+      title: t('responsibleAI.p1.title'),
+      desc: t('responsibleAI.p1.desc'),
       icon: UserCheck,
       color: "text-blue-400 bg-blue-500/10 border-blue-500/30"
     },
     {
-      title: "Criterion Explainability",
-      desc: "Every suggested score is accompanied by granular, criterion-level evidence rationales rather than ungrounded black-box marks.",
+      title: t('responsibleAI.p2.title'),
+      desc: t('responsibleAI.p2.desc'),
       icon: Eye,
       color: "text-indigo-400 bg-indigo-500/10 border-indigo-500/30"
     },
     {
-      title: "Full Transparency",
-      desc: "All AI-generated recommendations, confidence metrics, and agent traces are explicitly marked and visible to educators.",
+      title: t('responsibleAI.p3.title'),
+      desc: t('responsibleAI.p3.desc'),
       icon: ShieldCheck,
       color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30"
     },
     {
-      title: "Uncertainty Handling",
-      desc: "Submissions with confidence below 80% are automatically flagged with an amber badge for mandatory human review.",
+      title: t('responsibleAI.p4.title'),
+      desc: t('responsibleAI.p4.desc'),
       icon: AlertTriangle,
       color: "text-amber-400 bg-amber-500/10 border-amber-500/30"
     },
     {
-      title: "Privacy & Data Security",
-      desc: "Student academic records and submissions are encrypted at rest and in transit. Student data is never used to train public LLMs.",
+      title: t('responsibleAI.p5.title'),
+      desc: t('responsibleAI.p5.desc'),
       icon: Lock,
       color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30"
     },
     {
-      title: "Rubric-Grounded Fairness",
-      desc: "Scoring is strictly anchored to the lecturer's specific rubric descriptors, eliminating bias from arbitrary general prompts.",
+      title: t('responsibleAI.p6.title'),
+      desc: t('responsibleAI.p6.desc'),
       icon: Scale,
       color: "text-purple-400 bg-purple-500/10 border-purple-500/30"
     }
@@ -58,15 +61,15 @@ export default function ResponsibleAISection() {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Academic Ethics by Design</span>
+            <span>{t('responsibleAI.badge')}</span>
           </div>
 
           <h2 className="font-heading text-3xl sm:text-4xl font-extrabold tracking-tight text-on-dark">
-            Responsible AI & Academic Integrity
+            {t('responsibleAI.title')}
           </h2>
 
           <p className="text-base text-on-dark-muted leading-relaxed mb-0">
-            Built to meet higher-education compliance standards, ensuring ethical AI deployment that augments professors rather than replacing them.
+            {t('responsibleAI.desc')}
           </p>
         </div>
 
@@ -88,7 +91,7 @@ export default function ResponsibleAISection() {
                 </div>
 
                 <div className="pt-3 border-t border-slate-900 text-[11px] text-slate-500 font-mono">
-                  Standard: Higher-Ed AI Framework
+                  {t('responsibleAI.standard')}
                 </div>
               </div>
             );

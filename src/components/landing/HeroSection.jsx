@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 export default function HeroSection({ onHowItWorks }) {
-  const { setCurrentPortal, setLecturerTab, startDemoTour } = useAppState();
+  const { setCurrentPortal, setLecturerTab, startDemoTour, t } = useAppState();
 
   return (
     <section id="top" className="section-dark hero-bg relative overflow-hidden pt-24 pb-28 sm:pt-28 sm:pb-32">
@@ -18,20 +18,20 @@ export default function HeroSection({ onHowItWorks }) {
         <div className="flex justify-center mb-8">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-midnight/80 border border-teal/30 text-teal text-xs font-semibold">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>AI-Powered Academic Assessment & Feedback Platform</span>
+            <span>{t('hero.badge')}</span>
             <span className="bg-primary text-white text-[10px] uppercase font-bold px-1.5 py-0.5 rounded ml-1">STP &apos;26</span>
           </div>
         </div>
 
         <div className="text-center max-w-4xl mx-auto space-y-7">
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-on-dark leading-[1.08] text-balance">
-            AI Assesses.{' '}
-            <span className="text-accent-amber">Teachers Decide.</span>{' '}
-            Students Understand.
+            {t('hero.title1')}{' '}
+            <span className="text-accent-amber">{t('hero.title2')}</span>{' '}
+            {t('hero.title3')}
           </h1>
 
           <p className="text-base sm:text-lg text-on-dark-muted max-w-3xl mx-auto leading-relaxed prose-width mx-auto">
-            AI-powered academic assessment and feedback that helps university lecturers assess faster with their own marking rubrics, while empowering students with criterion-level explanations to improve.
+            {t('hero.desc')}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -40,7 +40,7 @@ export default function HeroSection({ onHowItWorks }) {
               className="btn btn-primary btn-lg w-full sm:w-auto"
             >
               <Play className="w-4 h-4" />
-              <span>Explore Demo</span>
+              <span>{t('hero.exploreDemo')}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
@@ -49,7 +49,7 @@ export default function HeroSection({ onHowItWorks }) {
               className="btn btn-secondary btn-lg w-full sm:w-auto !bg-midnight/60 !border-white/15 !text-on-dark hover:!bg-midnight/80 hover:!text-white"
             >
               <Cpu className="w-4 h-4 text-teal" />
-              <span>How It Works</span>
+              <span>{t('hero.howItWorks')}</span>
             </button>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function HeroSection({ onHowItWorks }) {
               <div className="lg:col-span-7 space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-white/10">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-teal">Submission Evaluation</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-teal">{t('hero.submissionEval')}</span>
                     <h3 className="text-base font-bold text-on-dark mt-0.5 mb-0">Jean Claude: Climate Change Essay</h3>
                     <p className="text-xs text-on-dark-muted mb-0">ENV-101 · Introduction to Environmental Studies</p>
                   </div>
@@ -83,7 +83,7 @@ export default function HeroSection({ onHowItWorks }) {
                       16 <span className="text-sm font-normal text-on-dark-muted">/ 20</span>
                     </div>
                     <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-success">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> 91% AI Confidence
+                      <CheckCircle2 className="w-3.5 h-3.5" /> {t('hero.confidence')}
                     </span>
                   </div>
                 </div>
@@ -106,7 +106,7 @@ export default function HeroSection({ onHowItWorks }) {
                     <div>
                       <div className="flex items-center gap-1.5">
                         <p className="font-semibold text-on-dark mb-0">Evidence & Examples</p>
-                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-accent-amber/20 text-accent-amber">Teacher Adjusted</span>
+                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-accent-amber/20 text-accent-amber">{t('hero.teacherAdjusted')}</span>
                       </div>
                       <p className="text-[11px] text-on-dark-muted mb-0">Dr. Alice awarded +1 mark for regional agroforestry case studies.</p>
                     </div>
@@ -129,7 +129,7 @@ export default function HeroSection({ onHowItWorks }) {
               <div className="lg:col-span-5 rounded-xl bg-midnight/70 border border-accent-amber/30 p-5 space-y-4">
                 <div className="flex items-center gap-2 text-accent-amber text-xs font-bold uppercase tracking-wider">
                   <UserCheck className="w-4 h-4" />
-                  <span>Lecturer Decision</span>
+                  <span>{t('hero.lecturerDecision')}</span>
                 </div>
 
                 <div className="p-3 rounded-lg bg-accent-amber/10 border border-accent-amber/25">
@@ -140,11 +140,11 @@ export default function HeroSection({ onHowItWorks }) {
 
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs">
-                    <span className="text-on-dark-muted">AI Suggested:</span>
+                    <span className="text-on-dark-muted">{t('hero.aiSuggested')}</span>
                     <span className="font-mono text-on-dark">16 / 20 (80%)</span>
                   </div>
                   <div className="flex justify-between text-xs font-semibold">
-                    <span className="text-on-dark">Lecturer Final Grade:</span>
+                    <span className="text-on-dark">{t('hero.lecturerFinalGrade')}</span>
                     <span className="font-mono text-success text-sm font-bold">17 / 20 (85%)</span>
                   </div>
                 </div>
@@ -158,12 +158,12 @@ export default function HeroSection({ onHowItWorks }) {
                     className="btn btn-teal w-full !text-sm"
                   >
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>Approve & Publish to Student</span>
+                    <span>{t('hero.approvePublish')}</span>
                   </button>
                 </div>
 
                 <p className="text-[10px] text-center text-on-dark-muted italic mb-0">
-                  Guaranteed Human-In-The-Loop Academic Governance
+                  {t('hero.guaranteedGovernance')}
                 </p>
               </div>
             </div>

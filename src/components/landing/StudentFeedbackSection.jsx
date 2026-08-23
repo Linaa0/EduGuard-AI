@@ -12,7 +12,7 @@ import { useAppState } from '../../context/AppStateContext';
 import { studentPortalData } from '../../data/mockData';
 
 export default function StudentFeedbackSection() {
-  const { setCurrentPortal, setStudentTab, setSelectedResourceModal } = useAppState();
+  const { setCurrentPortal, setStudentTab, setSelectedResourceModal, t } = useAppState();
 
   return (
     <section className="section-wrap section-dark border-t border-white/10">
@@ -22,15 +22,15 @@ export default function StudentFeedbackSection() {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold">
             <GraduationCap className="w-3.5 h-3.5" />
-            <span>Student-Centered Growth</span>
+            <span>{t('studentFeedback.badge')}</span>
           </div>
 
           <h2 className="font-heading text-3xl sm:text-4xl font-extrabold tracking-tight text-on-dark">
-            Transforming Grades Into Understanding
+            {t('studentFeedback.title')}
           </h2>
 
           <p className="text-base text-slate-400 leading-relaxed">
-            Students no longer receive a dead-end number. EduGuard AI delivers transparent criterion breakdowns, specific strengths, actionable growth areas, and curated university resources.
+            {t('studentFeedback.desc')}
           </p>
         </div>
 
@@ -44,14 +44,14 @@ export default function StudentFeedbackSection() {
                 <Award className="w-8 h-8" />
               </div>
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 font-mono">Published Assessment</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 font-mono">{t('studentFeedback.publishedAssessment')}</span>
                 <h3 className="text-xl font-bold text-white">Climate Change and Sustainable Development</h3>
                 <p className="text-xs text-slate-300">ENV-101 • Approved by Dr. Alice Mukamana</p>
               </div>
             </div>
 
             <div className="text-center md:text-right bg-slate-900/80 px-5 py-3 rounded-xl border border-slate-800">
-              <span className="text-xs text-slate-400">Final Official Grade</span>
+              <span className="text-xs text-slate-400">{t('studentFeedback.finalGrade')}</span>
               <div className="text-3xl font-extrabold text-emerald-400 font-mono">
                 17 <span className="text-base font-normal text-slate-400">/ 20</span> <span className="text-base text-white">(85%)</span>
               </div>
@@ -65,7 +65,7 @@ export default function StudentFeedbackSection() {
             <div className="p-5 rounded-xl bg-slate-900 border border-emerald-500/30 space-y-3">
               <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
                 <CheckCircle2 className="w-4 h-4" />
-                <span>Your Demonstrated Strengths</span>
+                <span>{t('studentFeedback.strengths')}</span>
               </div>
               <ul className="space-y-2 text-xs text-slate-300">
                 <li className="flex items-start gap-2">
@@ -91,7 +91,7 @@ export default function StudentFeedbackSection() {
             <div className="p-5 rounded-xl bg-slate-900 border border-amber-500/30 space-y-3">
               <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
                 <TrendingUp className="w-4 h-4" />
-                <span>Actionable Areas to Improve</span>
+                <span>{t('studentFeedback.areasToImprove')}</span>
               </div>
               <ul className="space-y-2 text-xs text-slate-300">
                 <li className="flex items-start gap-2">
@@ -116,9 +116,9 @@ export default function StudentFeedbackSection() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-blue-400" />
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-300">Recommended Learning Resources</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-300">{t('studentFeedback.resources')}</span>
               </div>
-              <span className="text-xs text-slate-400">Personalized to rubric gap analysis</span>
+              <span className="text-xs text-slate-400">{t('studentFeedback.personalized')}</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -139,7 +139,7 @@ export default function StudentFeedbackSection() {
                     onClick={() => setSelectedResourceModal(res)}
                     className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs font-semibold text-blue-400 group-hover:text-blue-300"
                   >
-                    <span>Open Resource</span>
+                    <span>{t('studentFeedback.openResource')}</span>
                     <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </button>
                 </div>
@@ -156,7 +156,7 @@ export default function StudentFeedbackSection() {
               }}
               className="btn btn-primary shrink-0"
             >
-              <span>Explore Full Student Experience</span>
+              <span>{t('studentFeedback.exploreFull')}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

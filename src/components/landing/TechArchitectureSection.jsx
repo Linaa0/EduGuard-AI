@@ -12,57 +12,18 @@ import {
   ShieldCheck
 } from 'lucide-react';
 
+import { useAppState } from '../../context/AppStateContext';
+
 export default function TechArchitectureSection() {
+  const { t } = useAppState();
   const stackLayers = [
-    {
-      layer: "FRONTEND LAYER",
-      tech: "React 18 / Next.js + Tailwind CSS",
-      desc: "Responsive academic interface with real-time state, dark navy foundation, and accessible moderation controls.",
-      icon: Code,
-      color: "from-blue-500/20 to-blue-600/10 border-blue-500/30 text-blue-400"
-    },
-    {
-      layer: "BACKEND API LAYER",
-      tech: "Python / FastAPI (Asynchronous Engine)",
-      desc: "High-throughput RESTful endpoints handling assignment intake, rubric serialization, and grade dispatch.",
-      icon: Server,
-      color: "from-indigo-500/20 to-indigo-600/10 border-indigo-500/30 text-indigo-400"
-    },
-    {
-      layer: "AI AGENT & LLM LAYER",
-      tech: "EjoChat API + 7-Tool Assessment Agent",
-      desc: "Autonomous multi-tool agent orchestrating document parsing, rubric alignment, and confidence calibration.",
-      icon: Cpu,
-      color: "from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-400"
-    },
-    {
-      layer: "RAG & VECTOR SEARCH",
-      tech: "Qdrant Vector Database (Cosine Similarity)",
-      desc: "Dense semantic chunk indexing of lecture slides, textbook excerpts, and rubric descriptors for grounded retrieval.",
-      icon: Database,
-      color: "from-emerald-500/20 to-emerald-600/10 border-emerald-500/30 text-emerald-400"
-    },
-    {
-      layer: "RELATIONAL DATABASE",
-      tech: "PostgreSQL (ACID Compliant)",
-      desc: "Structured schemas storing student records, immutable audit logs, grading histories, and rubrics.",
-      icon: Database,
-      color: "from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400"
-    },
-    {
-      layer: "WORKFLOW AUTOMATION",
-      tech: "n8n Automation Pipelines",
-      desc: "Event triggers for submission intake, lecturer notification digests, and grade publication webhooks.",
-      icon: Workflow,
-      color: "from-amber-500/20 to-amber-600/10 border-amber-500/30 text-amber-400"
-    },
-    {
-      layer: "CONTAINER & CLOUD",
-      tech: "Docker / Cloud Infrastructure",
-      desc: "Containerized microservices with auto-scaling, high availability, and role-based access control.",
-      icon: Cloud,
-      color: "from-slate-500/20 to-slate-600/10 border-slate-500/30 text-slate-300"
-    }
+    { layer: "FRONTEND LAYER", layerKey: 'frontend', icon: Code, color: "from-blue-500/20 to-blue-600/10 border-blue-500/30 text-blue-400" },
+    { layer: "BACKEND API LAYER", layerKey: 'backend', icon: Server, color: "from-indigo-500/20 to-indigo-600/10 border-indigo-500/30 text-indigo-400" },
+    { layer: "AI AGENT & LLM LAYER", layerKey: 'ai', icon: Cpu, color: "from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-400" },
+    { layer: "RAG & VECTOR SEARCH", layerKey: 'rag', icon: Database, color: "from-emerald-500/20 to-emerald-600/10 border-emerald-500/30 text-emerald-400" },
+    { layer: "RELATIONAL DATABASE", layerKey: 'db', icon: Database, color: "from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400" },
+    { layer: "WORKFLOW AUTOMATION", layerKey: 'workflow', icon: Workflow, color: "from-amber-500/20 to-amber-600/10 border-amber-500/30 text-amber-400" },
+    { layer: "CONTAINER & CLOUD", layerKey: 'cloud', icon: Cloud, color: "from-slate-500/20 to-slate-600/10 border-slate-500/30 text-slate-300" }
   ];
 
   const tools = [
@@ -83,15 +44,15 @@ export default function TechArchitectureSection() {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold">
             <Layers className="w-3.5 h-3.5" />
-            <span>Robust Enterprise Foundation</span>
+            <span>{t('tech.badge')}</span>
           </div>
 
           <h2 className="section-title text-3xl sm:text-4xl text-balance">
-            Technology Architecture
+            {t('tech.title')}
           </h2>
 
           <p className="section-lede mb-0">
-            Engineered with modern microservices, vector search, and sovereign AI capabilities for university-scale deployment.
+            {t('tech.desc')}
           </p>
         </div>
 
@@ -101,8 +62,8 @@ export default function TechArchitectureSection() {
           {/* Left: 7-Layer Flow Architecture */}
           <div className="lg:col-span-7 space-y-3">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">System Architecture Stack</span>
-              <span className="text-xs text-blue-400 font-mono">End-to-End Pipeline</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">{t('tech.systemStack')}</span>
+              <span className="text-xs text-blue-400 font-mono">{t('tech.endToEnd')}</span>
             </div>
 
             <div className="space-y-2.5">
@@ -116,10 +77,10 @@ export default function TechArchitectureSection() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">{layer.layer}</span>
-                          <span className="text-xs font-mono font-bold text-white">{layer.tech}</span>
+                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">{t(`tech.${layer.layerKey}.layer`)}</span>
+                          <span className="text-xs font-mono font-bold text-white">{t(`tech.${layer.layerKey}.tech`)}</span>
                         </div>
-                        <p className="text-xs text-slate-300 mt-1 leading-relaxed">{layer.desc}</p>
+                        <p className="text-xs text-slate-300 mt-1 leading-relaxed">{t(`tech.${layer.layerKey}.desc`)}</p>
                       </div>
                     </div>
 
@@ -141,15 +102,15 @@ export default function TechArchitectureSection() {
               <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                 <div className="flex items-center gap-2">
                   <Terminal className="w-4 h-4 text-emerald-400" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-200">AI Agent Tool Registry</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-200">{t('tech.agentRegistry')}</span>
                 </div>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  7 TOOLS REGISTERED
+                  {t('tech.toolsRegistered')}
                 </span>
               </div>
 
               <p className="text-xs text-slate-400 leading-relaxed">
-                The AI Agent accesses isolated, stateless execution tools to analyze each submission against the lecturer's rubric:
+                {t('tech.agentDesc')}
               </p>
 
               <div className="space-y-2">
@@ -165,7 +126,7 @@ export default function TechArchitectureSection() {
               </div>
 
               <div className="pt-2 border-t border-slate-800 text-[11px] text-slate-500 font-mono">
-                RAG Engine: Qdrant • Embeddings: Dense 1536-dim • LLM: EjoChat
+                {t('tech.ragInfo')}
               </div>
             </div>
 
