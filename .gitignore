@@ -2,6 +2,10 @@
 # EduGuard AI — Root Project .gitignore
 # ============================================================
 
+# --- Tool artifacts ---
+.freebuff/
+EduGuard-AI/
+
 # --- Environment / Secrets ---
 .env
 .env.*

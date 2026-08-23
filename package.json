@@ -1,8 +1,9 @@
 {
   "name": "eduguard-ai",
   "version": "1.0.0",
-  "description": "An AI-powered academic assessment and feedback platform designed to help lecturers assess faster, provide meaningful feedback, and help students understand how to improve.",
-  "main": "index.js",
+  "private": true,
+  "description": "AI-powered academic assessment platform with human-in-the-loop grading and criterion-level feedback.",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,10 +13,17 @@
     "type": "git",
     "url": "git+https://github.com/Linaa0/EduGuard-AI.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
+  "keywords": [
+    "ai",
+    "education",
+    "assessment",
+    "rubric",
+    "human-in-the-loop",
+    "hackathon",
+    "rwanda"
+  ],
+  "author": "EduGuard AI Team",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Linaa0/EduGuard-AI/issues"
   },
