@@ -236,7 +236,7 @@ export default function LecturerDashboard() {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-cream-50 dark:bg-slate-700/50 text-slategray dark:text-slate-400 uppercase tracking-wider font-semibold border-b border-divider dark:border-slate-700">
+            <thead className="bg-slate-50 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-200 dark:border-slate-700">
               <tr>
                 <th className="px-6 py-4">{t('dash.colStudent')}</th>
                 <th className="px-6 py-4">{t('dash.colAssignment')}</th>

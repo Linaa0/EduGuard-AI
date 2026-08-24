@@ -144,6 +144,7 @@ export function AppStateProvider({ children }) {
 
   // ============== NAV / PORTAL STATE ==============
   const [currentPortal, setCurrentPortal] = useState('landing');
+  const [authView, setAuthView] = useState('login');
   const [lecturerTab, setLecturerTab] = useState('dashboard');
   const [studentTab, setStudentTab] = useState('dashboard');
   const [adminTab, setAdminTab] = useState('dashboard');
@@ -433,6 +434,7 @@ export function AppStateProvider({ children }) {
       // Auth
       currentUser, loginUser, demoLogin, signupUser, logoutUser,
       authLoading, backendOnline,
+      authView, setAuthView,
       // Portal / Nav
       currentPortal, setCurrentPortal,
       lecturerTab, setLecturerTab,

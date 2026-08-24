@@ -2,6 +2,108 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* =========================================================
+   DESIGN TOKENS — Tailwind v4 @theme block
+   All custom colors, shadows, fonts, spacing used throughout
+   ========================================================= */
+@theme {
+  /* Brand / Primary palette */
+  --color-primary: #1E3A5F;
+  --color-primary-50: #EEF3FA;
+  --color-primary-100: #D6E3F3;
+  --color-primary-200: #ADC7E7;
+  --color-primary-300: #84ABDB;
+  --color-primary-400: #5B8FCF;
+  --color-primary-500: #3273C3;
+  --color-primary-600: #1E3A5F;
+  --color-primary-700: #17304E;
+  --color-primary-800: #10253D;
+  --color-primary-900: #0A1A2C;
+  --color-primary-dark: #17304E;
+  --color-primary-950: #091624;
+
+  /* Navy palette */
+  --color-navy: #10233B;
+  --color-navy-50: #F0F4FA;
+  --color-navy-100: #D9E4F2;
+  --color-navy-200: #B3C9E5;
+  --color-navy-300: #8DAED8;
+  --color-navy-400: #6793CB;
+  --color-navy-500: #4178BE;
+  --color-navy-600: #2A5DA0;
+  --color-navy-700: #204782;
+  --color-navy-800: #163164;
+  --color-navy-900: #0D2247;
+  --color-navy-950: #091929;
+
+  /* Teal accent */
+  --color-teal: #2DD4BF;
+  --color-teal-50: #F0FDFB;
+  --color-teal-100: #CCFBF1;
+  --color-teal-200: #99F6E4;
+  --color-teal-300: #5EEAD4;
+  --color-teal-400: #2DD4BF;
+  --color-teal-500: #14B8A6;
+  --color-teal-600: #0D9488;
+  --color-teal-700: #0F766E;
+  --color-teal-800: #115E59;
+  --color-teal-900: #134E4A;
+
+  /* Brand (same as primary, semantic alias) */
+  --color-brand: #1E3A5F;
+  --color-brand-50: #EEF3FA;
+  --color-brand-100: #D6E3F3;
+  --color-brand-200: #ADC7E7;
+  --color-brand-300: #84ABDB;
+  --color-brand-400: #5B8FCF;
+  --color-brand-500: #3273C3;
+  --color-brand-600: #1E3A5F;
+  --color-brand-700: #17304E;
+  --color-brand-800: #10253D;
+  --color-brand-900: #0A1A2C;
+  --color-brand-950: #091624;
+
+  /* Midnight (very deep navy) */
+  --color-midnight: #10233B;
+
+  /* Charcoal (primary text) */
+  --color-charcoal: #1A202C;
+
+  /* Slategray (secondary text) */
+  --color-slategray: #5A6B7B;
+
+  /* Cream (page background) */
+  --color-cream: #F7F9FC;
+  --color-cream-50: #F7F9FC;
+  --color-cream-100: #EFF3FA;
+  --color-cream-200: #E4ECF5;
+  --color-cream-300: #D6E3F0;
+
+  /* Success / Green */
+  --color-success: #3FAE7B;
+  --color-success-50: #F0FDF6;
+  --color-success-100: #DCFCE9;
+  --color-success-200: #BBF7D2;
+  --color-success-400: #4ADE80;
+  --color-success-600: #16A34A;
+  --color-success-700: #15803D;
+
+  /* Divider */
+  --color-divider: #E2E8F0;
+
+  /* Custom shadows */
+  --shadow-card: 0 4px 12px rgba(16, 35, 59, 0.06);
+  --shadow-cardLg: 0 8px 24px rgba(16, 35, 59, 0.10);
+  --shadow-cardXl: 0 20px 40px rgba(16, 35, 59, 0.12);
+  --shadow-elevated: 0 20px 40px rgba(16, 35, 59, 0.14);
+  --shadow-tealGlow: 0 0 0 1px rgba(45, 212, 191, 0.25), 0 6px 16px -4px rgba(45, 212, 191, 0.3);
+
+  /* Font families */
+  --font-heading: "Sora", "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-display: "Sora", "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -220,6 +322,7 @@
 
   html.dark .text-charcoal { color: #e2e8f0; }
   html.dark .text-slategray { color: #94a3b8; }
+  html.dark .text-midnight { color: #e2e8f0; }
   html.dark .text-slate-900 { color: #e2e8f0; }
   html.dark .text-slate-800 { color: #e2e8f0; }
   html.dark .text-slate-700 { color: #cbd5e1; }
@@ -227,32 +330,57 @@
   html.dark .text-slate-500 { color: #94a3b8; }
   html.dark .text-slate-400 { color: #64748b; }
 
-  html.dark .bg-primary-50 { background-color: #1e293b; }
-  html.dark .bg-teal-50 { background-color: #0f2d2a; }
-  html.dark .bg-emerald-50 { background-color: #0f2d1f; }
-  html.dark .bg-amber-50 { background-color: #2d2206; }
-  html.dark .bg-blue-50 { background-color: #0f1d33; }
-  html.dark .bg-cyan-50 { background-color: #0f2d33; }
-  html.dark .bg-red-50 { background-color: #2d0f0f; }
-  html.dark .bg-brand-50 { background-color: #1e293b; }
+  html.dark .bg-primary-50 { background-color: rgba(30,58,95,0.25); }
+  html.dark .bg-teal-50 { background-color: rgba(20,184,166,0.12); }
+  html.dark .bg-emerald-50 { background-color: rgba(16,185,129,0.12); }
+  html.dark .bg-amber-50 { background-color: rgba(245,158,11,0.12); }
+  html.dark .bg-blue-50 { background-color: rgba(59,130,246,0.12); }
+  html.dark .bg-cyan-50 { background-color: rgba(6,182,212,0.12); }
+  html.dark .bg-red-50 { background-color: rgba(239,68,68,0.12); }
+  html.dark .bg-brand-50 { background-color: rgba(30,58,95,0.25); }
+  html.dark .bg-success-50 { background-color: rgba(63,174,123,0.12); }
+  html.dark .bg-navy-50 { background-color: rgba(13,34,71,0.4); }
 
+  html.dark .border-primary-100 { border-color: rgba(30,58,95,0.4); }
+  html.dark .border-primary-200 { border-color: rgba(30,58,95,0.5); }
+  html.dark .border-teal-100 { border-color: rgba(20,184,166,0.2); }
+  html.dark .border-teal-200 { border-color: rgba(20,184,166,0.3); }
+  html.dark .border-emerald-200 { border-color: rgba(16,185,129,0.3); }
+  html.dark .border-amber-100 { border-color: rgba(245,158,11,0.2); }
+  html.dark .border-amber-200 { border-color: rgba(245,158,11,0.3); }
+  html.dark .border-success-200 { border-color: rgba(63,174,123,0.3); }
+  html.dark .border-blue-200 { border-color: rgba(59,130,246,0.3); }
   html.dark .border-slate-200\/80 { border-color: rgba(51, 65, 85, 0.6); }
-  html.dark .border-amber-200 { border-color: #78350f; }
-  html.dark .border-emerald-200 { border-color: #064e3b; }
-  html.dark .border-blue-200 { border-color: #1e3a5f; }
+
+  html.dark .text-primary { color: #60a5fa; }
+  html.dark .text-teal-600 { color: #2dd4bf; }
+  html.dark .text-teal-700 { color: #5eead4; }
+  html.dark .text-amber-600 { color: #fbbf24; }
+  html.dark .text-amber-700 { color: #fcd34d; }
+  html.dark .text-success { color: #4ade80; }
+  html.dark .text-navy-600 { color: #93c5fd; }
+  html.dark .text-navy-700 { color: #bfdbfe; }
+  html.dark .text-emerald-600 { color: #34d399; }
+  html.dark .text-red-600 { color: #f87171; }
 
   html.dark .hover\:bg-slate-50:hover { background-color: #1e293b; }
   html.dark .hover\:bg-white:hover { background-color: #263040; }
   html.dark .hover\:bg-cream-50:hover { background-color: #263040; }
   html.dark .hover\:bg-cream-100:hover { background-color: #334155; }
+  html.dark .hover\:bg-cream-200:hover { background-color: #3d4f63; }
 
   html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
     border-color: #1e293b;
   }
+  html.dark .divide-cream-100 > :not([hidden]) ~ :not([hidden]) {
+    border-color: #334155;
+  }
 
-  html.dark .shadow-card { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
-  html.dark .shadow-subtle { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
-  html.dark .shadow-elevated { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
+  html.dark .shadow-card { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); }
+  html.dark .shadow-subtle { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); }
+  html.dark .shadow-elevated { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
+  html.dark .shadow-cardLg { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); }
+  html.dark .shadow-cardXl { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
 
   html.dark .bg-slate-900\/95 { background-color: rgba(15, 23, 42, 0.95); }
 
@@ -282,8 +410,39 @@
   html.dark .section-light a { color: #2DD4BF; }
   html.dark .section-light a:hover { color: #5eead4; }
 
-  html.dark .card { background: #1e293b; border-color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-  html.dark .card:hover { box-shadow: 0 10px 24px rgba(0,0,0,0.4); border-color: #475569; }
+  /* Card component dark mode — used heavily in Admin/Parent views */
+  html.dark .card {
+    background: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  html.dark .card:hover {
+    box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+    border-color: #475569;
+  }
+  /* Text inside .card dark mode */
+  html.dark .card h3,
+  html.dark .card h4,
+  html.dark .card h5 { color: #e2e8f0; }
+  html.dark .card p { color: #94a3b8; }
+  html.dark .card .font-heading { color: #e2e8f0; }
+  html.dark .card .text-charcoal { color: #e2e8f0; }
+  html.dark .card .text-slategray { color: #94a3b8; }
+  html.dark .card thead tr { background-color: #263040; }
+  html.dark .card thead th { color: #94a3b8; border-color: #334155; }
+  html.dark .card tbody tr:hover { background-color: #263040; }
+  html.dark .card tbody td { color: #cbd5e1; border-color: #334155; }
+  html.dark .card .border-divider { border-color: #334155; }
+  html.dark .card .bg-cream-50 { background-color: #263040; }
+  html.dark .card .bg-cream-50\/50 { background-color: rgba(38,48,64,0.5); }
+  html.dark .card .bg-cream-50\/70 { background-color: rgba(38,48,64,0.7); }
+  html.dark .card .hover\:bg-cream-50\/70:hover { background-color: rgba(38,48,64,0.7); }
+  html.dark .card .border-y { border-color: #334155; }
+  html.dark .card .border-b { border-color: #334155; }
+  html.dark .card .border-t { border-color: #334155; }
+
+  /* SectionHeader in AdminViews */
+  html.dark .text-charcoal { color: #e2e8f0; }
 
   html.dark .stat-card { background: #1e293b; border-color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
   html.dark .stat-number { color: #F7F9FC; }
@@ -317,8 +476,8 @@
 
   html.dark .badge-teal { background: rgba(45,212,191,0.15); color: #2DD4BF; border-color: rgba(45,212,191,0.3); }
   html.dark .badge-amber { background: rgba(245,166,35,0.15); color: #F5A623; border-color: rgba(245,166,35,0.3); }
-  html.dark .badge-success { background: rgba(63,174,123,0.15); color: #3FAE7B; border-color: rgba(63,174,123,0.3); }
-  html.dark .badge-primary { background: rgba(45,212,191,0.12); color: #2DD4BF; border-color: rgba(45,212,191,0.25); }
+  html.dark .badge-success { background: rgba(63,174,123,0.15); color: #4ade80; border-color: rgba(63,174,123,0.3); }
+  html.dark .badge-primary { background: rgba(96,165,250,0.12); color: #93c5fd; border-color: rgba(96,165,250,0.25); }
 
   html.dark .btn-secondary { background: #334155; color: #e2e8f0; border-color: #475569; }
   html.dark .btn-secondary:hover { background: #475569; border-color: #64748b; color: #F7F9FC; }
@@ -326,6 +485,7 @@
   html.dark .btn-ghost:hover { background: rgba(148,163,184,0.1); color: #e2e8f0; }
 
   html.dark .eyebrow-primary { color: #2DD4BF; background: rgba(45,212,191,0.12); border-color: rgba(45,212,191,0.25); }
+  html.dark .eyebrow { color: #2DD4BF; background: rgba(45,212,191,0.12); border-color: rgba(45,212,191,0.25); }
 
   html.dark .divider-line { background: linear-gradient(90deg, transparent, #334155 15%, #334155 85%, transparent); }
 
@@ -348,6 +508,24 @@
     background: rgba(30,41,59,0.6);
     border-color: rgba(255,255,255,0.08);
   }
+
+  /* Progress bars inside .card */
+  html.dark .card .bg-cream-200 { background-color: #334155; }
+  html.dark .card .bg-cream-100 { background-color: #263040; }
+
+  /* Input fields inside .card */
+  html.dark .card input,
+  html.dark .card textarea,
+  html.dark .card select {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border-color: #475569;
+  }
+  html.dark .card .bg-cream-50 { background-color: #263040; }
+
+  /* Hover states on table rows */
+  html.dark .hover\:bg-cream-50\/70:hover,
+  html.dark .card .hover\:bg-cream-50\/70:hover { background-color: rgba(38,48,64,0.7); }
 
   .text-on-dark {
     color: #F7F9FC;
@@ -1049,5 +1227,24 @@
   .bg-cream-dot {
     background-image: radial-gradient(rgba(30, 58, 95, 0.06) 1px, transparent 1px);
     background-size: 24px 24px;
+  }
+
+  /* Animation utilities */
+  .animate-fadeIn {
+    animation: fadeIn 200ms ease both;
+  }
+
+  .animate-pulse-soft {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulseSoft {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.65; }
   }
 }

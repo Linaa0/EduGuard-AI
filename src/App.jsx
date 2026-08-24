@@ -54,13 +54,15 @@ import {
   ParentNotificationsView, ParentProfileView
 } from './components/parent/ParentViews';
 
-function RoleMeta({ role }) {
-  const { t } = useAppState();
-  if (role === 'admin') return { title: t('adm.title'), subtitle: t('admin.subtitle') };
-  if (role === 'parent') return { title: t('par.title'), subtitle: t('parent.subtitle') };
-  if (role === 'lecturer') return { title: t('dash.title'), subtitle: 'Teaching, grading & student feedback' };
-  if (role === 'student') return { title: t('stuPortal.title'), subtitle: 'Assignments, grades & learning resources' };
-  return { title: t('sidebar.nav.dashboard'), subtitle: '' };
+function RoleMeta(role) {
+  // Returns title/subtitle metadata for a role (not a React component)
+  const titles = {
+    admin: { title: 'Administration Console', subtitle: 'User management, courses & institutional analytics' },
+    parent: { title: 'Parent / Guardian Portal', subtitle: 'Monitor your student\'s progress & grades' },
+    lecturer: { title: 'Teaching Dashboard', subtitle: 'Teaching, grading & student feedback' },
+    student: { title: 'Student Portal', subtitle: 'Assignments, grades & learning resources' },
+  };
+  return titles[role] || { title: 'Dashboard', subtitle: '' };
 }
 
 function LecturerContent() {
@@ -69,9 +71,9 @@ function LecturerContent() {
   return (
     <div className="flex w-full min-h-screen">
       <Sidebar />
-      <div className="flex-1 flex flex-col min-w-0 bg-cream min-h-screen">
+      <div className="flex-1 flex flex-col min-w-0 bg-cream dark:bg-slate-900 min-h-screen">
         <DashboardTopBar title={meta.title} subtitle={meta.subtitle} />
-        <main className="flex-1 overflow-x-hidden bg-cream">
+        <main className="flex-1 overflow-x-hidden bg-cream dark:bg-slate-900">
           {lecturerTab === 'dashboard' && <LecturerDashboard />}
           {lecturerTab === 'assignments' && <AssignmentsList />}
           {lecturerTab === 'submissions' && <SubmissionsList />}
@@ -95,9 +97,9 @@ function StudentContent() {
   return (
     <div className="flex w-full min-h-screen">
       <StudentSidebar />
-      <div className="flex-1 flex flex-col min-w-0 bg-cream min-h-screen">
+      <div className="flex-1 flex flex-col min-w-0 bg-cream dark:bg-slate-900 min-h-screen">
         <DashboardTopBar title={meta.title} subtitle={meta.subtitle} />
-        <main className="flex-1 overflow-x-hidden bg-cream">
+        <main className="flex-1 overflow-x-hidden bg-cream dark:bg-slate-900">
           {studentTab === 'dashboard' && <StudentDashboard />}
           {studentTab === 'my-assignments' && <StudentDashboard />}
           {studentTab === 'submission-detail' && <StudentSubmissionView />}
@@ -116,9 +118,9 @@ function AdminContent() {
   return (
     <div className="flex w-full min-h-screen">
       <AdminSidebar />
-      <div className="flex-1 flex flex-col min-w-0 bg-cream min-h-screen">
+      <div className="flex-1 flex flex-col min-w-0 bg-cream dark:bg-slate-900 min-h-screen">
         <DashboardTopBar title={meta.title} subtitle={meta.subtitle} />
-        <main className="flex-1 overflow-x-hidden bg-cream">
+        <main className="flex-1 overflow-x-hidden bg-cream dark:bg-slate-900">
           {adminTab === 'dashboard' && <AdminDashboardView />}
           {adminTab === 'users' && <AdminUsersView />}
           {adminTab === 'students' && <AdminStudentsView />}
@@ -140,9 +142,9 @@ function ParentContent() {
   return (
     <div className="flex w-full min-h-screen">
       <ParentSidebar />
-      <div className="flex-1 flex flex-col min-w-0 bg-cream min-h-screen">
+      <div className="flex-1 flex flex-col min-w-0 bg-cream dark:bg-slate-900 min-h-screen">
         <DashboardTopBar title={meta.title} subtitle={meta.subtitle} />
-        <main className="flex-1 overflow-x-hidden bg-cream">
+        <main className="flex-1 overflow-x-hidden bg-cream dark:bg-slate-900">
           {parentTab === 'dashboard' && <ParentDashboardView />}
           {parentTab === 'my-student' && <ParentStudentView />}
           {parentTab === 'progress' && <ParentProgressView />}
@@ -214,7 +216,7 @@ export default function App() {
 function AppInner() {
   const { isDemoTourActive } = useAppState();
   return (
-    <div className={`min-h-screen bg-cream dark:bg-slate-900 font-sans text-charcoal dark:text-slate-200 selection:bg-teal selection:text-midnight antialiased transition-colors ${isDemoTourActive ? 'pb-24' : ''}`}>
+    <div className={`min-h-screen bg-cream dark:bg-slate-900 font-sans text-charcoal dark:text-slate-200 selection:bg-teal selection:text-midnight antialiased transition-colors duration-200 ${isDemoTourActive ? 'pb-24' : ''}`}>
       <MainContent />
       <CreateAssignmentModal />
       <LearningResourcesModal />

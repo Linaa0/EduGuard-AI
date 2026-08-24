@@ -29,7 +29,7 @@ export default function StudentDashboard() {
           <div>
             <div className="flex items-center gap-2.5 flex-wrap">
               <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-charcoal dark:text-white tracking-tight">Welcome, {student.name}</h1>
-              <span className="text-xs font-mono font-bold px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <span className="text-xs font-mono font-bold px-2.5 py-1 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-700">
                 {student.year}
               </span>
             </div>
@@ -94,13 +94,13 @@ export default function StudentDashboard() {
         <div className="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-divider dark:border-slate-700 shadow-card flex flex-col justify-between card-hover">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-slategray dark:text-slate-400 uppercase tracking-wider">Average Grade</span>
-            <div className="p-2.5 rounded-xl bg-navy-50 text-navy-600">
+            <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400">
               <TrendingUp className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-5">
-            <div className="text-3xl font-extrabold text-navy-700 font-mono">{stats.averageGrade}</div>
-            <p className="text-[11px] text-navy-600 font-semibold mt-1.5">Cumulative GPA: {student.gpa}</p>
+            <div className="text-3xl font-extrabold text-blue-800 dark:text-blue-200 font-mono">{stats.averageGrade}</div>
+            <p className="text-[11px] text-blue-700 dark:text-blue-400 font-semibold mt-1.5">Cumulative GPA: {student.gpa}</p>
           </div>
         </div>
 
@@ -153,7 +153,7 @@ export default function StudentDashboard() {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-cream-50 dark:bg-slate-700 text-slategray dark:text-slate-400 uppercase tracking-wider font-semibold border-b border-divider dark:border-slate-700">
+            <thead className="bg-slate-50 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-200 dark:border-slate-700">
               <tr>
                 <th className="px-4 py-3.5">Assignment</th>
                 <th className="px-4 py-3.5">Course</th>
@@ -163,9 +163,9 @@ export default function StudentDashboard() {
                 <th className="px-4 py-3.5">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-cream-100 dark:divide-slate-700">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
               {myAssignments.map((a) => (
-                <tr key={a.id} className="hover:bg-cream-50 dark:bg-slate-700 transition-colors">
+                <tr key={a.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                   <td className="px-4 py-4 font-bold text-charcoal dark:text-white">
                     {a.title}
                   </td>
@@ -178,8 +178,8 @@ export default function StudentDashboard() {
                   <td className="px-4 py-4">
                     <span className={`px-3 py-1 rounded-full text-[11px] font-semibold ${
                       a.status === 'Submitted' || a.status === 'Graded' 
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
-                        : 'bg-amber-50 text-amber-800 border border-amber-300'
+                        ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-700' 
+                        : 'bg-amber-50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-700'
                     }`}>
                       {a.status}
                     </span>
@@ -194,7 +194,7 @@ export default function StudentDashboard() {
                           setStudentTab('feedback');
                         }
                       }}
-                      className="px-3.5 py-2 rounded-lg bg-cream-100 dark:bg-slate-700 hover:bg-brand-600 hover:text-white text-charcoal dark:text-slate-200 font-semibold text-xs transition-colors flex items-center gap-1"
+                      className="px-3.5 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-brand-600 hover:text-white text-charcoal dark:text-slate-200 font-semibold text-xs transition-colors flex items-center gap-1"
                     >
                       <span>{a.hasFeedback ? 'View Feedback' : 'Details'}</span>
                       <ArrowRight className="w-3 h-3" />
