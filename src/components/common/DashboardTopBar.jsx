@@ -24,7 +24,7 @@ const roleMeta = {
 };
 
 export default function DashboardTopBar({ title, subtitle }) {
-  const { currentUser, logoutUser, showToast, setCurrentPortal, t } = useAppState();
+  const { currentUser, logoutUser, showToast, setCurrentPortal, t, backendOnline } = useAppState();
   const [menuOpen, setMenuOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const menuRef = useRef(null);
@@ -91,6 +91,12 @@ export default function DashboardTopBar({ title, subtitle }) {
 
         {/* Right: Actions */}
         <div className="flex items-center gap-2">
+          {/* Backend Status */}
+          <div className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${backendOnline ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800' : 'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800'}`}>
+            <span className={`w-1.5 h-1.5 rounded-full ${backendOnline ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`}></span>
+            {backendOnline ? 'Live' : 'Demo'}
+          </div>
+
           {/* Search */}
           <div className="hidden md:flex items-center relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slategray" />

@@ -1,7 +1,6 @@
 from pydantic import BaseModel, EmailStr, ConfigDict, Field, field_validator
 from typing import Optional, List, Dict, Any
 from datetime import datetime
-from uuid import UUID
 from app.models.models import UserRole, SubmissionStatus, AssessmentStatus
 
 
@@ -35,7 +34,7 @@ class UserLogin(BaseModel):
 class UserResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
+    id: str
     email: EmailStr
     full_name: str
     role: UserRole
@@ -69,15 +68,15 @@ class RubricBase(BaseModel):
 
 
 class RubricCreate(RubricBase):
-    course_id: UUID
+    course_id: str
 
 
 class RubricResponse(RubricBase):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
-    course_id: UUID
-    created_by_id: UUID
+    id: str
+    course_id: str
+    created_by_id: str
     is_active: bool
     created_at: datetime
     updated_at: datetime
@@ -99,7 +98,7 @@ class CourseCreate(CourseBase):
 class CourseResponse(CourseBase):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
+    id: str
     created_at: datetime
 
 
@@ -114,17 +113,17 @@ class AssignmentBase(BaseModel):
 
 
 class AssignmentCreate(AssignmentBase):
-    course_id: UUID
+    course_id: str
     rubric_id: Optional[UUID] = None
 
 
 class AssignmentResponse(AssignmentBase):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
-    course_id: UUID
+    id: str
+    course_id: str
     rubric_id: Optional[UUID] = None
-    created_by_id: UUID
+    created_by_id: str
     created_at: datetime
 
 
@@ -134,15 +133,15 @@ class SubmissionBase(BaseModel):
 
 
 class SubmissionCreate(SubmissionBase):
-    assignment_id: UUID
+    assignment_id: str
 
 
 class SubmissionResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
-    assignment_id: UUID
-    student_id: UUID
+    id: str
+    assignment_id: str
+    student_id: str
     content_text: Optional[str] = None
     file_urls: Optional[List[str]] = None
     submitted_at: datetime
@@ -171,7 +170,7 @@ class AIToolResult(BaseModel):
 
 
 class AIAgentRun(BaseModel):
-    submission_id: UUID
+    submission_id: str
     status: str
     steps: List[AIToolResult]
     total_score: Optional[float] = None
@@ -189,7 +188,7 @@ class CriterionEvaluation(BaseModel):
 
 
 class AssessmentResult(BaseModel):
-    submission_id: UUID
+    submission_id: str
     overall_score: float
     overall_max_score: float
     overall_confidence: float

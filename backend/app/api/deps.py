@@ -43,8 +43,7 @@ async def get_current_user(
             detail="Invalid token payload",
         )
 
-    from uuid import UUID
-    user = await db.get(User, UUID(user_id))
+    user = await db.get(User, user_id)
     if not user or not user.is_active:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

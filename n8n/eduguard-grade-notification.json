@@ -1,0 +1,168 @@
+{
+  "name": "EduGuard AI - Grade Publication Notification",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "eduguard-assessment",
+        "responseMode": "onReceived",
+        "responseCode": 200
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "condition-event",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "grade_published",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "condition-published",
+              "leftValue": "={{ $json.body.published }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "filter-grade-published",
+      "name": "Filter: Grade Published",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body;\nconst score = body.final_score;\nconst maxScore = 20;\nconst percentage = Math.round((score / maxScore) * 100);\n\nlet grade;\nif (percentage >= 90) grade = 'A';\nelse if (percentage >= 80) grade = 'B';\nelse if (percentage >= 70) grade = 'C';\nelse if (percentage >= 60) grade = 'D';\nelse grade = 'F';\n\nreturn [{\n  json: {\n    ...body,\n    percentage,\n    grade,\n    message: `Grade published: ${score}/${maxScore} (${percentage}%) - Grade: ${grade}`\n  }\n}];"
+      },
+      "id": "format-message",
+      "name": "Format Notification",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.N8N_WEBHOOK_URL || 'http://localhost:8000/api/v1/notifications' }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "student_id",
+              "value": "={{ $json.student_id }}"
+            },
+            {
+              "name": "type",
+              "value": "grade_published"
+            },
+            {
+              "name": "title",
+              "value": "Grade Published"
+            },
+            {
+              "name": "message",
+              "value": "={{ $json.message }}"
+            },
+            {
+              "name": "submission_id",
+              "value": "={{ $json.submission_id }}"
+            }
+          ]
+        }
+      },
+      "id": "send-notification",
+      "name": "Send Notification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "content": "## EduGuard AI Notification Pipeline\n\nThis workflow handles grade publication notifications.\n\n**Trigger:** POST to `/webhook/eduguard-assessment`\n\n**Expected payload:**\n```json\n{\n  \"event\": \"grade_published\",\n  \"submission_id\": \"uuid\",\n  \"student_id\": \"uuid\",\n  \"final_score\": 16,\n  \"published\": true\n}\n```\n\n**Flow:**\n1. Webhook receives grade publication event\n2. Filters for `grade_published` events with `published: true`\n3. Formats the notification message with score and letter grade\n4. Sends notification to the backend",
+        "width": 300,
+        "height": 300
+      },
+      "id": "documentation",
+      "name": "Documentation",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [240, 460]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Filter: Grade Published",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter: Grade Published": {
+      "main": [
+        [
+          {
+            "node": "Format Notification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Format Notification": {
+      "main": [
+        [
+          {
+            "node": "Send Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "eduguard"
+    }
+  ],
+  "triggerCount": 1
+}

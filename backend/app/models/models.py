@@ -1,7 +1,6 @@
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, Text, Boolean, DateTime, ForeignKey, Float, JSON, Enum
 from sqlalchemy.orm import relationship
-from sqlalchemy.dialects.postgresql import UUID, ARRAY
 import uuid
 import enum
 
@@ -33,7 +32,7 @@ class AssessmentStatus(str, enum.Enum):
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
     email = Column(String(255), unique=True, index=True, nullable=False)
     full_name = Column(String(255), nullable=False)
     hashed_password = Column(String(255), nullable=False)
@@ -54,7 +53,7 @@ class User(Base):
 class Course(Base):
     __tablename__ = "courses"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
     code = Column(String(20), unique=True, index=True, nullable=False)
     name = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
@@ -72,9 +71,9 @@ class Course(Base):
 class CourseMember(Base):
     __tablename__ = "course_members"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
-    course_id = Column(UUID(as_uuid=True), ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
+    course_id = Column(String(36), ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     role = Column(Enum(UserRole), nullable=False)
     enrolled_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
@@ -85,11 +84,11 @@ class CourseMember(Base):
 class Rubric(Base):
     __tablename__ = "rubrics"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
     name = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
-    course_id = Column(UUID(as_uuid=True), ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
-    created_by_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
+    course_id = Column(String(36), ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
+    created_by_id = Column(String(36), ForeignKey("users.id"), nullable=False)
     criteria = Column(JSON, nullable=False)
     total_marks = Column(Float, default=100.0, nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
@@ -103,15 +102,15 @@ class Rubric(Base):
 class Assignment(Base):
     __tablename__ = "assignments"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
     title = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
-    course_id = Column(UUID(as_uuid=True), ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
-    rubric_id = Column(UUID(as_uuid=True), ForeignKey("rubrics.id"), nullable=True)
-    created_by_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
+    course_id = Column(String(36), ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
+    rubric_id = Column(String(36), ForeignKey("rubrics.id"), nullable=True)
+    created_by_id = Column(String(36), ForeignKey("users.id"), nullable=False)
     due_date = Column(DateTime, nullable=True)
     max_score = Column(Float, default=100.0, nullable=False)
-    file_types_allowed = Column(ARRAY(String), nullable=True)
+    file_types_allowed = Column(JSON, nullable=True)
     max_file_size_mb = Column(Integer, default=10, nullable=False)
     instructions = Column(Text, nullable=True)
     additional_materials = Column(JSON, nullable=True)
@@ -127,9 +126,9 @@ class Assignment(Base):
 class Submission(Base):
     __tablename__ = "submissions"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
-    assignment_id = Column(UUID(as_uuid=True), ForeignKey("assignments.id", ondelete="CASCADE"), nullable=False)
-    student_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
+    assignment_id = Column(String(36), ForeignKey("assignments.id", ondelete="CASCADE"), nullable=False)
+    student_id = Column(String(36), ForeignKey("users.id"), nullable=False)
     content_text = Column(Text, nullable=True)
     file_urls = Column(JSON, nullable=True)
     submitted_at = Column(DateTime, default=datetime.utcnow, nullable=False)
@@ -147,7 +146,7 @@ class Submission(Base):
     lecturer_final_score = Column(Float, nullable=True)
     lecturer_criterion_scores = Column(JSON, nullable=True)
     lecturer_comment = Column(Text, nullable=True)
-    reviewed_by_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
+    reviewed_by_id = Column(String(36), ForeignKey("users.id"), nullable=True)
     reviewed_at = Column(DateTime, nullable=True)
     modified_by_teacher = Column(Boolean, default=False, nullable=False)
 
@@ -166,10 +165,10 @@ class Submission(Base):
 class AssessmentHistory(Base):
     __tablename__ = "assessment_history"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
-    submission_id = Column(UUID(as_uuid=True), ForeignKey("submissions.id", ondelete="CASCADE"), nullable=False)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
+    submission_id = Column(String(36), ForeignKey("submissions.id", ondelete="CASCADE"), nullable=False)
     action = Column(String(100), nullable=False)
-    actor_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
+    actor_id = Column(String(36), ForeignKey("users.id"), nullable=True)
     old_values = Column(JSON, nullable=True)
     new_values = Column(JSON, nullable=True)
     comment = Column(Text, nullable=True)
@@ -181,28 +180,28 @@ class AssessmentHistory(Base):
 class LearningResource(Base):
     __tablename__ = "learning_resources"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
     title = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
     resource_type = Column(String(50), nullable=False)
     url = Column(String(500), nullable=False)
-    course_id = Column(UUID(as_uuid=True), ForeignKey("courses.id", ondelete="CASCADE"), nullable=True)
-    topic_tags = Column(ARRAY(String), nullable=True)
+    course_id = Column(String(36), ForeignKey("courses.id", ondelete="CASCADE"), nullable=True)
+    topic_tags = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
 
 class CourseMaterial(Base):
     __tablename__ = "course_materials"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
-    course_id = Column(UUID(as_uuid=True), ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
+    course_id = Column(String(36), ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
     title = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
     content_text = Column(Text, nullable=True)
     file_urls = Column(JSON, nullable=True)
     material_type = Column(String(50), nullable=False)
     week_number = Column(Integer, nullable=True)
-    topic_tags = Column(ARRAY(String), nullable=True)
+    topic_tags = Column(JSON, nullable=True)
     embedded_in_qdrant = Column(Boolean, default=False, nullable=False)
     qdrant_point_ids = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)

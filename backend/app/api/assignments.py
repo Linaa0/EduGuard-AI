@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from typing import List, Optional
-from uuid import UUID
 
 from app.core.database import get_db
 from app.api.deps import get_current_user, get_current_lecturer
@@ -71,7 +70,7 @@ async def create_assignment(
 
 @router.get("/{assignment_id}", response_model=AssignmentResponse)
 async def get_assignment(
-    assignment_id: UUID,
+    assignment_id: str,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):

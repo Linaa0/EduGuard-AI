@@ -1,6 +1,9 @@
 import asyncio
 from datetime import datetime, timedelta, timezone
-from uuid import uuid4
+import uuid
+
+def uuid4():
+    return str(uuid.uuid4())
 from sqlalchemy import select
 
 from app.core.database import Base, sync_engine, AsyncSessionLocal

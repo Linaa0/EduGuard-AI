@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, HTTPException, status, BackgroundTasks
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from typing import List, Optional
-from uuid import UUID
 import json
 
 from app.core.database import get_db
@@ -114,7 +113,7 @@ async def create_submission(
 
 @router.get("/{submission_id}", response_model=SubmissionResponse)
 async def get_submission(
-    submission_id: UUID,
+    submission_id: str,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -139,7 +138,7 @@ async def get_submission(
 
 @router.post("/{submission_id}/run-ai-assessment", response_model=AssessmentResult)
 async def run_ai_assessment(
-    submission_id: UUID,
+    submission_id: str,
     background_tasks: BackgroundTasks,
     current_user: User = Depends(get_current_lecturer),
     db: AsyncSession = Depends(get_db),
@@ -206,7 +205,7 @@ async def run_ai_assessment(
 
 @router.post("/{submission_id}/review", response_model=SubmissionResponse)
 async def review_submission(
-    submission_id: UUID,
+    submission_id: str,
     review_in: SubmissionReview,
     current_user: User = Depends(get_current_lecturer),
     db: AsyncSession = Depends(get_db),
@@ -277,7 +276,7 @@ async def review_submission(
 
 @router.patch("/{submission_id}/status", response_model=SubmissionResponse)
 async def update_submission_status(
-    submission_id: UUID,
+    submission_id: str,
     status_in: SubmissionStatusUpdate,
     current_user: User = Depends(get_current_lecturer),
     db: AsyncSession = Depends(get_db),

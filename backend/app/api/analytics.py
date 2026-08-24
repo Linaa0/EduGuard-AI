@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func, and_, case
 from typing import List, Dict, Any, Optional
-from uuid import UUID
 
 from app.core.database import get_db
 from app.api.deps import get_current_lecturer, get_current_user
@@ -123,7 +122,7 @@ async def get_dashboard_analytics(
 
 @router.get("/student/{student_id}")
 async def get_student_analytics(
-    student_id: UUID,
+    student_id: str,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):

@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 from typing import List, Optional
-from uuid import UUID
 
 from app.core.database import get_db
 from app.api.deps import get_current_user, get_current_admin, get_current_lecturer
@@ -41,7 +40,7 @@ async def get_current_user_profile(
 
 @router.get("/{user_id}", response_model=UserResponse)
 async def get_user(
-    user_id: UUID,
+    user_id: str,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -103,7 +102,7 @@ async def update_me(
 
 @router.get("/course/{course_id}/students", response_model=List[UserResponse])
 async def get_course_students(
-    course_id: UUID,
+    course_id: str,
     current_user: User = Depends(get_current_lecturer),
     db: AsyncSession = Depends(get_db),
 ):

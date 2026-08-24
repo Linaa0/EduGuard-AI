@@ -1,13 +1,52 @@
 from pydantic_settings import BaseSettings
 from typing import List, Optional
 from functools import lru_cache
+import os
+
+
+def _detect_database_url() -> str:
+    """Auto-detect: use PostgreSQL if available, else SQLite for local dev."""
+    pg_url = os.getenv("DATABASE_URL", "")
+    if pg_url and "postgresql" in pg_url:
+        return pg_url
+    # Check if PostgreSQL is reachable
+    try:
+        import socket
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(1)
+        s.connect(("localhost", 5432))
+        s.close()
+        return "postgresql+asyncpg://eduguard:eduguard_dev_2026@localhost:5432/eduguard_ai"
+    except (ConnectionRefusedError, OSError):
+        pass
+    # Fall back to SQLite
+    db_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "eduguard.db")
+    return f"sqlite+aiosqlite:///{db_path}"
+
+
+def _detect_sync_database_url() -> str:
+    """Sync version for table creation."""
+    pg_url = os.getenv("DATABASE_SYNC_URL", "")
+    if pg_url and "postgresql" in pg_url:
+        return pg_url
+    try:
+        import socket
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(1)
+        s.connect(("localhost", 5432))
+        s.close()
+        return "postgresql+psycopg2://eduguard:eduguard_dev_2026@localhost:5432/eduguard_ai"
+    except (ConnectionRefusedError, OSError):
+        pass
+    db_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "eduguard.db")
+    return f"sqlite:///{db_path}"
 
 
 class Settings(BaseSettings):
     ENVIRONMENT: str = "development"
 
-    DATABASE_URL: str = "postgresql+asyncpg://eduguard:eduguard_secure_pass_2026@localhost:5432/eduguard_ai"
-    DATABASE_SYNC_URL: str = "postgresql+psycopg2://eduguard:eduguard_secure_pass_2026@localhost:5432/eduguard_ai"
+    DATABASE_URL: str = ""
+    DATABASE_SYNC_URL: str = ""
 
     QDRANT_URL: str = "http://localhost:6333"
     QDRANT_COLLECTION: str = "eduguard_rubrics"
@@ -38,11 +77,16 @@ class Settings(BaseSettings):
         return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
 
     class Config:
-        env_file = ".env"
+        env_file = ("../.env", ".env")
         case_sensitive = True
         extra = "ignore"
 
 
 @lru_cache()
 def get_settings() -> Settings:
-    return Settings()
+    s = Settings()
+    if not s.DATABASE_URL:
+        object.__setattr__(s, 'DATABASE_URL', _detect_database_url())
+    if not s.DATABASE_SYNC_URL:
+        object.__setattr__(s, 'DATABASE_SYNC_URL', _detect_sync_database_url())
+    return s

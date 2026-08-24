@@ -173,14 +173,12 @@ export default function SignupPage() {
     await new Promise(r => setTimeout(r, 1200));
 
     signupUser({
-      id: `${selectedRole}-${Date.now()}`,
-      name: formData.fullName,
+      full_name: formData.fullName,
       email: formData.email,
-      phone: formData.phone,
+      password: formData.password,
       role: selectedRole,
-      avatar: formData.fullName.charAt(0).toUpperCase(),
-      institution: selectedRole === 'admin' ? formData.adminInstitution : formData.university,
-      department: formData.department || formData.adminDepartment || formData.faculty || '—',
+      department: formData.department || formData.adminDepartment || formData.faculty || undefined,
+      student_id: selectedRole === 'student' ? formData.studentId : undefined,
     });
 
     setLoading(false);
