@@ -154,7 +154,7 @@ export function AdminDashboardView() {
           <div className="flex items-start justify-between mb-5">
             <div>
               <h4 className="font-heading font-bold text-lg text-charcoal leading-tight">
-                AI Assessment Adoption — This Semester
+                AI Assessment Adoption This Semester
               </h4>
               <p className="text-sm text-slategray mt-1">{t('admin.aiAdoptionDesc')}</p>
             </div>
@@ -476,7 +476,7 @@ export function AdminUsersView() {
     <SimpleListView
       icon={Users}
       title="All Users"
-      subtitle="Manage every user account across the institution — students, lecturers, admins, and guardians."
+      subtitle="Manage every user account across the institution, including students, lecturers, admins, and guardians."
       items={items}
       itemFields={[
         { key: 'name', label: 'User' },
@@ -627,7 +627,7 @@ export function AdminAssessmentsView() {
     <SimpleListView
       icon={FileCheck}
       title="Assessments"
-      subtitle="All assignments and assessments system-wide — rubrics, AI-evaluation status, and lecturer review pipeline."
+      subtitle="All assignments and assessments system-wide, including rubrics, AI-evaluation status, and the lecturer review pipeline."
       items={assessmentsList}
       itemFields={[
         { key: 'name', label: 'Assessment' },
@@ -650,7 +650,7 @@ export function AdminAnalyticsView() {
       <SectionHeader
         eyebrow="Institutional Analytics"
         title="Performance & Insights"
-        subtitle="Aggregated analytics across all departments — AI adoption, assessment quality, and lecturer turnaround times."
+        subtitle="Aggregated analytics across all departments, including AI adoption, assessment quality, and lecturer turnaround times."
       />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
         {[
@@ -678,7 +678,7 @@ export function AdminAnalyticsView() {
             <BarChart3 className="w-12 h-12 text-slategray mx-auto mb-3" />
             <h4 className="font-heading font-bold text-lg text-charcoal mb-1">Interactive Analytics Panel</h4>
             <p className="text-sm text-slategray max-w-md">
-              Full institutional analytics visualizations — grade distributions, department comparisons, responsible AI bias audits, and lecturer performance.
+              Full institutional analytics visualizations, including grade distributions, department comparisons, responsible AI bias audits, and lecturer performance.
             </p>
           </div>
         </div>

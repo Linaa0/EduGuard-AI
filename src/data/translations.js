@@ -348,7 +348,7 @@ export const translations = {
     'hero.title1': 'AI Assesses.',
     'hero.title2': 'Teachers Decide.',
     'hero.title3': 'Students Understand.',
-    'hero.desc': 'AI-powered academic assessment and feedback that helps university lecturers assess faster with their own marking rubrics, while empowering students with criterion-level explanations to improve.',
+    'hero.desc': 'AI-powered academic assessment and feedback that helps university lecturers assess faster with their own marking rubrics, and gives students criterion-level explanations to improve.',
     'hero.exploreDemo': 'Explore Demo',
     'hero.howItWorks': 'How It Works',
     'hero.submissionEval': 'Submission Evaluation',
@@ -358,7 +358,7 @@ export const translations = {
     'hero.aiSuggested': 'AI Suggested:',
     'hero.lecturerFinalGrade': 'Lecturer Final Grade:',
     'hero.approvePublish': 'Approve & Publish to Student',
-    'hero.guaranteedGovernance': 'Guaranteed Human-In-The-Loop Academic Governance',
+    'hero.guaranteedGovernance': 'Human-in-the-Loop Academic Governance',
 
     // Landing Page — Problem
     'problem.badge': 'The Academic Assessment Dilemma',
@@ -387,7 +387,7 @@ export const translations = {
 
     // Landing Page — How It Works
     'howItWorks.eyebrow': 'Process',
-    'howItWorks.title': 'How EduGuard AI Transforms Assessment',
+    'howItWorks.title': 'How EduGuard AI Works',
     'howItWorks.desc': 'From rubric specification to student feedback, experience a transparent human-in-the-loop workflow designed for university rigor.',
     'howItWorks.step1.title': 'Lecturer Creates Assignment',
     'howItWorks.step1.desc': 'Define course learning outcomes, assignment guidelines, submission limits, and deadline parameters.',
@@ -435,7 +435,7 @@ export const translations = {
 
     // Landing Page — Student Feedback
     'studentFeedback.badge': 'Student-Centered Growth',
-    'studentFeedback.title': 'Transforming Grades Into Understanding',
+    'studentFeedback.title': 'From Grades to Understanding',
     'studentFeedback.desc': 'Students no longer receive a dead-end number. EduGuard AI delivers transparent criterion breakdowns, specific strengths, actionable growth areas, and curated university resources.',
     'studentFeedback.publishedAssessment': 'Published Assessment',
     'studentFeedback.finalGrade': 'Final Official Grade',
@@ -545,11 +545,11 @@ export const translations = {
     'team.hackathon': "Engineered for the STP '26 Hackathon Demonstration",
 
     // Landing Page — Footer
-    'footer.cta.badge': 'Ready for the Next Generation of Academic Assessment?',
+    'footer.cta.badge': 'Built for Modern Academic Assessment',
     'footer.cta.title1': 'AI Assesses.',
     'footer.cta.title2': 'Teachers Decide.',
     'footer.cta.title3': 'Students Understand.',
-    'footer.cta.desc': 'Building a more transparent, efficient, and student-centered academic assessment experience.',
+    'footer.cta.desc': 'A transparent, efficient academic assessment experience built for students.',
     'footer.cta.button': 'Launch EduGuard Demo',
     'footer.systemDesc': 'University Academic Assessment & Feedback System',
     'footer.lecturerPortal': 'Lecturer Portal',
@@ -623,7 +623,7 @@ export const translations = {
 
     // Parent Views
     'parViews.welcomeBack': 'Welcome back',
-    'parViews.studentProgress': "Jean-Paul's midterm grades are ready — overall performance is above class average.",
+    'parViews.studentProgress': "Jean-Paul's midterm grades are ready. Overall performance is above the class average.",
     'parViews.midtermReady': 'Midterm grades are ready',
 
     // Student Dashboard
@@ -636,7 +636,7 @@ export const translations = {
     // Admin Dashboard
     'admin.overview': 'Institutional Overview',
     'admin.runReport': 'Run Report',
-    'admin.aiAdoption': 'AI Assessment Adoption — This Semester',
+    'admin.aiAdoption': 'AI Assessment Adoption This Semester',
     'admin.aiAdoptionDesc': 'Rubrics evaluated by AI, then approved by lecturers',
     'admin.aiEvaluations': 'AI Evaluations',
     'admin.lecturerApproved': 'Lecturer Approved',
@@ -1289,7 +1289,7 @@ export const translations = {
 
     // Parent Views
     'parViews.welcomeBack': 'Murakaze',
-    'parViews.studentProgress': 'Amanota ya Jean-Paul ya hagati yari yabonetse — imikorere yose iri hejuru y\'averaji y\'icyiciro.',
+    'parViews.studentProgress': 'Amanota ya Jean-Paul ya hagati yari yabonetse. Imikorere yose iri hejuru y\'averaji y\'icyiciro.',
     'parViews.midtermReady': 'Amanota ya hagati yari yabonetse',
 
     // Student Dashboard
@@ -1302,7 +1302,7 @@ export const translations = {
     // Admin Dashboard
     'admin.overview': 'Amakuru yose y\'Ishuri',
     'admin.runReport': 'Tangura Raporo',
-    'admin.aiAdoption': 'Koresha AI mu Isuzuma — Igihe c\'Ubu',
+    'admin.aiAdoption': 'Koresha AI mu Isuzuma, Igihe c\'Ubu',
     'admin.aiAdoptionDesc': 'Rubric isuzumwa na AI, irongera imyemezo',
     'admin.aiEvaluations': 'Isuzuma rya AI',
     'admin.lecturerApproved': 'Umuyobozi Yemeje',

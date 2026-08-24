@@ -135,7 +135,7 @@ export function ParentDashboardView() {
           <div className="flex items-start justify-between mb-5">
             <div>
               <h4 className="font-heading font-bold text-lg text-charcoal leading-tight">
-                Current Semester — Grades
+                Current Semester Grades
               </h4>
               <p className="text-sm text-slategray mt-1">Ongoing assessment results · Updated daily</p>
             </div>
@@ -447,7 +447,7 @@ export function ParentGradesView() {
       eyebrow="Academic Records"
       icon={Award}
       title="Full Grade History"
-      subtitle="All assessed work across every semester — assignments, tests, midterms, and final exams."
+      subtitle="All assessed work across every semester, including assignments, tests, midterms, and final exams."
       contentColor="primary"
       hint="Complete transcript view with grade distribution, course-by-course breakdown, and lecturer comments per graded item. Includes provisional and finalized grades."
     />

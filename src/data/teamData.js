@@ -44,7 +44,7 @@ export const teamMembers = [
 export const projectIdentity = {
   name: "EduGuard AI",
   tagline: "AI Assesses. Teachers Decide. Students Understand.",
-  mission: "Empowering university educators to assess student submissions faster while keeping human expertise at the center, and delivering transparent, criterion-level feedback that helps students grow.",
+  mission: "Helping university educators assess student submissions faster while keeping human expertise at the center, and delivering transparent, criterion-level feedback that helps students grow.",
   hackathon: "STP '26 Hackathon Demonstration",
   year: "2026"
 };
