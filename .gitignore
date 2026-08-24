@@ -48,6 +48,9 @@ ENV/
 # --- Build outputs ---
 dist/
 build/
+*.db
+*.db-shm
+*.db-wal
 .next/
 out/
 *.egg-info/
