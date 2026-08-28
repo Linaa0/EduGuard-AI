@@ -56,14 +56,14 @@ export default function ImpactSection() {
   ];
 
   return (
-    <section id="impact" className="section-wrap section-light bg-white border-t border-divider">
+    <section id="impact" className="section-wrap section-light bg-cream dark:bg-slate-900 border-t border-divider dark:border-slate-800">
       <div className="site-container">
         <div className="text-center max-w-3xl mx-auto mb-14">
           <span className="eyebrow">{t('impact.eyebrow')}</span>
-          <h2 className="section-title text-3xl sm:text-4xl text-balance">
+          <h2 className="section-title text-3xl sm:text-4xl text-balance dark:text-white">
             {t('impact.title')}
           </h2>
-          <p className="section-lede">
+          <p className="section-lede dark:text-slate-400">
             {t('impact.desc')}
           </p>
         </div>

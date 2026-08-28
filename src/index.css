@@ -105,15 +105,21 @@
 }
 
 @layer base {
+  /* Fix horizontal overflow globally */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  #root {
+    overflow-x: hidden;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-  }
-
-  html.dark {
-    color-scheme: dark;
   }
 
   body {
@@ -249,14 +255,28 @@
   .site-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 20px;
     width: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 640px) {
+    .site-container {
+      padding: 0 24px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-container {
+      padding: 0 32px;
+    }
   }
 
   .section-wrap,
   .section-padding {
     padding-top: 96px;
     padding-bottom: 96px;
+    overflow-x: hidden;
   }
 
   @media (max-width: 768px) {
@@ -270,6 +290,7 @@
   .section-light {
     background-color: #F7F9FC;
     color: #1A202C;
+    overflow-x: hidden;
   }
 
   .section-light h1,
@@ -287,6 +308,7 @@
   .section-dark {
     background-color: #10233B;
     color: #F7F9FC;
+    overflow-x: hidden;
   }
 
   .section-dark h1,
@@ -895,7 +917,14 @@
     position: relative;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
+    .workflow-steps {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+
+  @media (min-width: 1024px) {
     .workflow-steps {
       grid-template-columns: repeat(5, 1fr);
       gap: 16px;

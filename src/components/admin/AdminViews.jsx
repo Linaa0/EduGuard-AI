@@ -55,11 +55,11 @@ function SectionHeader({ eyebrow, title, subtitle, actionLabel, onAction, Action
         {eyebrow && (
           <span className="eyebrow !mb-2 inline-flex mx-auto sm:mx-0">{eyebrow}</span>
         )}
-        <h3 className="font-heading font-bold text-xl text-charcoal tracking-tight leading-tight">
+        <h3 className="font-heading font-bold text-xl text-charcoal dark:text-white tracking-tight leading-tight">
           {title}
         </h3>
         {subtitle && (
-          <p className="text-sm text-slategray mt-1.5 max-w-2xl">{subtitle}</p>
+          <p className="text-sm text-slategray dark:text-slate-400 mt-1.5 max-w-2xl">{subtitle}</p>
         )}
       </div>
       {actionLabel && (
@@ -96,10 +96,10 @@ function StatCard({ stat }) {
           {stat.change}
         </div>
       </div>
-      <div className="font-heading font-extrabold text-3xl text-charcoal tracking-tight leading-none mb-1">
+      <div className="font-heading font-extrabold text-3xl text-charcoal dark:text-white tracking-tight leading-none mb-1">
         {stat.value}
       </div>
-      <div className="text-sm text-slategray font-medium">{stat.label}</div>
+      <div className="text-sm text-slategray dark:text-slate-400 font-medium">{stat.label}</div>
     </div>
   );
 }
@@ -153,17 +153,17 @@ export function AdminDashboardView() {
         <div className="card p-5 lg:col-span-2">
           <div className="flex items-start justify-between mb-5">
             <div>
-              <h4 className="font-heading font-bold text-lg text-charcoal leading-tight">
+              <h4 className="font-heading font-bold text-lg text-charcoal dark:text-white leading-tight">
                 AI Assessment Adoption This Semester
               </h4>
-              <p className="text-sm text-slategray mt-1">{t('admin.aiAdoptionDesc')}</p>
+              <p className="text-sm text-slategray dark:text-slate-400 mt-1">{t('admin.aiAdoptionDesc')}</p>
             </div>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 text-xs font-bold border border-teal-200">
               <TrendingUp className="w-3.5 h-3.5" />
               +28.7%
             </div>
           </div>
-          <div className="grid grid-cols-8 gap-2.5 items-end h-48">
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-2.5 items-end h-48">
             {[42, 55, 48, 68, 72, 85, 94, 100].map((h, i) => (
               <div key={i} className="flex flex-col items-center gap-2 group">
                 <div className="w-full relative">
@@ -219,8 +219,8 @@ export function AdminDashboardView() {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-heading font-bold text-base text-charcoal leading-tight">{t('admin.responsibleAI')}</h4>
-              <p className="text-xs text-slategray mt-0.5">{t('admin.hecCompliance')}</p>
+              <h4 className="font-heading font-bold text-base text-charcoal dark:text-white leading-tight">{t('admin.responsibleAI')}</h4>
+              <p className="text-xs text-slategray dark:text-slate-400 mt-0.5">{t('admin.hecCompliance')}</p>
             </div>
           </div>
 
@@ -233,8 +233,8 @@ export function AdminDashboardView() {
                       strokeDasharray={`${97 * 2.01} 201`} />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <div className="font-heading font-extrabold text-3xl text-charcoal">94<span className="text-xl">%</span></div>
-              <div className="text-[11px] text-slategray font-semibold">{t('admin.overallScore')}</div>
+              <div className="font-heading font-extrabold text-3xl text-charcoal dark:text-white">94<span className="text-xl">%</span></div>
+              <div className="text-[11px] text-slategray dark:text-slate-400 font-semibold">{t('admin.overallScore')}</div>
             </div>
           </div>
 
@@ -276,8 +276,8 @@ export function AdminDashboardView() {
                       <Building className="w-4.5 h-4.5" />
                     </div>
                     <div>
-                      <div className="font-bold text-sm text-charcoal leading-tight">{d.name}</div>
-                      <div className="text-[11px] text-slategray">{d.teachers} teachers · {d.students} students</div>
+                      <div className="font-bold text-sm text-charcoal dark:text-white leading-tight">{d.name}</div>
+                      <div className="text-[11px] text-slategray dark:text-slate-400">{d.teachers} teachers · {d.students} students</div>
                     </div>
                   </div>
                   <div className="font-heading font-extrabold text-lg text-primary">{d.utilization}%</div>
@@ -297,17 +297,17 @@ export function AdminDashboardView() {
         <div className="card p-5 lg:col-span-3">
           <div className="flex items-center justify-between mb-5">
             <div>
-              <h4 className="font-heading font-bold text-lg text-charcoal leading-tight">
+              <h4 className="font-heading font-bold text-lg text-charcoal dark:text-white leading-tight">
                 {t('admin.recentUsers')}
               </h4>
-              <p className="text-sm text-slategray mt-1">{t('admin.recentUsersDesc')}</p>
+              <p className="text-sm text-slategray dark:text-slate-400 mt-1">{t('admin.recentUsersDesc')}</p>
             </div>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slategray" />
               <input
                 type="text"
                 placeholder={t('admin.searchUsers')}
-                className="h-9 pl-9 pr-3 rounded-lg border border-divider bg-cream-50 text-[13px] text-charcoal placeholder:text-slategray/70 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 w-48"
+                className="h-9 pl-9 pr-3 rounded-lg border border-divider dark:border-slate-600 bg-cream-50 dark:bg-slate-700 text-[13px] text-charcoal dark:text-slate-200 placeholder:text-slategray/70 dark:placeholder:text-slate-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 w-48"
               />
             </div>
           </div>
@@ -353,8 +353,8 @@ export function AdminDashboardView() {
             </table>
           </div>
 
-          <div className="mt-5 flex items-center justify-between pt-3 border-t border-divider">
-            <div className="text-xs text-slategray">Showing {recentUsers.length} of 1,284 users</div>
+          <div className="mt-5 flex items-center justify-between pt-3 border-t border-divider dark:border-slate-700">
+            <div className="text-xs text-slategray dark:text-slate-400">Showing {recentUsers.length} of 1,284 users</div>
             <button onClick={() => showToast('Users', 'Opening full user directory...', 'info')} className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
               {t('admin.viewAllUsers')} <ArrowUpRight className="w-3.5 h-3.5" />
             </button>

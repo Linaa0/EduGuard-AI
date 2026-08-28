@@ -37,21 +37,21 @@ export default function TechArchitectureSection() {
   ];
 
   return (
-    <section className="section-wrap section-light bg-white border-t border-divider">
+    <section className="section-wrap section-light bg-cream dark:bg-slate-900 border-t border-divider dark:border-slate-800">
       <div className="site-container">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400 text-xs font-semibold">
             <Layers className="w-3.5 h-3.5" />
             <span>{t('tech.badge')}</span>
           </div>
 
-          <h2 className="section-title text-3xl sm:text-4xl text-balance">
+          <h2 className="section-title text-3xl sm:text-4xl text-balance dark:text-white">
             {t('tech.title')}
           </h2>
 
-          <p className="section-lede mb-0">
+          <p className="section-lede mb-0 dark:text-slate-400">
             {t('tech.desc')}
           </p>
         </div>
@@ -62,8 +62,8 @@ export default function TechArchitectureSection() {
           {/* Left: 7-Layer Flow Architecture */}
           <div className="lg:col-span-7 space-y-3">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">{t('tech.systemStack')}</span>
-              <span className="text-xs text-blue-400 font-mono">{t('tech.endToEnd')}</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 font-mono">{t('tech.systemStack')}</span>
+              <span className="text-xs text-blue-600 dark:text-blue-400 font-mono">{t('tech.endToEnd')}</span>
             </div>
 
             <div className="space-y-2.5">
@@ -71,14 +71,14 @@ export default function TechArchitectureSection() {
                 const Icon = layer.icon;
                 return (
                   <div key={layer.layer} className="relative">
-                    <div className={`p-4 rounded-xl bg-gradient-to-r ${layer.color} bg-slate-900 border flex items-start gap-3.5`}>
+                    <div className={`p-4 rounded-xl bg-slate-900 border flex items-start gap-3.5 bg-gradient-to-r ${layer.color}`}>
                       <div className="p-2 rounded-lg bg-slate-950/80 shrink-0">
                         <Icon className="w-4 h-4" />
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
                           <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">{t(`tech.${layer.layerKey}.layer`)}</span>
-                          <span className="text-xs font-mono font-bold text-white">{t(`tech.${layer.layerKey}.tech`)}</span>
+                          <span className="text-xs font-mono font-bold text-white truncate">{t(`tech.${layer.layerKey}.tech`)}</span>
                         </div>
                         <p className="text-xs text-slate-300 mt-1 leading-relaxed">{t(`tech.${layer.layerKey}.desc`)}</p>
                       </div>
@@ -98,7 +98,7 @@ export default function TechArchitectureSection() {
           {/* Right: AI Agent Tool Suite */}
           <div className="lg:col-span-5 space-y-6">
             
-            <div className="rounded-2xl bg-slate-900 border border-slate-800 p-6 space-y-5 shadow-2xl">
+            <div className="rounded-2xl bg-slate-900 border border-slate-800 p-6 space-y-5 shadow-2xl overflow-hidden">
               <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                 <div className="flex items-center gap-2">
                   <Terminal className="w-4 h-4 text-emerald-400" />
@@ -114,13 +114,13 @@ export default function TechArchitectureSection() {
               </p>
 
               <div className="space-y-2">
-                {tools.map((t, idx) => (
-                  <div key={t.name} className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-0.5">
+                {tools.map((tool, idx) => (
+                  <div key={tool.name} className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-0.5">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono font-bold text-blue-400">tool_{idx+1}: {t.name}()</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      <span className="text-xs font-mono font-bold text-blue-400 truncate">tool_{idx+1}: {tool.name}()</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0 ml-2"></span>
                     </div>
-                    <p className="text-[11px] text-slate-400">{t.desc}</p>
+                    <p className="text-[11px] text-slate-400">{tool.desc}</p>
                   </div>
                 ))}
               </div>

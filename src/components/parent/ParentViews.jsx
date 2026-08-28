@@ -71,7 +71,7 @@ export function ParentDashboardView() {
       </div>
 
       {/* Student snapshot card */}
-      <div className="card p-6 bg-gradient-to-br from-success-50/60 via-white to-teal-50/40 border-success-200">
+      <div className="card p-6 bg-white dark:bg-slate-800 border-emerald-200 dark:border-emerald-800/40">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           <div className="flex items-center gap-4 md:col-span-1">
             <div className="relative">
@@ -109,7 +109,7 @@ export function ParentDashboardView() {
               };
               const TrendIc = s.trend === 'up' ? ArrowUpRight : s.trend === 'down' ? ArrowDownRight : null;
               return (
-                <div key={s.label} className="rounded-xl bg-white dark:bg-slate-800 border border-divider p-4">
+                <div key={s.label} className="rounded-xl bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className={`w-9 h-9 rounded-lg flex items-center justify-center border ${colorMap[s.color]}`}>
                       <Ic className="w-4.5 h-4.5" />
@@ -118,9 +118,9 @@ export function ParentDashboardView() {
                       <TrendIc className="w-3.5 h-3.5" /> {s.change}
                     </span>}
                   </div>
-                  <div className="font-heading font-extrabold text-2xl text-charcoal leading-none">{s.value}</div>
-                  <div className="text-[12px] font-semibold text-charcoal/80 mt-1">{s.label}</div>
-                  <div className="text-[11px] text-slategray mt-0.5">{s.note}</div>
+                  <div className="font-heading font-extrabold text-2xl text-charcoal dark:text-white leading-none">{s.value}</div>
+                  <div className="text-[12px] font-semibold text-charcoal dark:text-slate-200 mt-1">{s.label}</div>
+                  <div className="text-[11px] text-slategray dark:text-slate-400 mt-0.5">{s.note}</div>
                 </div>
               );
             })}
@@ -326,10 +326,10 @@ export function ParentDashboardView() {
               <span className="text-slategray">Semester attendance trend</span>
               <span className="text-success">+2% vs last semester</span>
             </div>
-            <div className="grid grid-cols-10 gap-1.5">
+            <div className="grid grid-cols-5 sm:grid-cols-10 gap-1.5">
               {[92,90,95,96,93,94,97,92,95,94].map((v, i) => (
                 <div key={i} className="flex flex-col items-center gap-1.5">
-                  <div className="w-full relative h-24 bg-cream-100 rounded-md overflow-hidden">
+                  <div className="w-full relative h-24 bg-slate-200 dark:bg-slate-700 rounded-md overflow-hidden">
                     <div
                       className={`w-full absolute bottom-0 rounded-md transition-all ${v >= 95 ? 'bg-success' : v >= 90 ? 'bg-teal' : 'bg-amber-400'}`}
                       style={{ height: `${v}%` }}
@@ -380,9 +380,9 @@ export function ParentStudentView() {
             { lbl: 'Faculty Advisor', val: 'Dr. Jeanne Mukamana' },
             { lbl: 'Accommodation', val: 'On Campus — Gikondo Hostel' },
           ].map(x => (
-            <div key={x.lbl} className="p-4 rounded-xl border border-divider bg-cream-50/50">
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-slategray mb-1">{x.lbl}</div>
-              <div className="font-bold text-charcoal">{x.val}</div>
+            <div key={x.lbl} className="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700/50">
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-slategray dark:text-slate-400 mb-1">{x.lbl}</div>
+              <div className="font-bold text-charcoal dark:text-white">{x.val}</div>
             </div>
           ))}
         </div>
